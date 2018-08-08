@@ -56,7 +56,7 @@ package posnet {
 			var tPosO:Object;
 			for (i = 0; i < len; i++)
 			{
-				if (i > 0) continue;
+				//if (i > 0) continue;
 				tPosO = poses[i];
 				drawPosToGraphic(tPosO, g);
 			}

@@ -427,7 +427,11 @@ var Laya=window.Laya=(function(window,document){
 	//class LayaUISample
 	var LayaUISample=(function(){
 		function LayaUISample(){
-			this.imgPath="res/boxer.png";
+			this.imgPath="res/boxer01.png";
+			this.camaraParam=null;
+			this.video=null;
+			this.arController=null;
+			this.sp=null;
 			Laya.init(1000,900);
 			ResourceVersion.enable("version.json",Handler.create(this,this.beginLoad),2);
 		}
@@ -449,10 +453,34 @@ var Laya=window.Laya=(function(window,document){
 			sp.graphics.drawTexture(LayaUISample.texture);
 			sp.pos(100,100);
 			Laya.stage.addChild(sp);
-			PoseNetTools.getImagePosSprite(LayaUISample.texture.source,null,new Handler(this,this.onPosGetd));
+			this.testVideo();
+		}
+
+		__proto.testVideo=function(){
+			var completeHandler;
+			this.video=LayaArTool.createVideo();
+			this.video.style["z-index"]=9;
+			completeHandler=new Handler(this,this.beginWork,[this.video]);
+			LayaArTool.initPCCamara(this.video,completeHandler);
+		}
+
+		__proto.beginWork=function(video){
+			this.video=video;
+			video.play();
+			this.sp=new Sprite();
+			Laya.timer.once(5000,this,this.beginViedeoDetect);
+		}
+
+		__proto.beginViedeoDetect=function(){
+			Laya.timer.frameLoop(2,this,this.loopDetect);
+		}
+
+		__proto.loopDetect=function(){
+			PoseNetTools.getImagePosSprite(this.video,null,new Handler(this,this.onPosGetd));
 		}
 
 		__proto.onPosGetd=function(sp){
+			console.log("onPosGeted");
 			sp.pos(100,100);
 			Laya.stage.addChild(sp);
 		}
@@ -505,7 +533,6 @@ var Laya=window.Laya=(function(window,document){
 			len=poses.length;
 			var tPosO;
 			for (i=0;i < len;i++){
-				if (i > 0)continue ;
 				tPosO=poses[i];
 				PoseNetTools.drawPosToGraphic(tPosO,g);
 			}
@@ -2133,6 +2160,71 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		return ShaderCompile;
+	})()
+
+
+	/**
+	*...
+	*@author ww
+	*/
+	//class laya.debug.tools.DebugTxt
+	var DebugTxt=(function(){
+		function DebugTxt(){}
+		__class(DebugTxt,'laya.debug.tools.DebugTxt');
+		DebugTxt.init=function(){
+			if (DebugTxt._txt)return;
+			DebugTxt._txt=new Text();
+			DebugTxt._txt.pos(100,100);
+			DebugTxt._txt.color="#ff00ff";
+			DebugTxt._txt.zOrder=999;
+			DebugTxt._txt.fontSize=24;
+			DebugTxt._txt.text="debugTxt inited";
+			Laya.stage.addChild(DebugTxt._txt);
+		}
+
+		DebugTxt.getArgArr=function(arg){
+			var rst;
+			rst=[];
+			var i=0,len=arg.length;
+			for(i=0;i<len;i++){
+				rst.push(arg[i]);
+			}
+			return rst;
+		}
+
+		DebugTxt.dTrace=function(__arg){
+			var arg=arguments;
+			arg=DebugTxt.getArgArr(arg);
+			var str;
+			str=arg.join(" ");
+			if (DebugTxt._txt){
+				DebugTxt._txt.text=str+"\n"+DebugTxt._txt.text;
+			}
+		}
+
+		DebugTxt.getTimeStr=function(){
+			var dateO=new Date();
+			return dateO.toTimeString();
+		}
+
+		DebugTxt.traceTime=function(msg){
+			DebugTxt.dTrace(DebugTxt.getTimeStr());
+			DebugTxt.dTrace(msg);
+		}
+
+		DebugTxt.show=function(__arg){
+			var arg=arguments;
+			arg=DebugTxt.getArgArr(arg);
+			var str;
+			str=arg.join(" ");
+			if (DebugTxt._txt){
+				DebugTxt._txt.text=str;
+			}
+		}
+
+		DebugTxt._txt=null
+		DebugTxt.I=null
+		return DebugTxt;
 	})()
 
 
@@ -15356,6 +15448,166 @@ var Laya=window.Laya=(function(window,document){
 		UIConfig.popupBgAlpha=0.5;
 		UIConfig.closeDialogOnSide=true;
 		return UIConfig;
+	})()
+
+
+	/**
+	*...
+	*@author ww
+	*/
+	//class LayaArTool
+	var LayaArTool=(function(){
+		function LayaArTool(){}
+		__class(LayaArTool,'LayaArTool');
+		LayaArTool.createVideo=function(){
+			var video;
+			video=Browser.createElement("video");
+			Browser.document.body.appendChild(video);
+			var style;
+			style=video.style;
+			style.position="absolute";
+			style.left="0px";
+			style.top="0px";
+			return video;
+		}
+
+		LayaArTool.initVideoBySrc=function(video,src,handler){
+			video.src=src;
+			video.loop="loop";
+			video.onloadedmetadata=function (e){
+				handler.runWith(video);
+			};
+		}
+
+		LayaArTool.initPCCamara=function(video,handler){
+			var constraints={video:true};
+			function handleSuccess (stream){
+				window.stream=stream;
+				video.srcObject=stream;
+				handler.run();
+			}
+			function handleError (error){
+				console.log('getUserMedia error: ',error);
+			}
+			Browser.window.navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
+		}
+
+		LayaArTool.initCamaraNew=function(video,handler){
+			var exArray=[];
+			var navigator=Browser.window.navigator;
+			var MediaStreamTrack=Browser.window.MediaStreamTrack;
+			DebugTxt.dTrace("navigator.getUserMedia"+navigator.getUserMedia);
+			DebugTxt.dTrace("MediaStreamTrack2",Browser.window.MediaStreamTrack);
+			if (MediaStreamTrack && MediaStreamTrack.getSources){}
+				else {
+				LayaArTool.initCamaraVideo(video,handler);
+				return;
+			}
+			DebugTxt.dTrace("MediaStreamTrack.getSources",Browser.window.MediaStreamTrack.getSources);
+			if (navigator.getUserMedia){
+				DebugTxt.dTrace("MediaStreamTrack.getSources",MediaStreamTrack.getSources);
+				MediaStreamTrack.getSources(function(sourceInfos){
+					for (var i=0;i !=sourceInfos.length;++i){
+						var sourceInfo=sourceInfos[i];
+						if (sourceInfo.kind==='video'){
+							exArray.push(sourceInfo.id);
+						}
+					};
+					var mediaCfg;
+					mediaCfg={'video':{'optional':[{'sourceId':exArray[1]}],'audio':false}}
+					DebugTxt.dTrace("navigator.getUserMedia");
+					navigator.getUserMedia(mediaCfg,function(stream){
+						DebugTxt.dTrace("onCamaraOk");
+						LayaArTool.onCamaraOk(video,stream,handler);
+					},LayaArTool.onCamaraErr);
+				});
+			}
+		}
+
+		LayaArTool.initCamaraNew2=function(video,handler){
+			var exArray=[];
+			var navigator=Browser.window.navigator;
+			if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices){
+				navigator.mediaDevices.enumerateDevices().then(gotDevices);
+			}
+			else {
+				LayaArTool.initCamaraNew(video,handler);
+				return;
+			};
+			var audioArray=[];
+			function gotDevices (deviceInfos){
+				for (var i=0;i!==deviceInfos.length;++i){
+					var deviceInfo=deviceInfos[i];
+					if (deviceInfo.kind==='audioinput'){
+						audioArray.push(deviceInfo.deviceId || 'microphone '+(audioArray.length+1));
+					}
+					else if (deviceInfo.kind==='videoinput'){
+						var key;
+						for (key in deviceInfo){
+							DebugTxt.dTrace(key,deviceInfo[key]);
+						}
+						exArray.push(deviceInfo.deviceId || 'camera '+(exArray.length+1));
+					}
+					else {
+						console.log('Found one other kind of source/device: ',deviceInfo);
+					}
+				}
+				DebugTxt.dTrace("deviceId:",exArray[1]);
+				var constraints={audio:false,video:{deviceId:{exact:exArray[1]}}};
+				navigator.mediaDevices.getUserMedia(constraints).then(gotStream);
+				function gotStream (stream){
+					DebugTxt.dTrace("gotStream");
+					LayaArTool.onCamaraOk(video,stream,handler);
+				}
+			}
+		}
+
+		LayaArTool.onCamaraErr=function(error){
+			alert(error.name);
+		}
+
+		LayaArTool.onCamaraOk=function(video,stream,handler){
+			video.src=Browser.window.URL.createObjectURL(stream);
+			video.onloadedmetadata=function (e){
+				DebugTxt.dTrace("onloadedmetadata");
+				handler.runWith(video);
+			};
+		}
+
+		LayaArTool.initCamaraVideo=function(video,handler){
+			var navigator=Browser.window.navigator;
+			var videoObj={"video":true};
+			var errBack=function (error){
+				alert(error.name);
+			};
+			var _this=this;
+			if (navigator.getUserMedia){
+				navigator.getUserMedia(videoObj,function(stream){
+					video.src=Browser.window.URL.createObjectURL(stream);
+					video.onloadedmetadata=function (e){
+						handler.runWith(video);
+					};
+				},LayaArTool.onCamaraErr);
+			}
+			else if (navigator.webkitGetUserMedia){
+				navigator.webkitGetUserMedia(videoObj,function(stream){
+					video.src=Browser.window.webkitURL.createObjectURL(stream);
+					video.onloadedmetadata=function (e){
+						handler.runWith(video);
+					};
+				},LayaArTool.onCamaraErr);
+			}
+			else if (navigator.mozGetUserMedia){
+				navigator.mozGetUserMedia(videoObj,function(stream){
+					video.src=Browser.window.URL.createObjectURL(stream);
+					video.onloadedmetadata=function (e){
+						handler.runWith(video);
+					};
+				},LayaArTool.onCamaraErr);
+			}
+		}
+
+		return LayaArTool;
 	})()
 
 
@@ -37654,7 +37906,7 @@ var Laya=window.Laya=(function(window,document){
 	})(TestPageUI)
 
 
-	Laya.__init([EventDispatcher,LoaderManager,Render,View,DrawText,WebGLContext2D,ShaderCompile,Timer,GraphicAnimation,LocalStorage,Browser,AtlasGrid]);
+	Laya.__init([LoaderManager,EventDispatcher,Render,View,WebGLContext2D,DrawText,ShaderCompile,Timer,GraphicAnimation,LocalStorage,Browser,AtlasGrid]);
 	new LayaUISample();
 
 })(window,document,Laya);

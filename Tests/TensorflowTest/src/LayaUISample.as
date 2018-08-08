@@ -6,6 +6,7 @@
 	import laya.resource.Texture;
 	import laya.utils.Browser;
 	import laya.utils.Handler;
+	import laya.utils.Utils;
 	import posnet.PoseNetTools;
 	import view.TestView;
 	import laya.webgl.WebGL;
@@ -19,7 +20,7 @@
 			//激活资源版本控制
 			ResourceVersion.enable("version.json", Handler.create(this, beginLoad), ResourceVersion.FILENAME_VERSION);
 		}
-		private var imgPath:String = "res/boxer.png";
+		private var imgPath:String = "res/boxer01.png";
 		
 		private function beginLoad():void {
 			//加载引擎需要的资源
@@ -45,12 +46,43 @@
 			
 			sp.pos(100, 100);
 			Laya.stage.addChild(sp);
+			testVideo();
+			//PoseNetTools.getImagePosSprite(texture.source, null, new Handler(this, onPosGetd));
+		}
+		
+		private var camaraParam:ARCameraParam;
+		private var video:*;
+		private var arController:ARController;
+		private function testVideo():void
+		{
+			var completeHandler:Handler;
 			
-			PoseNetTools.getImagePosSprite(texture.source, null, new Handler(this, onPosGetd));
+			
+			video = LayaArTool.createVideo();
+			video.style["z-index"] = 9;
+			completeHandler = new Handler(this, beginWork, [video]);
+			LayaArTool.initPCCamara(video, completeHandler);
+		}
+		
+		private function beginWork(video:*):void {
+			this.video = video;
+			video.play();
+			sp = new Sprite();
+			Laya.timer.once(5000, this, beginViedeoDetect);
+		}
+		private function beginViedeoDetect():void
+		{
+			Laya.timer.frameLoop(2, this, loopDetect);
+		}
+		private var sp:Sprite;
+		private function loopDetect():void
+		{
+			PoseNetTools.getImagePosSprite(video, null, new Handler(this, onPosGetd));
 		}
 		
 		private function onPosGetd(sp:Sprite):void
 		{
+			trace("onPosGeted");
 			sp.pos(100, 100);
 			Laya.stage.addChild(sp);
 		}
