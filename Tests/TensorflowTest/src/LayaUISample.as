@@ -37,7 +37,7 @@
 			
 		}
 		
-		private function onInited():void
+		private function testImage():void
 		{
 			texture = Loader.getRes(imgPath);
 			var sp:Sprite;
@@ -46,6 +46,10 @@
 			
 			sp.pos(100, 100);
 			Laya.stage.addChild(sp);
+		}
+		private function onInited():void
+		{
+			
 			testVideo();
 			//PoseNetTools.getImagePosSprite(texture.source, null, new Handler(this, onPosGetd));
 		}
@@ -59,7 +63,8 @@
 			
 			
 			video = LayaArTool.createVideo();
-			video.style["z-index"] = 9;
+			video.style["z-index"] = -1;
+			
 			completeHandler = new Handler(this, beginWork, [video]);
 			LayaArTool.initPCCamara(video, completeHandler);
 		}
@@ -72,12 +77,15 @@
 		}
 		private function beginViedeoDetect():void
 		{
-			Laya.timer.frameLoop(2, this, loopDetect);
+			video.width = video.videoWidth;
+			video.height = video.videoHeight;
+			//Laya.timer.frameLoop(1, this, loopDetect);
+			loopDetect();
 		}
 		private var sp:Sprite;
 		private function loopDetect():void
 		{
-			PoseNetTools.getImagePosSprite(video, null, new Handler(this, onPosGetd));
+			PoseNetTools.getImagePosSprite(video, sp, new Handler(this, onPosGetd));
 		}
 		
 		private function onPosGetd(sp:Sprite):void
@@ -85,6 +93,7 @@
 			trace("onPosGeted");
 			sp.pos(100, 100);
 			Laya.stage.addChild(sp);
+			loopDetect();
 		}
 		
 	}

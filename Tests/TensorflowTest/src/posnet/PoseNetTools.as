@@ -28,11 +28,15 @@ package posnet {
 		public static function estimatePose(img:*, complete:Handler):void
 		{
 			var imageScaleFactor:Number = 0.5;
-			var flipHorizontal:Boolean = false;
+			var flipHorizontal:Boolean = true;
 			var outputStride:Number = 16;
 			var maxPoseDetections:Number = 2;
-			netModel.estimateMultiplePoses(img, 0.5, flipHorizontal, outputStride, maxPoseDetections).then(function(poses:*):void {
-				trace("estimateMultiplePoses success");	
+			netModel.estimateSinglePose(img, 0.5, flipHorizontal, outputStride, maxPoseDetections).then(function(poses:*):void {
+				trace("estimateMultiplePoses success");
+				if(!(poses is Array))
+				{
+					poses = [poses];
+				}
 				complete.runWith([poses]);
 				}
 			)
@@ -51,6 +55,7 @@ package posnet {
 			if (!sp) sp = new Sprite();
 			var g:Graphics;
 			g = sp.graphics;
+			g.clear();
 			var i:int, len:int;
 			len = poses.length;
 			var tPosO:Object;
