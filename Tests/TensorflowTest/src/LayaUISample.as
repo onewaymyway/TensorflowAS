@@ -1,4 +1,5 @@
 ﻿package {
+	import hooktool.XmlHttpRequestHook;
 	import laya.display.Graphics;
 	import laya.display.Sprite;
 	import laya.net.Loader;
@@ -31,7 +32,7 @@
 		private function onLoaded():void {
 			
 			
-			
+			XmlHttpRequestHook.init();
 			PoseNetTools.init(new Handler(this,onInited));
 			
 			
@@ -49,7 +50,8 @@
 		}
 		private function onInited():void
 		{
-			
+			trace("urls:", XmlHttpRequestHook.loadList);
+			trace("urls:", JSON.stringify(XmlHttpRequestHook.loadList));
 			testVideo();
 			//PoseNetTools.getImagePosSprite(texture.source, null, new Handler(this, onPosGetd));
 		}
@@ -91,7 +93,7 @@
 		
 		private function onPosGetd(sp:Sprite):void
 		{
-			trace("onPosGeted");
+			//trace("onPosGeted");
 			//sp.pos(100, 100);
 			Laya.stage.addChild(sp);
 			loopDetect();
