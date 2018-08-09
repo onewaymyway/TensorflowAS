@@ -474,6 +474,7 @@ var Laya=window.Laya=(function(window,document){
 
 		__proto.onLoaded=function(){
 			XmlHttpRequestHook.init();
+			PoseNetTools.setModuleRoot("/");
 			PoseNetTools.init(new Handler(this,this.onInited));
 		}
 
@@ -536,6 +537,10 @@ var Laya=window.Laya=(function(window,document){
 	var PoseNetTools=(function(){
 		function PoseNetTools(){}
 		__class(PoseNetTools,'posnet.PoseNetTools');
+		PoseNetTools.setModuleRoot=function(rootPath){
+			Browser.window.moduleRoot=rootPath;
+		}
+
 		PoseNetTools.init=function(complete){
 			var posenet;
 			posenet=Browser.window.posenet;

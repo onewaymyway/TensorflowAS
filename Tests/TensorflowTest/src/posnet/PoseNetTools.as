@@ -15,7 +15,10 @@ package posnet {
 		
 		}
 		public static var netModel:*;
-		
+		public static function setModuleRoot(rootPath:String):void
+		{
+			Browser.window.moduleRoot = rootPath;
+		}
 		public static function init(complete:Handler):void {
 			var posenet:Object;
 			posenet = Browser.window.posenet;

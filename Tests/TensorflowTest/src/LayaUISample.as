@@ -33,6 +33,8 @@
 			
 			
 			XmlHttpRequestHook.init();
+			
+			PoseNetTools.setModuleRoot("/");
 			PoseNetTools.init(new Handler(this,onInited));
 			
 			

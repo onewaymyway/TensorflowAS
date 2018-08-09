@@ -679,6 +679,10 @@
     }());
 
     var GOOGLE_CLOUD_STORAGE_DIR = 'https://storage.googleapis.com/tfjs-models/weights/posenet/';
+	if(window.moduleRoot)
+	{
+		GOOGLE_CLOUD_STORAGE_DIR=window.moduleRoot;
+	}
     var checkpoints = {
         1.01: {
             url: GOOGLE_CLOUD_STORAGE_DIR + 'mobilenet_v1_101/',
