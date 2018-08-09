@@ -16,7 +16,7 @@
 		public function LayaUISample() {
 			//初始化引擎
 			Laya.init(1000, 900);
-			
+			Laya.stage.bgColor = null;
 			//激活资源版本控制
 			ResourceVersion.enable("version.json", Handler.create(this, beginLoad), ResourceVersion.FILENAME_VERSION);
 		}
@@ -79,19 +79,20 @@
 		{
 			video.width = video.videoWidth;
 			video.height = video.videoHeight;
+			Laya.stage.size(video.width, video.height);
 			//Laya.timer.frameLoop(1, this, loopDetect);
 			loopDetect();
 		}
 		private var sp:Sprite;
 		private function loopDetect():void
 		{
-			PoseNetTools.getImagePosSprite(video, sp, new Handler(this, onPosGetd));
+			PoseNetTools.getImagePosSprite(video, sp, new Handler(this, onPosGetd),0.65);
 		}
 		
 		private function onPosGetd(sp:Sprite):void
 		{
 			trace("onPosGeted");
-			sp.pos(100, 100);
+			//sp.pos(100, 100);
 			Laya.stage.addChild(sp);
 			loopDetect();
 		}

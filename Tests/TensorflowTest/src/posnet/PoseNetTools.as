@@ -28,10 +28,10 @@ package posnet {
 		public static function estimatePose(img:*, complete:Handler):void
 		{
 			var imageScaleFactor:Number = 0.5;
-			var flipHorizontal:Boolean = true;
+			var flipHorizontal:Boolean = false;
 			var outputStride:Number = 16;
 			var maxPoseDetections:Number = 2;
-			netModel.estimateSinglePose(img, 0.5, flipHorizontal, outputStride, maxPoseDetections).then(function(poses:*):void {
+			netModel.estimateSinglePose(img, imageScaleFactor, flipHorizontal, outputStride, maxPoseDetections).then(function(poses:*):void {
 				trace("estimateMultiplePoses success");
 				if(!(poses is Array))
 				{
@@ -42,15 +42,32 @@ package posnet {
 			)
 		}
 		
-		public static function getImagePosSprite(img:*, sp:Sprite, complete:Handler ):void
+		public static function estimatePoses(img:*, complete:Handler):void
+		{
+			var imageScaleFactor:Number = 0.5;
+			var flipHorizontal:Boolean = false;
+			var outputStride:Number = 16;
+			var maxPoseDetections:Number = 2;
+			netModel.estimateMultiplePoses(img, imageScaleFactor, flipHorizontal, outputStride, maxPoseDetections).then(function(poses:*):void {
+				trace("estimateMultiplePoses success");
+				if(!(poses is Array))
+				{
+					poses = [poses];
+				}
+				complete.runWith([poses]);
+				}
+			)
+		}
+		
+		public static function getImagePosSprite(img:*, sp:Sprite, complete:Handler,minScore:Number=0.5 ):void
 		{
 			function onEstimateSuccess(poses:Array):void
 			{
-				complete.runWith( drawPosInfo(poses, sp));
+				complete.runWith( drawPosInfo(poses, sp,minScore));
 			}
 			estimatePose(img, Handler.create(null, onEstimateSuccess));
 		}
-		public static function drawPosInfo(poses:Array, sp:Sprite):Sprite
+		public static function drawPosInfo(poses:Array, sp:Sprite,minScore:Number=0.5):Sprite
 		{
 			if (!sp) sp = new Sprite();
 			var g:Graphics;
@@ -59,10 +76,11 @@ package posnet {
 			var i:int, len:int;
 			len = poses.length;
 			var tPosO:Object;
+			
 			for (i = 0; i < len; i++)
 			{
-				//if (i > 0) continue;
 				tPosO = poses[i];
+				if (tPosO.score < minScore) continue;
 				drawPosToGraphic(tPosO, g);
 			}
 			return sp;
@@ -85,6 +103,8 @@ package posnet {
 		];
 		private static function drawPosToGraphic(posO:Object, g:Graphics):void
 		{
+			//trace("Score:",posO.score);
+			//if (posO.score < 0.60) return;
 			var keyPoints:Array;
 			keyPoints = posO.keypoints;
 			var i:int, len:int;
@@ -96,7 +116,7 @@ package posnet {
 			{
 				tPointO = keyPoints[i];
 				partDic[tPointO.part] = tPointO;
-				trace(tPointO.part);
+				//trace(tPointO.part);
 				g.drawCircle(tPointO.position.x, tPointO.position.y, 5, "#ff0000");
 				g.fillText(tPointO.part,tPointO.position.x, tPointO.position.y, "Arrial 12px", "#ff0000");
 			}
