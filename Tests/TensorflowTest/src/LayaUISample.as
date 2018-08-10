@@ -1,4 +1,5 @@
 ﻿package {
+	import faceai.FaceAPI;
 	import hooktool.XmlHttpRequestHook;
 	import laya.display.Graphics;
 	import laya.display.Sprite;
@@ -35,9 +36,22 @@
 			XmlHttpRequestHook.init();
 			
 			PoseNetTools.setModuleRoot("/");
-			PoseNetTools.init(new Handler(this,onInited));
+			//PoseNetTools.init(new Handler(this,onInited));
+			FaceAPI.init(new Handler(this,faceApiComplete));
 			
+		}
+		
+		private function faceApiComplete():void
+		{
 			
+			texture = Loader.getRes(imgPath);
+			FaceAPI.detectLandmarks(texture.source, new Handler(this, onFaceDetected));
+			
+		}
+		
+		private function onFaceDetected(mark:Object):void
+		{
+			debugger;
 		}
 		
 		private function testImage():void
@@ -50,6 +64,7 @@
 			sp.pos(100, 100);
 			Laya.stage.addChild(sp);
 		}
+		
 		private function onInited():void
 		{
 			trace("urls:", XmlHttpRequestHook.loadList);
