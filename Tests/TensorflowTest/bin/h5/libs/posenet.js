@@ -679,7 +679,7 @@
     }());
 
     var GOOGLE_CLOUD_STORAGE_DIR = 'https://storage.googleapis.com/tfjs-models/weights/posenet/';
-	if(window.moduleRoot)
+	if(window.hasOwnProperty("moduleRoot"))
 	{
 		GOOGLE_CLOUD_STORAGE_DIR=window.moduleRoot;
 	}

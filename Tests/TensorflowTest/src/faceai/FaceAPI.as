@@ -15,11 +15,11 @@ package faceai {
 		}
 		public static var faceapi:*;
 		
-		public static function init(complete:Handler):void {
+		public static function init(complete:Handler,modelPath:String="weights/"):void {
 			faceapi = Browser.window.faceapi;
 			//debugger;
-			faceapi.loadFaceDetectionModel('weights/').then(function():* {
-					return faceapi.loadFaceLandmarkModel("weights/");
+			faceapi.loadFaceDetectionModel(modelPath).then(function():* {
+					return faceapi.loadFaceLandmarkModel(modelPath);
 				}).then(function():void {
 					if (complete)
 						complete.run();
