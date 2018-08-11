@@ -434,7 +434,9 @@ var Laya=window.Laya=(function(window,document){
 		__class(FaceAPI,'faceai.FaceAPI');
 		FaceAPI.init=function(complete){
 			FaceAPI.faceapi=Browser.window.faceapi;
-			FaceAPI.faceapi.loadFaceLandmarkModel("weights/").then(function(){
+			FaceAPI.faceapi.loadFaceDetectionModel('weights/').then(function(){
+				return FaceAPI.faceapi.loadFaceLandmarkModel("weights/");
+				}).then(function(){
 				if (complete)
 					complete.run();
 			});
@@ -447,6 +449,69 @@ var Laya=window.Laya=(function(window,document){
 					complete.runWith(marks);
 				}
 			})
+		}
+
+		FaceAPI.getImageFaceSprite=function(img,sp,complete){
+			Browser.window.getImgSp(img,sp).then(
+			function(spO){
+				if (complete){
+					complete.runWith(spO);
+				}
+			})
+		}
+
+		FaceAPI.locateFaces=function(img,complete,minConfidence){
+			(minConfidence===void 0)&& (minConfidence=0.5);
+			FaceAPI.faceapi.locateFaces(/*no*/this.input,minConfidence).then(
+			function(locations){
+				if (complete){
+					complete.runWith([locations]);
+				}
+			})
+		}
+
+		FaceAPI.getLandMarksSp=function(landMarkList,sp){
+			if (!sp)
+				sp=new Sprite();
+			sp.graphics.clear();
+			var i=0,len=0;
+			len=landMarkList.length;
+			for (i=0;i < len;i++){
+				FaceAPI.getLandMarkSp(landMarkList[i],sp,false);
+			}
+			return sp;
+		}
+
+		FaceAPI.getLandMarkSp=function(landmarks,sp,autoClear){
+			(autoClear===void 0)&& (autoClear=true);
+			if (!sp)
+				sp=new Sprite();
+			var g;
+			g=sp.graphics;
+			if(autoClear)
+				g.clear();
+			var funs;
+			funs=["JawOutline","LeftEyeBrow","RightEyeBrow","Nose","LeftEye","RightEye","Mouth"];
+			var i=0,len=0;
+			len=funs.length;
+			var funName;
+			var points;
+			for (i=0;i < len;i++){
+				funName="get"+funs[i];
+				points=landmarks[funName]();
+				FaceAPI.drawPointsToG(points,g);
+			}
+			return sp;
+		}
+
+		FaceAPI.drawPointsToG=function(points,g){
+			var i=0,len=0;
+			len=points.length;
+			var tPointO;
+			for (i=0;i < len;i++){
+				tPointO=points[i];
+				g.drawCircle(tPointO.x,tPointO.y,3,"#ff0000");
+			}
 		}
 
 		FaceAPI.faceapi=null
@@ -486,7 +551,7 @@ var Laya=window.Laya=(function(window,document){
 	//class LayaUISample
 	var LayaUISample=(function(){
 		function LayaUISample(){
-			this.imgPath="res/boxer01.png";
+			this.imgPath="res/bbt1.jpg";
 			this.camaraParam=null;
 			this.video=null;
 			this.arController=null;
@@ -510,10 +575,19 @@ var Laya=window.Laya=(function(window,document){
 
 		__proto.faceApiComplete=function(){
 			LayaUISample.texture=Loader.getRes(this.imgPath);
-			FaceAPI.detectLandmarks(LayaUISample.texture.source,new Handler(this,this.onFaceDetected));
+			this.testImage();
+			FaceAPI.getImageFaceSprite(LayaUISample.texture.source,null,new Handler(this,this.onGetImageFaceSprite));
+		}
+
+		__proto.onGetImageFaceSprite=function(sp){
+			Laya.stage.addChild(sp);
+			sp.pos(100,100);
 		}
 
 		__proto.onFaceDetected=function(mark){
+			this.sp=FaceAPI.getLandMarkSp(mark);
+			this.sp.pos(100,100);
+			Laya.stage.addChild(this.sp);
 			debugger;
 		}
 
@@ -38008,7 +38082,12 @@ var Laya=window.Laya=(function(window,document){
 	})(TestPageUI)
 
 
-	Laya.__init([LoaderManager,EventDispatcher,Render,View,Browser,WebGLContext2D,ShaderCompile,Timer,GraphicAnimation,LocalStorage,AtlasGrid,DrawText]);
+	Laya.__init([LoaderManager,EventDispatcher,Browser,Render,View,WebGLContext2D,DrawText,ShaderCompile,Timer,GraphicAnimation,LocalStorage,AtlasGrid]);
 	new LayaUISample();
 
 })(window,document,Laya);
+
+
+/*
+1 file:///D:/machinelearning/TensorflowAS.git/trunk/Tests/TensorflowTest/src/faceai/FaceAPI.as (50):warning:input This variable is not defined.
+*/

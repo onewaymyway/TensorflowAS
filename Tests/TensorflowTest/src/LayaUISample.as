@@ -22,9 +22,10 @@
 			//激活资源版本控制
 			ResourceVersion.enable("version.json", Handler.create(this, beginLoad), ResourceVersion.FILENAME_VERSION);
 		}
-		private var imgPath:String = "res/boxer01.png";
-		
+		//private var imgPath:String = "res/head.png";
+		private var imgPath:String = "res/bbt1.jpg";
 		private function beginLoad():void {
+			//imgPath = "res/boxer.png";
 			//加载引擎需要的资源
 			Laya.loader.load(["res/atlas/comp.atlas", imgPath], Handler.create(this, onLoaded));
 		}
@@ -45,12 +46,23 @@
 		{
 			
 			texture = Loader.getRes(imgPath);
-			FaceAPI.detectLandmarks(texture.source, new Handler(this, onFaceDetected));
 			
+			testImage();
+			
+			//FaceAPI.detectLandmarks(texture.source, new Handler(this, onFaceDetected));
+			FaceAPI.getImageFaceSprite(texture.source, null,new Handler(this, onGetImageFaceSprite));
 		}
 		
+		private function onGetImageFaceSprite(sp:Sprite):void
+		{
+			Laya.stage.addChild(sp);
+			sp.pos(100, 100);
+		}
 		private function onFaceDetected(mark:Object):void
 		{
+			sp = FaceAPI.getLandMarkSp(mark);
+			sp.pos(100, 100);
+			Laya.stage.addChild(sp);
 			debugger;
 		}
 		
