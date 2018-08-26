@@ -1,0 +1,4694 @@
+{
+    "functionList": [
+        {
+            "name": "tf.tensor",
+            "params": [
+                {
+                    "name": "values",
+                    "type": "( TypedArray |Array)",
+                    "doc": "The values of the tensor. Can be nested array of numbers,\n              or a flat array, or a TypedArray ."
+                },
+                {
+                    "name": "shape",
+                    "type": "(number[])",
+                    "doc": "The shape of the tensor. Optional. If not provided,\n              it is inferred from values ."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The data type."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.scalar",
+            "params": [
+                {
+                    "name": "value",
+                    "type": "(number|boolean)",
+                    "doc": "The value of the scalar."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The data type."
+                }
+            ],
+            "return": "tf.Scalar"
+        },
+        {
+            "name": "tf.tensor1d",
+            "params": [
+                {
+                    "name": "values",
+                    "type": "( TypedArray |Array)",
+                    "doc": "The values of the tensor. Can be array of numbers,\n              or a TypedArray ."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The data type."
+                }
+            ],
+            "return": "tf.Tensor1D"
+        },
+        {
+            "name": "tf.tensor2d",
+            "params": [
+                {
+                    "name": "values",
+                    "type": "( TypedArray |Array)",
+                    "doc": "The values of the tensor. Can be nested array of numbers,\n              or a flat array, or a TypedArray ."
+                },
+                {
+                    "name": "shape",
+                    "type": "([number, number])",
+                    "doc": "The shape of the tensor. If not provided, it is inferred from values ."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The data type."
+                }
+            ],
+            "return": "tf.Tensor2D"
+        },
+        {
+            "name": "tf.tensor3d",
+            "params": [
+                {
+                    "name": "values",
+                    "type": "( TypedArray |Array)",
+                    "doc": "The values of the tensor. Can be nested array of numbers,\n              or a flat array, or a TypedArray ."
+                },
+                {
+                    "name": "shape",
+                    "type": "([number, number, number])",
+                    "doc": "The shape of the tensor. If not provided,  it is inferred from values ."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The data type."
+                }
+            ],
+            "return": "tf.Tensor3D"
+        },
+        {
+            "name": "tf.tensor4d",
+            "params": [
+                {
+                    "name": "values",
+                    "type": "( TypedArray |Array)",
+                    "doc": "The values of the tensor. Can be nested array of numbers,\n              or a flat array, or a TypedArray ."
+                },
+                {
+                    "name": "shape",
+                    "type": "([number, number, number, number])",
+                    "doc": "The shape of the tensor. Optional. If not provided,\n              it is inferred from values ."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The data type."
+                }
+            ],
+            "return": "tf.Tensor4D"
+        },
+        {
+            "name": "tf.tensor5d",
+            "params": [
+                {
+                    "name": "values",
+                    "type": "( TypedArray |Array)",
+                    "doc": "The values of the tensor. Can be nested array of numbers,\n              or a flat array, or a TypedArray ."
+                },
+                {
+                    "name": "shape",
+                    "type": "([number, number, number, number, number])",
+                    "doc": "The shape of the tensor. Optional. If not provided,\n              it is inferred from values ."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The data type."
+                }
+            ],
+            "return": "tf.Tensor5D"
+        },
+        {
+            "name": "tf.tensor6d",
+            "params": [
+                {
+                    "name": "values",
+                    "type": "( TypedArray |Array)",
+                    "doc": "The values of the tensor. Can be nested array of numbers,\n              or a flat array, or a TypedArray ."
+                },
+                {
+                    "name": "shape",
+                    "type": "([number, number, number, number, number, number])",
+                    "doc": "The shape of the tensor. Optional. If not provided,\n              it is inferred from values ."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The data type."
+                }
+            ],
+            "return": "tf.Tensor6D"
+        },
+        {
+            "name": "tf.buffer",
+            "params": [
+                {
+                    "name": "shape",
+                    "type": "(number[])",
+                    "doc": "An array of integers defining the output tensor shape."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The dtype of the buffer. Defaults to 'float32'."
+                },
+                {
+                    "name": "values",
+                    "type": "( TypedArray )",
+                    "doc": "The values of the buffer as TypedArray . Defaults to\n              zeros."
+                }
+            ],
+            "return": "tf.TensorBuffer"
+        },
+        {
+            "name": "tf.clone",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The tensor to clone."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.eye",
+            "params": [
+                {
+                    "name": "numRows",
+                    "type": "(number)",
+                    "doc": "Number of rows."
+                },
+                {
+                    "name": "numColumns",
+                    "type": "(number)",
+                    "doc": "Number of columns. Defaults to numRows ."
+                },
+                {
+                    "name": "batchShape",
+                    "type": "([\n              number\n              ]|[number,\n              number]|[number, number, number]|[number, number, number, number])",
+                    "doc": "If provided, will add the batch shape to the beginning\n              of the shape of the returned tf.Tensor by repeating the identity\n              matrix."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "Data type."
+                }
+            ],
+            "return": "tf.Tensor2D"
+        },
+        {
+            "name": "tf.fill",
+            "params": [
+                {
+                    "name": "shape",
+                    "type": "(number[])",
+                    "doc": "An array of integers defining the output tensor shape."
+                },
+                {
+                    "name": "value",
+                    "type": "(number)",
+                    "doc": "The scalar value to fill the tensor with."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The type of an element in the resulting tensor. Defaults to\n              'float'."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.fromPixels",
+            "params": [
+                {
+                    "name": "pixels",
+                    "type": "( ImageData | HTMLImageElement | HTMLCanvasElement | HTMLVideoElement )",
+                    "doc": "The input image to construct the tensor from. The\n              supported image types are all 4-channel."
+                },
+                {
+                    "name": "numChannels",
+                    "type": "(number)",
+                    "doc": "The number of channels of the output tensor. A\n              numChannels value less than 4 allows you to ignore channels. Defaults to\n              3 (ignores alpha channel of input image)."
+                }
+            ],
+            "return": "tf.Tensor3D"
+        },
+        {
+            "name": "tf.linspace",
+            "params": [
+                {
+                    "name": "start",
+                    "type": "(number)",
+                    "doc": "The start value of the sequence."
+                },
+                {
+                    "name": "stop",
+                    "type": "(number)",
+                    "doc": "The end value of the sequence."
+                },
+                {
+                    "name": "num",
+                    "type": "(number)",
+                    "doc": "The number of values to generate."
+                }
+            ],
+            "return": "tf.Tensor1D"
+        },
+        {
+            "name": "tf.oneHot",
+            "params": [
+                {
+                    "name": "indices",
+                    "type": "( tf.Tensor1D | TypedArray |Array)",
+                    "doc": "tf.Tensor1D of indices with dtype int32 ."
+                },
+                {
+                    "name": "depth",
+                    "type": "(number)",
+                    "doc": "The depth of the one hot dimension."
+                },
+                {
+                    "name": "onValue",
+                    "type": "(number)",
+                    "doc": "A number used to fill in output when the index matches\n              the location."
+                },
+                {
+                    "name": "offValue",
+                    "type": "(number)",
+                    "doc": "A number used to fill in the output when the index does\n              not match the location."
+                }
+            ],
+            "return": "tf.Tensor2D"
+        },
+        {
+            "name": "tf.ones",
+            "params": [
+                {
+                    "name": "shape",
+                    "type": "(number[])",
+                    "doc": "An array of integers defining the output tensor shape."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The type of an element in the resulting tensor. Defaults to\n              'float'."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.onesLike",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "A tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.print",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor )",
+                    "doc": "The tensor to be printed."
+                },
+                {
+                    "name": "verbose",
+                    "type": "(boolean)",
+                    "doc": "Whether to print verbose information about the Tensor ,\n              including dtype and size."
+                }
+            ],
+            "return": "void"
+        },
+        {
+            "name": "tf.range",
+            "params": [
+                {
+                    "name": "start",
+                    "type": "(number)",
+                    "doc": "An integer start value"
+                },
+                {
+                    "name": "stop",
+                    "type": "(number)",
+                    "doc": "An integer stop value"
+                },
+                {
+                    "name": "step",
+                    "type": "(number)",
+                    "doc": "An integer increment (will default to 1 or -1)"
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32')",
+                    "doc": "The data type of the output tensor. Defaults to 'float32'."
+                }
+            ],
+            "return": "tf.Tensor1D"
+        },
+        {
+            "name": "tf.truncatedNormal",
+            "params": [
+                {
+                    "name": "shape",
+                    "type": "(number[])",
+                    "doc": "An array of integers defining the output tensor shape."
+                },
+                {
+                    "name": "mean",
+                    "type": "(number)",
+                    "doc": "The mean of the normal distribution."
+                },
+                {
+                    "name": "stdDev",
+                    "type": "(number)",
+                    "doc": "The standard deviation of the normal distribution."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32')",
+                    "doc": "The data type of the output tensor."
+                },
+                {
+                    "name": "seed",
+                    "type": "(number)",
+                    "doc": "The seed for the random number generator."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.variable",
+            "params": [
+                {
+                    "name": "initialValue",
+                    "type": "( tf.Tensor )",
+                    "doc": "Initial value for the tensor."
+                },
+                {
+                    "name": "trainable",
+                    "type": "(boolean)",
+                    "doc": "If true, optimizers are allowed to update it."
+                },
+                {
+                    "name": "name",
+                    "type": "(string)",
+                    "doc": "Name of the variable. Defaults to a unique id."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "If set, initialValue will be converted to the given type."
+                }
+            ],
+            "return": "tf.Variable"
+        },
+        {
+            "name": "tf.zeros",
+            "params": [
+                {
+                    "name": "shape",
+                    "type": "(number[])",
+                    "doc": "An array of integers defining the output tensor shape."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The type of an element in the resulting tensor. Can\n              be 'float32', 'int32' or 'bool'. Defaults to 'float'."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.zerosLike",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The tensor of required shape."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.batchToSpaceND",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "A tf.Tensor . N-D with x.shape = [batch] + spatialShape + remainingShape , where spatialShape has M dimensions."
+                },
+                {
+                    "name": "blockShape",
+                    "type": "(number[])",
+                    "doc": "A 1-D array. Must be one of the following types: int32 , int64 . Must have shape [M] , all values must be >= 1."
+                },
+                {
+                    "name": "crops",
+                    "type": "(number[][])",
+                    "doc": "A 2-D array.  Must be one of the following types: int32 , int64 . Must have shape [M, 2] , all values must be >= 0. crops[i] = [cropStart, cropEnd] specifies the amount to crop from input dimension `i 1 , which corresponds to spatial dimension i . It is required that cropStart[i] + cropEnd[i] <= blockShape[i] * inputShape[i + 1]` This operation is equivalent to the following steps: Reshape x to reshaped of shape: [blockShape[0], ..., blockShape[M-1], batch / prod(blockShape), x.shape[1], ..., x.shape[N-1]] Permute dimensions of reshaped to produce permuted of shape [batch / prod(blockShape),x.shape[1], blockShape[0], ..., x.shape[M], blockShape[M-1],x.shape[M+1], ..., x.shape[N-1]] Reshape permuted to produce reshapedPermuted of shape [batch / prod(blockShape),x.shape[1] * blockShape[0], ..., x.shape[M] * blockShape[M-1],x.shape[M+1], ..., x.shape[N-1]] Crop the start and end of dimensions [1, ..., M] of reshapedPermuted according to crops to produce the output of shape: [batch / prod(blockShape),x.shape[1] * blockShape[0] - crops[0,0] - crops[0,1], ..., x.shape[M] * blockShape[M-1] - crops[M-1,0] - crops[M-1,1],x.shape[M+1], ..., x.shape[N-1]]"
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.cast",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor to be casted."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The dtype to cast the input tensor to."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.expandDims",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor whose dimensions to be expanded."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number)",
+                    "doc": "The dimension index at which to insert shape of 1 . Defaults\n              to 0 (the first dimension)."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.pad",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The tensor to pad."
+                },
+                {
+                    "name": "paddings",
+                    "type": "(Array)",
+                    "doc": "An array of length R (the rank of the tensor), where\n              each element is a length-2 tuple of ints [padBefore, padAfter] ,\n              specifying how much to pad along each dimension of the tensor."
+                },
+                {
+                    "name": "constantValue",
+                    "type": "(number)",
+                    "doc": "The pad value to use. Defaults to 0."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.reshape",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor to be reshaped."
+                },
+                {
+                    "name": "shape",
+                    "type": "(number[])",
+                    "doc": "An array of integers defining the output tensor shape."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.spaceToBatchND",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "A tf.Tensor . N-D with x.shape = [batch] + spatialShape + remainingShape , where spatialShape has M dimensions."
+                },
+                {
+                    "name": "blockShape",
+                    "type": "(number[])",
+                    "doc": "A 1-D array. Must be one of the following types: int32 , int64 . Must have shape [M] , all values must be >= 1."
+                },
+                {
+                    "name": "paddings",
+                    "type": "(number[][])",
+                    "doc": "A 2-D array.  Must be one of the following types: int32 , int64 . Must have shape [M, 2] , all values must be >= 0. paddings[i] = [padStart, padEnd] specifies the amount to zero-pad from input dimension i + 1 , which corresponds to spatial dimension i .\n              It is required that (inputShape[i + 1] + padStart + padEnd) % blockShape[i] === 0 This operation is equivalent to the following steps: Zero-pad the start and end of dimensions [1, ..., M] of the input\n              according to paddings to produce padded of shape padded_shape. Reshape padded to reshaped_padded of shape:\n              [batch] + [padded_shape[1] / block_shape[0], block_shape[0], ...,\n              padded_shape[M] / block_shape[M-1], block_shape[M-1]] + remaining_shape Permute dimensions of reshaped_padded to produce permuted_\n              reshaped_padded of shape:\n              block_shape + [batch] + [padded_shape[1] / block_shape[0], ...,\n              padded_shape[M] / block_shape[M-1]] + remaining_shape Reshape permuted_reshaped_padded to flatten block_shape into the\n              batch dimension, producing an output tensor of shape:\n              [batch * prod(block_shape)] + [padded_shape[1] / block_shape[0], ...,\n              padded_shape[M] / block_shape[M-1]] + remaining_shape"
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.squeeze",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor to be squeezed."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number[])",
+                    "doc": "An optional list of numbers. If specified, only\n              squeezes the dimensions listed. The dimension index starts at 0. It\n              is an error to squeeze a dimension that is not 1."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.concat",
+            "params": [
+                {
+                    "name": "tensors",
+                    "type": "( tf.Tensor []| TypedArray |Array[])",
+                    "doc": "A list of tensors to concatenate."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number)",
+                    "doc": "The axis to concate along. Defaults to 0 (the first dim)."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.gather",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor whose slices to be gathered."
+                },
+                {
+                    "name": "indices",
+                    "type": "( tf.Tensor1D | TypedArray |Array)",
+                    "doc": "The indices of the values to extract."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number)",
+                    "doc": "The axis over which to select values. Defaults to 0."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.reverse",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor to be reversed."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number|number[])",
+                    "doc": "The set of dimensions to reverse. Must be in the\n              range [-rank(x), rank(x)). Defaults to all axes."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.slice",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tf.Tensor to slice from."
+                },
+                {
+                    "name": "begin",
+                    "type": "(number|number[])",
+                    "doc": "The coordinates to start the slice from. The length can be\n              less than the rank of x - the rest of the axes will have implicit 0 as\n              start. Can also be a single number, in which case it specifies the\n              first axis."
+                },
+                {
+                    "name": "size",
+                    "type": "(number|number[])",
+                    "doc": "The size of the slice. The length can be less than the rank of\n              x - the rest of the axes will have implicit -1. A value of -1 requests\n              the rest of the dimensions in the axis. Can also be a single number,\n              in which case it specifies the size of the first axis."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.split",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor to split."
+                },
+                {
+                    "name": "numOrSizeSplits",
+                    "type": "(number[]|number)",
+                    "doc": "Either an integer indicating the number of\n              splits along the axis or an array of integers containing the sizes of\n              each output tensor along the axis. If a number then it must evenly divide x.shape[axis] ; otherwise the sum of sizes must match x.shape[axis] ."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number)",
+                    "doc": "The dimension along which to split. Defaults to 0 (the first\n              dim)."
+                }
+            ],
+            "return": "tf.Tensor []"
+        },
+        {
+            "name": "tf.stack",
+            "params": [
+                {
+                    "name": "tensors",
+                    "type": "( tf.Tensor []| TypedArray |Array[])",
+                    "doc": "A list of tensor objects with the same shape and dtype."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number)",
+                    "doc": "The axis to stack along. Defaults to 0 (the first dim)."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.tile",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The tensor to tile."
+                },
+                {
+                    "name": "reps",
+                    "type": "(number[])",
+                    "doc": "Determines the number of replications per dimension."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.unstack",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "A tensor object."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number)",
+                    "doc": "The axis to unstack along. Defaults to 0 (the first dim)."
+                }
+            ],
+            "return": "tf.Tensor []"
+        },
+        {
+            "name": "tf.multinomial",
+            "params": [
+                {
+                    "name": "logits",
+                    "type": "( tf.Tensor1D | tf.Tensor2D | TypedArray |Array)",
+                    "doc": "1D array with unnormalized log-probabilities, or\n              2D array of shape [batchSize, numOutcomes] . See the normalized parameter."
+                },
+                {
+                    "name": "numSamples",
+                    "type": "(number)",
+                    "doc": "Number of samples to draw for each row slice."
+                },
+                {
+                    "name": "seed",
+                    "type": "(number)",
+                    "doc": "The seed number."
+                },
+                {
+                    "name": "normalized",
+                    "type": "(boolean)",
+                    "doc": "Whether the provided logits are normalized true\n              probabilities (sum to 1). Defaults to false."
+                }
+            ],
+            "return": "tf.Tensor1D | tf.Tensor2D"
+        },
+        {
+            "name": "tf.randomNormal",
+            "params": [
+                {
+                    "name": "shape",
+                    "type": "(number[])",
+                    "doc": "An array of integers defining the output tensor shape."
+                },
+                {
+                    "name": "mean",
+                    "type": "(number)",
+                    "doc": "The mean of the normal distribution."
+                },
+                {
+                    "name": "stdDev",
+                    "type": "(number)",
+                    "doc": "The standard deviation of the normal distribution."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32')",
+                    "doc": "The data type of the output."
+                },
+                {
+                    "name": "seed",
+                    "type": "(number)",
+                    "doc": "The seed for the random number generator."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.randomUniform",
+            "params": [
+                {
+                    "name": "shape",
+                    "type": "(number[])",
+                    "doc": "An array of integers defining the output tensor shape."
+                },
+                {
+                    "name": "minval",
+                    "type": "(number)",
+                    "doc": "The lower bound on the range of random values to generate.\n              Defaults to 0."
+                },
+                {
+                    "name": "maxval",
+                    "type": "(number)",
+                    "doc": "The upper bound on the range of random values to generate.\n              Defaults to 1."
+                },
+                {
+                    "name": "dtype",
+                    "type": "('float32'|'int32'|'bool')",
+                    "doc": "The data type of the output tensor. Defaults to 'float32'."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.sequential",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.Sequential"
+        },
+        {
+            "name": "tf.model",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.Model"
+        },
+        {
+            "name": "tf.input",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(InputConfig)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.SymbolicTensor"
+        },
+        {
+            "name": "tf.loadFrozenModel",
+            "params": [
+                {
+                    "name": "modelUrl",
+                    "type": "(string)",
+                    "doc": "url for the model file generated by scripts/convert.py\n              script."
+                },
+                {
+                    "name": "weightsManifestUrl",
+                    "type": "(string)",
+                    "doc": ""
+                },
+                {
+                    "name": "requestOption",
+                    "type": "(RequestInit)",
+                    "doc": "options for Request, which allows to send credentials\n              and custom headers."
+                }
+            ],
+            "return": "Promise"
+        },
+        {
+            "name": "tf.loadModel",
+            "params": [
+                {
+                    "name": "pathOrIOHandler",
+                    "type": "(string|io.IOHandler)",
+                    "doc": "Can be either of the two formats A string path to the ModelAndWeightsConfig JSON describing\n              the model in the canonical TensorFlow.js format. This path will be\n              interpreted as a relative HTTP path, to which fetch will be used to\n              request the model topology and weight manifest JSON.\n              The content of the JSON file is assumed to be a JSON object with the\n              following fields and values: 'modelTopology': A JSON object that can be either of: a model architecture JSON consistent with the format of the return\n              value of keras.Model.to_json() a full model JSON in the format of keras.models.save_model() . 'weightsManifest': A TensorFlow.js weights manifest.\n              See the Python converter function save_model() for more details.\n              It is also assumed that model weights can be accessed from relative\n              paths described by the paths fields in weights manifest. An tf.io.IOHandler object that loads model artifacts with its load method."
+                },
+                {
+                    "name": "strict",
+                    "type": "(boolean)",
+                    "doc": "Require that the provided weights exactly match those required\n              by the layers.  Default true.  Passing false means that both extra weights\n              and missing weights will be silently ignored."
+                }
+            ],
+            "return": "Promise"
+        },
+        {
+            "name": "tf.io.copyModel",
+            "params": [
+                {
+                    "name": "sourceURL",
+                    "type": "(string)",
+                    "doc": "Source URL of copying."
+                },
+                {
+                    "name": "destURL",
+                    "type": "(string)",
+                    "doc": "Destination URL of copying."
+                }
+            ],
+            "return": "Promise"
+        },
+        {
+            "name": "tf.io.listModels",
+            "params": [],
+            "return": "Promise"
+        },
+        {
+            "name": "tf.io.moveModel",
+            "params": [
+                {
+                    "name": "sourceURL",
+                    "type": "(string)",
+                    "doc": "Source URL of moving."
+                },
+                {
+                    "name": "destURL",
+                    "type": "(string)",
+                    "doc": "Destination URL of moving."
+                }
+            ],
+            "return": "Promise"
+        },
+        {
+            "name": "tf.io.removeModel",
+            "params": [
+                {
+                    "name": "url",
+                    "type": "(string)",
+                    "doc": "A URL to a stored model, with a scheme prefix, e.g.,\n              'localstorage://my-model-1', 'indexeddb://my/model/2'."
+                }
+            ],
+            "return": "Promise"
+        },
+        {
+            "name": "tf.layers.elu",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.leakyReLU",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.softmax",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.thresholdedReLU",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.activation",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.dense",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.dropout",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.embedding",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.flatten",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.permute",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.repeatVector",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.reshape",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.conv1d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.conv2d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.conv2dTranspose",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.cropping2D",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.depthwiseConv2d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.separableConv2d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.upSampling2d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.add",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.average",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.concatenate",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.maximum",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.minimum",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.multiply",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.batchNormalization",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.averagePooling1d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.averagePooling2d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.globalAveragePooling1d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.globalAveragePooling2d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.globalMaxPooling1d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.globalMaxPooling2d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.maxPooling1d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.maxPooling2d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.gru",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.gruCell",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.RNNCell"
+        },
+        {
+            "name": "tf.layers.lstm",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.lstmCell",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.RNNCell"
+        },
+        {
+            "name": "tf.layers.rnn",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.simpleRNN",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.simpleRNNCell",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.RNNCell"
+        },
+        {
+            "name": "tf.layers.stackedRNNCells",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.RNNCell"
+        },
+        {
+            "name": "tf.layers.bidirectional",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "Wrapper"
+        },
+        {
+            "name": "tf.layers.timeDistributed",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.inputLayer",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.layers.zeroPadding2d",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.layers.Layer"
+        },
+        {
+            "name": "tf.add",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first tf.Tensor to add."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second tf.Tensor to add. Must have the same type as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.sub",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first tf.Tensor to subtract from."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second tf.Tensor to be subtracted. Must have the same dtype as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.mul",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first tensor to multiply."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second tensor to multiply. Must have the same dtype as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.div",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first tensor as the numerator."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second tensor as the denominator. Must have the same dtype as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.addN",
+            "params": [
+                {
+                    "name": "tensors",
+                    "type": "(Array)",
+                    "doc": "A list of tensors with the same shape and dtype."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.floorDiv",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first tensor as the numerator."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second tensor as the denominator. Must have the same dtype as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.maximum",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first tensor."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second tensor. Must have the same type as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.minimum",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first tensor."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second tensor. Must have the same type as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.mod",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first tensor."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second tensor. Must have the same type as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.pow",
+            "params": [
+                {
+                    "name": "base",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The base tf.Tensor to pow element-wise."
+                },
+                {
+                    "name": "exp",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The exponent tf.Tensor to pow element-wise."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.squaredDifference",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first tensor."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second tensor. Must have the same type as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.abs",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tf.Tensor ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.acos",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.acosh",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.asin",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.asinh",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.atan",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.atan2",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first tensor."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second tensor. Must have the same dtype as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.atanh",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.ceil",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input Tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.clipByValue",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                },
+                {
+                    "name": "clipValueMin",
+                    "type": "(number)",
+                    "doc": "Lower-bound of range to be clipped to."
+                },
+                {
+                    "name": "clipValueMax",
+                    "type": "(number)",
+                    "doc": "Upper-bound of range to be clipped to."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.cos",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.cosh",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.elu",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.erf",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.exp",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.expm1",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.floor",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.leakyRelu",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                },
+                {
+                    "name": "alpha",
+                    "type": "(number)",
+                    "doc": "The scaling factor for negative values, defaults to 0.2."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.log",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.log1p",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.logSigmoid",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.neg",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.prelu",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                },
+                {
+                    "name": "alpha",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "Scaling factor for negative values."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.reciprocal",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.relu",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor. If the dtype is bool , the output dtype will be\n              `int32'."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.round",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.rsqrt",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.selu",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.sigmoid",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.sign",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input Tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.sin",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.sinh",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.softplus",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.sqrt",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.square",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input Tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.step",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                },
+                {
+                    "name": "alpha",
+                    "type": "(number)",
+                    "doc": "The gradient when input is negative."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.tan",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.tanh",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.dot",
+            "params": [
+                {
+                    "name": "t1",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first tensor in the dot operation."
+                },
+                {
+                    "name": "t2",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second tensor in the dot operation."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.matMul",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor2D | TypedArray |Array)",
+                    "doc": "First matrix in dot product operation."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor2D | TypedArray |Array)",
+                    "doc": "Second matrix in dot product operation."
+                },
+                {
+                    "name": "transposeA",
+                    "type": "(boolean)",
+                    "doc": "If true, a is transposed before multiplication."
+                },
+                {
+                    "name": "transposeB",
+                    "type": "(boolean)",
+                    "doc": "If true, b is transposed before multiplication."
+                }
+            ],
+            "return": "tf.Tensor2D"
+        },
+        {
+            "name": "tf.norm",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input array."
+                },
+                {
+                    "name": "ord",
+                    "type": "(number|'euclidean'|'fro')",
+                    "doc": "Optional. Order of the norm. Supported norm types are\n              following: ord norm for matrices norm for vectors 'euclidean' Frobenius norm 2-norm 'fro' Frobenius norm Infinity max(sum(abs(x), axis=1)) max(abs(x)) -Infinity min(sum(abs(x), axis=1)) min(abs(x)) 1 max(sum(abs(x), axis=0)) sum(abs(x)) 2 sum(abs(x)^2)^1/2*"
+                },
+                {
+                    "name": "axis",
+                    "type": "(number|number[])",
+                    "doc": "Optional. If axis is null (the default), the input is\n              considered a vector and a single vector norm is computed over the entire\n              set of values in the Tensor, i.e. norm(x, ord) is equivalent\n              to norm(x.reshape([-1]), ord). If axis is a integer, the input\n              is considered a batch of vectors, and axis determines the axis in x\n              over which to compute vector norms. If axis is a 2-tuple of integer it is\n              considered a batch of matrices and axis determines the axes in NDArray\n              over which to compute a matrix norm."
+                },
+                {
+                    "name": "keepDims",
+                    "type": "(boolean)",
+                    "doc": "Optional. If true, the norm have the same dimensionality\n              as the input."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.outerProduct",
+            "params": [
+                {
+                    "name": "v1",
+                    "type": "( tf.Tensor1D | TypedArray |Array)",
+                    "doc": "The first vector in the outer product operation."
+                },
+                {
+                    "name": "v2",
+                    "type": "( tf.Tensor1D | TypedArray |Array)",
+                    "doc": "The second vector in the dot product operation."
+                }
+            ],
+            "return": "tf.Tensor2D"
+        },
+        {
+            "name": "tf.transpose",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The tensor to transpose."
+                },
+                {
+                    "name": "perm",
+                    "type": "(number[])",
+                    "doc": "The permutation of the dimensions of a."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.avgPool",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor3D | tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The input tensor, of rank 4 or rank 3 of shape [batch, height, width, inChannels] . If rank 3, batch of 1 is assumed."
+                },
+                {
+                    "name": "filterSize",
+                    "type": "([number, number]|number)",
+                    "doc": "The filter size, a tuple [filterHeight, filterWidth] ."
+                },
+                {
+                    "name": "strides",
+                    "type": "([number, number]|number)",
+                    "doc": "The strides of the pooling: [strideHeight, strideWidth] ."
+                },
+                {
+                    "name": "pad",
+                    "type": "('valid'|'same'|number)",
+                    "doc": "The type of padding algorithm: same and stride 1: output will be of same size as input,\n              regardless of filter size. valid : output will be smaller than input if filter is larger\n              than 1x1. For more info, see this guide: https://www.tensorflow.org/api_guides/python/nn#Convolution"
+                },
+                {
+                    "name": "dimRoundingMode",
+                    "type": "('floor'|'round'|'ceil')",
+                    "doc": "The rounding mode used when computing output\n              dimensions if pad is a number. If none is provided, it will not round\n              and error if the output is of fractional size."
+                }
+            ],
+            "return": "tf.Tensor3D | tf.Tensor4D"
+        },
+        {
+            "name": "tf.conv1d",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor2D | tf.Tensor3D | TypedArray |Array)",
+                    "doc": "The input tensor, of rank 3 or rank 2, of shape [batch, width, inChannels] . If rank 2, batch of 1 is assumed."
+                },
+                {
+                    "name": "filter",
+                    "type": "( tf.Tensor3D | TypedArray |Array)",
+                    "doc": "The filter, rank 3, of shape [filterWidth, inDepth, outDepth] ."
+                },
+                {
+                    "name": "stride",
+                    "type": "(number)",
+                    "doc": "The number of entries by which the filter is moved right at\n              each step."
+                },
+                {
+                    "name": "pad",
+                    "type": "('valid'|'same'|number)",
+                    "doc": "The type of padding algorithm. same and stride 1: output will be of same size as input,\n              regardless of filter size. valid : output will be smaller than input if filter is larger\n              than 1x1. For more info, see this guide: https://www.tensorflow.org/api_guides/python/nn#Convolution"
+                },
+                {
+                    "name": "dataFormat",
+                    "type": "('NWC'|'NCW')",
+                    "doc": "An optional string from \"NWC\", \"NCW\". Defaults to \"NWC\",\n              the data is stored in the order of [batch, in_width, in_channels]. Only\n              \"NWC\" is currently supported."
+                },
+                {
+                    "name": "dilation",
+                    "type": "(number)",
+                    "doc": "The dilation rate in which we sample input values in\n              atrous convolution. Defaults to 1 . If it is greater than 1, then\n              stride must be 1 ."
+                },
+                {
+                    "name": "dimRoundingMode",
+                    "type": "('floor'|'round'|'ceil')",
+                    "doc": "The rounding mode used when computing output\n              dimensions if pad is a number. If none is provided, it will not round\n              and error if the output is of fractional size."
+                }
+            ],
+            "return": "tf.Tensor2D | tf.Tensor3D"
+        },
+        {
+            "name": "tf.conv2d",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor3D | tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The input tensor, of rank 4 or rank 3, of shape [batch, height, width, inChannels] . If rank 3, batch of 1 is\n              assumed."
+                },
+                {
+                    "name": "filter",
+                    "type": "( tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The filter, rank 4, of shape [filterHeight, filterWidth, inDepth, outDepth] ."
+                },
+                {
+                    "name": "strides",
+                    "type": "([number, number]|number)",
+                    "doc": "The strides of the convolution: [strideHeight, strideWidth] ."
+                },
+                {
+                    "name": "pad",
+                    "type": "('valid'|'same'|number)",
+                    "doc": "The type of padding algorithm. same and stride 1: output will be of same size as input,\n              regardless of filter size. valid : output will be smaller than input if filter is larger\n              than 1x1. For more info, see this guide: https://www.tensorflow.org/api_guides/python/nn#Convolution"
+                },
+                {
+                    "name": "dataFormat",
+                    "type": "('NHWC'|'NCHW')",
+                    "doc": ": An optional string from: \"NHWC\", \"NCHW\". Defaults to\n              \"NHWC\". Specify the data format of the input and output data. With the\n              default format \"NHWC\", the data is stored in the order of: [batch,\n              height, width, channels]. Only \"NHWC\" is currently supported."
+                },
+                {
+                    "name": "dilations",
+                    "type": "([number, number]|number)",
+                    "doc": "The dilation rates: [dilationHeight, dilationWidth] in which we sample input values across the height and width dimensions\n              in atrous convolution. Defaults to [1, 1] . If dilations is a single\n              number, then dilationHeight == dilationWidth . If it is greater than\n              1, then all values of strides must be 1."
+                },
+                {
+                    "name": "dimRoundingMode",
+                    "type": "('floor'|'round'|'ceil')",
+                    "doc": "The rounding mode used when computing output\n              dimensions if pad is a number. If none is provided, it will not round\n              and error if the output is of fractional size."
+                }
+            ],
+            "return": "tf.Tensor3D | tf.Tensor4D"
+        },
+        {
+            "name": "tf.conv2dTranspose",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor3D | tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The input image, of rank 4 or rank 3, of shape [batch, height, width, inDepth] . If rank 3, batch of 1 is assumed."
+                },
+                {
+                    "name": "filter",
+                    "type": "( tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The filter, rank 4, of shape [filterHeight, filterWidth, outDepth, inDepth] . inDepth must match inDepth in x ."
+                },
+                {
+                    "name": "outputShape",
+                    "type": "([number, number, number, number]|[number, number, number])",
+                    "doc": "Output shape, of rank 4 or rank 3: [batch, height, width, outDepth] . If rank 3, batch of 1 is assumed."
+                },
+                {
+                    "name": "strides",
+                    "type": "([number, number]|number)",
+                    "doc": "The strides of the original convolution: [strideHeight, strideWidth] ."
+                },
+                {
+                    "name": "pad",
+                    "type": "('valid'|'same'|number)",
+                    "doc": "The type of padding algorithm used in the non-transpose version\n              of the op."
+                },
+                {
+                    "name": "dimRoundingMode",
+                    "type": "('floor'|'round'|'ceil')",
+                    "doc": "The rounding mode used when computing output\n              dimensions if pad is a number. If none is provided, it will not round\n              and error if the output is of fractional size."
+                }
+            ],
+            "return": "tf.Tensor3D | tf.Tensor4D"
+        },
+        {
+            "name": "tf.depthwiseConv2d",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor3D | tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The input tensor, of rank 4 or rank 3, of shape [batch, height, width, inChannels] . If rank 3, batch of 1 is\n              assumed."
+                },
+                {
+                    "name": "filter",
+                    "type": "( tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The filter tensor, rank 4, of shape [filterHeight, filterWidth, inChannels, channelMultiplier] ."
+                },
+                {
+                    "name": "strides",
+                    "type": "([number, number]|number)",
+                    "doc": "The strides of the convolution: [strideHeight, strideWidth] . If strides is a single number, then strideHeight == strideWidth ."
+                },
+                {
+                    "name": "pad",
+                    "type": "('valid'|'same'|number)",
+                    "doc": "The type of padding algorithm. same and stride 1: output will be of same size as input,\n              regardless of filter size. valid : output will be smaller than input if filter is larger\n              than 1x1. For more info, see this guide: https://www.tensorflow.org/api_guides/python/nn#Convolution"
+                },
+                {
+                    "name": "dataFormat",
+                    "type": "('NHWC'|'NCHW')",
+                    "doc": ": An optional string from: \"NHWC\", \"NCHW\". Defaults to\n              \"NHWC\". Specify the data format of the input and output data. With the\n              default format \"NHWC\", the data is stored in the order of: [batch,\n              height, width, channels]. Only \"NHWC\" is currently supported."
+                },
+                {
+                    "name": "dilations",
+                    "type": "([number, number]|number)",
+                    "doc": "The dilation rates: [dilationHeight, dilationWidth] in which we sample input values across the height and width dimensions\n              in atrous convolution. Defaults to [1, 1] . If rate is a single\n              number, then dilationHeight == dilationWidth . If it is greater than\n              1, then all values of strides must be 1."
+                },
+                {
+                    "name": "dimRoundingMode",
+                    "type": "('floor'|'round'|'ceil')",
+                    "doc": "The rounding mode used when computing output\n              dimensions if pad is a number. If none is provided, it will not round\n              and error if the output is of fractional size."
+                }
+            ],
+            "return": "tf.Tensor3D | tf.Tensor4D"
+        },
+        {
+            "name": "tf.maxPool",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor3D | tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The input tensor, of rank 4 or rank 3 of shape [batch, height, width, inChannels] . If rank 3, batch of 1 is assumed."
+                },
+                {
+                    "name": "filterSize",
+                    "type": "([number, number]|number)",
+                    "doc": "The filter size, a tuple [filterHeight, filterWidth] ."
+                },
+                {
+                    "name": "strides",
+                    "type": "([number, number]|number)",
+                    "doc": "The strides of the pooling: [strideHeight, strideWidth] ."
+                },
+                {
+                    "name": "pad",
+                    "type": "('valid'|'same'|number)",
+                    "doc": "The type of padding algorithm. same and stride 1: output will be of same size as input,\n              regardless of filter size. valid : output will be smaller than input if filter is larger\n              than 1x1. For more info, see this guide: https://www.tensorflow.org/api_guides/python/nn#Convolution"
+                },
+                {
+                    "name": "dimRoundingMode",
+                    "type": "('floor'|'round'|'ceil')",
+                    "doc": "The rounding mode used when computing output\n              dimensions if pad is a number. If none is provided, it will not round\n              and error if the output is of fractional size."
+                }
+            ],
+            "return": "tf.Tensor3D | tf.Tensor4D"
+        },
+        {
+            "name": "tf.separableConv2d",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor3D | tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The input tensor, of rank 4 or rank 3, of shape [batch, height, width, inChannels] . If rank 3, batch of 1 is\n              assumed."
+                },
+                {
+                    "name": "depthwiseFilter",
+                    "type": "( tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The depthwise filter tensor, rank 4, of shape [filterHeight, filterWidth, inChannels, channelMultiplier] . This is\n              the filter used in the first step."
+                },
+                {
+                    "name": "pointwiseFilter",
+                    "type": "( tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The pointwise filter tensor, rank 4, of shape [1, 1, inChannels * channelMultiplier, outChannels] . This is\n              the filter used in the second step."
+                },
+                {
+                    "name": "strides",
+                    "type": "([number, number]|number)",
+                    "doc": "The strides of the convolution: [strideHeight, strideWidth] . If strides is a single number, then strideHeight == strideWidth ."
+                },
+                {
+                    "name": "pad",
+                    "type": "('valid'|'same')",
+                    "doc": "The type of padding algorithm. same and stride 1: output will be of same size as input,\n              regardless of filter size. valid : output will be smaller than input if filter is larger\n              than 1x1. For more info, see this guide: https://www.tensorflow.org/api_guides/python/nn#Convolution"
+                },
+                {
+                    "name": "dilation",
+                    "type": "([number, number]|number)",
+                    "doc": ""
+                },
+                {
+                    "name": "dataFormat",
+                    "type": "('NHWC'|'NCHW')",
+                    "doc": ": An optional string from: \"NHWC\", \"NCHW\". Defaults to\n              \"NHWC\". Specify the data format of the input and output data. With the\n              default format \"NHWC\", the data is stored in the order of: [batch,\n              height, width, channels]. Only \"NHWC\" is currently supported."
+                }
+            ],
+            "return": "tf.Tensor3D | tf.Tensor4D"
+        },
+        {
+            "name": "tf.all",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor. Must be of dtype bool."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number|number[])",
+                    "doc": "The dimension(s) to reduce. By default it reduces\n              all dimensions."
+                },
+                {
+                    "name": "keepDims",
+                    "type": "(boolean)",
+                    "doc": "If true, retains reduced dimensions with size 1."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.any",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor. Must be of dtype bool."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number|number[])",
+                    "doc": "The dimension(s) to reduce. By default it reduces\n              all dimensions."
+                },
+                {
+                    "name": "keepDims",
+                    "type": "(boolean)",
+                    "doc": "If true, retains reduced dimensions with size 1."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.argMax",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number)",
+                    "doc": "The dimension to reduce. Defaults to 0 (outer-most dimension)."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.argMin",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number)",
+                    "doc": "The dimension to reduce. Defaults to 0 (outer-most dimension)."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.logSumExp",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number|number[])",
+                    "doc": "The dimension(s) to reduce. If null (the default),\n              reduces all dimensions."
+                },
+                {
+                    "name": "keepDims",
+                    "type": "(boolean)",
+                    "doc": "If true, retains reduced dimensions with length\n              of 1. Defaults to false."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.max",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number|number[])",
+                    "doc": "The dimension(s) to reduce. By default it reduces\n              all dimensions."
+                },
+                {
+                    "name": "keepDims",
+                    "type": "(boolean)",
+                    "doc": "If true, retains reduced dimensions with size 1."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.mean",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number|number[])",
+                    "doc": "The dimension(s) to reduce. By default it reduces\n              all dimensions."
+                },
+                {
+                    "name": "keepDims",
+                    "type": "(boolean)",
+                    "doc": "If true, retains reduced dimensions with size 1."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.min",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input Tensor."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number|number[])",
+                    "doc": "The dimension(s) to reduce. By default it reduces\n              all dimensions."
+                },
+                {
+                    "name": "keepDims",
+                    "type": "(boolean)",
+                    "doc": "If true, retains reduced dimensions with size 1."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.sum",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor to compute the sum over. If the dtype is bool it will be converted to int32 and the output dtype will be int32 ."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number|number[])",
+                    "doc": "The dimension(s) to reduce. By default it reduces\n              all dimensions."
+                },
+                {
+                    "name": "keepDims",
+                    "type": "(boolean)",
+                    "doc": "If true, retains reduced dimensions with size 1."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.batchNormalization",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | tf.Tensor1D | TypedArray |Array)",
+                    "doc": "The input Tensor."
+                },
+                {
+                    "name": "mean",
+                    "type": "( tf.Tensor | tf.Tensor1D | TypedArray |Array)",
+                    "doc": "A mean Tensor."
+                },
+                {
+                    "name": "variance",
+                    "type": "( tf.Tensor | tf.Tensor1D | TypedArray |Array)",
+                    "doc": "A variance Tensor."
+                },
+                {
+                    "name": "varianceEpsilon",
+                    "type": "(number)",
+                    "doc": "A small float number to avoid dividing by 0."
+                },
+                {
+                    "name": "scale",
+                    "type": "( tf.Tensor | tf.Tensor1D | TypedArray |Array)",
+                    "doc": "A scale Tensor."
+                },
+                {
+                    "name": "offset",
+                    "type": "( tf.Tensor | tf.Tensor1D | TypedArray |Array)",
+                    "doc": "An offset Tensor."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.localResponseNormalization",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor3D | tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The input tensor. The 4-D input tensor is treated as a 3-D array\n              of 1D vectors (along the last dimension), and each vector is\n              normalized independently."
+                },
+                {
+                    "name": "depthRadius",
+                    "type": "(number)",
+                    "doc": "The number of adjacent channels in the 1D normalization\n              window."
+                },
+                {
+                    "name": "bias",
+                    "type": "(number)",
+                    "doc": "A constant bias term for the basis."
+                },
+                {
+                    "name": "alpha",
+                    "type": "(number)",
+                    "doc": "A scale factor, usually positive."
+                },
+                {
+                    "name": "beta",
+                    "type": "(number)",
+                    "doc": "An exponent."
+                }
+            ],
+            "return": "tf.Tensor3D | tf.Tensor4D"
+        },
+        {
+            "name": "tf.moments",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number|number[])",
+                    "doc": "The dimension(s) along with to compute mean and\n              variance. By default it reduces all dimensions."
+                },
+                {
+                    "name": "keepDims",
+                    "type": "(boolean)",
+                    "doc": "If true, the moments have the same dimensionality as the\n              input."
+                }
+            ],
+            "return": "{mean: tf.Tensor , variance: tf.Tensor }"
+        },
+        {
+            "name": "tf.softmax",
+            "params": [
+                {
+                    "name": "logits",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The logits array."
+                },
+                {
+                    "name": "dim",
+                    "type": "(number)",
+                    "doc": "The dimension softmax would be performed on. Defaults to -1 which indicates the last dimension."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.image.nonMaxSuppression",
+            "params": [
+                {
+                    "name": "boxes",
+                    "type": "( tf.Tensor2D | TypedArray |Array)",
+                    "doc": "a 2d tensor of shape [numBoxes, 4] . Each entry is [y1, x1, y2, x2] , where (y1, x1) and (y2, x2) are the corners of\n              the bounding box."
+                },
+                {
+                    "name": "scores",
+                    "type": "( tf.Tensor1D | TypedArray |Array)",
+                    "doc": "a 1d tensor providing the box scores of shape [numBoxes] ."
+                },
+                {
+                    "name": "maxOutputSize",
+                    "type": "(number)",
+                    "doc": "The maximum number of boxes to be selected."
+                },
+                {
+                    "name": "iouThreshold",
+                    "type": "(number)",
+                    "doc": "A float representing the threshold for deciding whether\n              boxes overlap too much with respect to IOU. Must be betwen [0, 1].\n              Defaults to 0.5 (50% box overlap)."
+                },
+                {
+                    "name": "scoreThreshold",
+                    "type": "( tf.any() )",
+                    "doc": "A threshold for deciding when to remove boxes based\n              on score. Defaults to -inf, which means any score is accepted."
+                }
+            ],
+            "return": "tf.Tensor1D"
+        },
+        {
+            "name": "tf.image.resizeBilinear",
+            "params": [
+                {
+                    "name": "images",
+                    "type": "( tf.Tensor3D | tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The images, of rank 4 or rank 3, of shape [batch, height, width, inChannels] . If rank 3, batch of 1 is assumed."
+                },
+                {
+                    "name": "size",
+                    "type": "([number, number])",
+                    "doc": "The new shape [newHeight, newWidth] to resize the\n              images to. Each channel is resized individually."
+                },
+                {
+                    "name": "alignCorners",
+                    "type": "(boolean)",
+                    "doc": "Defaults to False. If true, rescale\n              input by (new_height - 1) / (height - 1) , which exactly aligns the 4\n              corners of images and resized images. If false, rescale by new_height / height . Treat similarly the width dimension."
+                }
+            ],
+            "return": "tf.Tensor3D | tf.Tensor4D"
+        },
+        {
+            "name": "tf.image.resizeNearestNeighbor",
+            "params": [
+                {
+                    "name": "images",
+                    "type": "( tf.Tensor3D | tf.Tensor4D | TypedArray |Array)",
+                    "doc": "The images, of rank 4 or rank 3, of shape [batch, height, width, inChannels] . If rank 3, batch of 1 is assumed."
+                },
+                {
+                    "name": "size",
+                    "type": "([number, number])",
+                    "doc": "The new shape [newHeight, newWidth] to resize the\n              images to. Each channel is resized individually."
+                },
+                {
+                    "name": "alignCorners",
+                    "type": "(boolean)",
+                    "doc": "Defaults to False. If true, rescale\n              input by (new_height - 1) / (height - 1) , which exactly aligns the 4\n              corners of images and resized images. If false, rescale by new_height / height . Treat similarly the width dimension."
+                }
+            ],
+            "return": "tf.Tensor3D | tf.Tensor4D"
+        },
+        {
+            "name": "tf.basicLSTMCell",
+            "params": [
+                {
+                    "name": "forgetBias",
+                    "type": "( tf.Scalar | TypedArray |Array)",
+                    "doc": "Forget bias for the cell."
+                },
+                {
+                    "name": "lstmKernel",
+                    "type": "( tf.Tensor2D | TypedArray |Array)",
+                    "doc": "The weights for the cell."
+                },
+                {
+                    "name": "lstmBias",
+                    "type": "( tf.Tensor1D | TypedArray |Array)",
+                    "doc": "The bias for the cell."
+                },
+                {
+                    "name": "data",
+                    "type": "( tf.Tensor2D | TypedArray |Array)",
+                    "doc": "The input to the cell."
+                },
+                {
+                    "name": "c",
+                    "type": "( tf.Tensor2D | TypedArray |Array)",
+                    "doc": "Previous cell state."
+                },
+                {
+                    "name": "h",
+                    "type": "( tf.Tensor2D | TypedArray |Array)",
+                    "doc": "Previous cell output."
+                }
+            ],
+            "return": "[ tf.Tensor2D , tf.Tensor2D ]"
+        },
+        {
+            "name": "tf.multiRNNCell",
+            "params": [
+                {
+                    "name": "lstmCells",
+                    "type": "((data: tf.Tensor2D , c: tf.Tensor2D , h: tf.Tensor2D ): [ tf.Tensor2D , tf.Tensor2D ][])",
+                    "doc": "Array of LSTMCell functions."
+                },
+                {
+                    "name": "data",
+                    "type": "( tf.Tensor2D | TypedArray |Array)",
+                    "doc": "The input to the cell."
+                },
+                {
+                    "name": "c",
+                    "type": "( tf.Tensor2D []| TypedArray |Array[])",
+                    "doc": "Array of previous cell states."
+                },
+                {
+                    "name": "h",
+                    "type": "( tf.Tensor2D []| TypedArray |Array[])",
+                    "doc": "Array of previous cell outputs."
+                }
+            ],
+            "return": "[ tf.Tensor2D [], tf.Tensor2D []]"
+        },
+        {
+            "name": "tf.equal",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first input tensor."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second input tensor. Must have the same dtype as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.greater",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first input tensor."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second input tensor. Must have the same dtype as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.greaterEqual",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first input tensor."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second input tensor. Must have the same dtype as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.less",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first input tensor."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second input tensor. Must have the same dtype as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.lessEqual",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first input tensor."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second input tensor. Must have the same dtype as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.logicalAnd",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first input tensor. Must be of dtype bool."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second input tensor. Must be of dtype bool."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.logicalNot",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor. Must be of dtype 'bool'."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.logicalOr",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first input tensor. Must be of dtype bool."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second input tensor. Must be of dtype bool."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.logicalXor",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first input tensor. Must be of dtype bool."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second input tensor. Must be of dtype bool."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.notEqual",
+            "params": [
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The first input tensor."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The second input tensor. Must have the same dtype as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.where",
+            "params": [
+                {
+                    "name": "condition",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input condition. Must be of dtype bool."
+                },
+                {
+                    "name": "a",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "If condition is rank 1, a may have a higher rank but\n              its first dimension must match the size of condition ."
+                },
+                {
+                    "name": "b",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "A tensor with the same shape and type as a ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.cumsum",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The input tensor to be summed."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number)",
+                    "doc": "The axis along which to sum. Optional. Defaults to 0."
+                },
+                {
+                    "name": "exclusive",
+                    "type": "(boolean)",
+                    "doc": "Whether to perform exclusive cumulative sum. Optional.\n              Defaults to false. If set to true then the sum of each tensor entry\n              does not include its own value, but only the values previous to it\n              along the specified axis."
+                },
+                {
+                    "name": "reverse",
+                    "type": "(boolean)",
+                    "doc": "Whether to sum in the opposite direction. Optional.\n              Defaults to false."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.unsortedSegmentSum",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The tf.Tensor that will be summed along its segments"
+                },
+                {
+                    "name": "segmentIds",
+                    "type": "( tf.Tensor1D | TypedArray |Array)",
+                    "doc": "A tf.Tensor1D whose rank is equal to the rank of x 's\n              dimension along the axis .  Maps each element of x to a segment."
+                },
+                {
+                    "name": "numSegments",
+                    "type": "(number)",
+                    "doc": "The number of distinct segmentIds"
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.movingAverage",
+            "params": [
+                {
+                    "name": "v",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The current moving average value."
+                },
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "New input value, must have the same shape and dtype as v ."
+                },
+                {
+                    "name": "decay",
+                    "type": "(number| tf.Scalar )",
+                    "doc": "The decay factor. Typical values are 0.95 and 0.99."
+                },
+                {
+                    "name": "step",
+                    "type": "(number| tf.Scalar )",
+                    "doc": "Step count."
+                },
+                {
+                    "name": "zeroDebias",
+                    "type": "(boolean)",
+                    "doc": ": Whether zeroDebias is to be performed (default: true )."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.stridedSlice",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The tensor to stride slice."
+                },
+                {
+                    "name": "begin",
+                    "type": "(number[])",
+                    "doc": "The coordinates to start the slice from."
+                },
+                {
+                    "name": "end",
+                    "type": "(number[])",
+                    "doc": ": The coordinates to end the slice at."
+                },
+                {
+                    "name": "strides",
+                    "type": "(number[])",
+                    "doc": ": The size of the slice."
+                },
+                {
+                    "name": "beginMask",
+                    "type": "(number)",
+                    "doc": ": If the ith bit of begin_mask is set, begin[i] is ignored\n              and the fullest possible range in that dimension is used instead."
+                },
+                {
+                    "name": "endMask",
+                    "type": "(number)",
+                    "doc": ": If the ith bit of end_mask is set, end[i] is ignored\n              and the fullest possible range in that dimension is used instead."
+                },
+                {
+                    "name": "ellipsisMask",
+                    "type": "(number)",
+                    "doc": ""
+                },
+                {
+                    "name": "newAxisMask",
+                    "type": "(number)",
+                    "doc": ""
+                },
+                {
+                    "name": "shrinkAxisMask",
+                    "type": "(number)",
+                    "doc": ": a bitmask where bit i implies that\n              the ith specification should shrink the dimensionality. begin and end must\n              imply a slice of size 1 in the dimension."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.topk",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "1-D or higher tf.Tensor with last dimension being at least k ."
+                },
+                {
+                    "name": "k",
+                    "type": "(number)",
+                    "doc": "Number of top elements to look for along the last dimension."
+                },
+                {
+                    "name": "sorted",
+                    "type": "(boolean)",
+                    "doc": "If true, the resulting k elements will be sorted by the\n              values in descending order."
+                }
+            ],
+            "return": "{values: tf.Tensor , indices: tf.Tensor }"
+        },
+        {
+            "name": "tf.gramSchmidt",
+            "params": [
+                {
+                    "name": "xs",
+                    "type": "( tf.Tensor1D []| tf.Tensor2D )",
+                    "doc": "The vectors to be orthogonalized, in one of the two following\n              formats: An Array of tf.Tensor1D . A tf.Tensor2D , i.e., a matrix, in which case the vectors are the rows\n              of xs .\n              In each case, all the vectors must have the same length and the length\n              must be greater than or equal to the number of vectors."
+                }
+            ],
+            "return": "tf.Tensor1D []| tf.Tensor2D"
+        },
+        {
+            "name": "tf.qr",
+            "params": [
+                {
+                    "name": "x",
+                    "type": "( tf.Tensor )",
+                    "doc": "The tf.Tensor to be QR-decomposed. Must have rank >= 2. Suppose\n              it has the shape [..., M, N] ."
+                },
+                {
+                    "name": "fullMatrices",
+                    "type": "(boolean)",
+                    "doc": "An optional boolean parameter. Defaults to false .\n              If true , compute full-sized Q . If false (the default),\n              compute only the leading N columns of Q and R ."
+                }
+            ],
+            "return": "[ tf.Tensor , tf.Tensor ]"
+        },
+        {
+            "name": "tf.grad",
+            "params": [
+                {
+                    "name": "f",
+                    "type": "((x: tf.Tensor ) => tf.Tensor )",
+                    "doc": "The function f(x), to compute gradient for."
+                }
+            ],
+            "return": "(\nx: tf.Tensor , dy?: tf.Tensor ) => tf.Tensor"
+        },
+        {
+            "name": "tf.grads",
+            "params": [
+                {
+                    "name": "f",
+                    "type": "((...args: tf.Tensor []) => tf.Tensor )",
+                    "doc": "The function f(x1, x2,...) to compute gradients for."
+                }
+            ],
+            "return": "(\nargs: tf.Tensor [], dy?: tf.Tensor ) => tf.Tensor []"
+        },
+        {
+            "name": "tf.customGrad",
+            "params": [
+                {
+                    "name": "f",
+                    "type": "((a: tf.Tensor , b: tf.Tensor ,...) => {\n              value: tf.Tensor , * gradFunc: (dy: tf.Tensor ) => tf.Tensor | tf.Tensor [] * })",
+                    "doc": "The function to evaluate in forward mode, which should return {value: Tensor, gradFunc: (dy) => Tensor[]} , where gradFunc returns\n              the custom gradients of f with respect to its inputs."
+                }
+            ],
+            "return": "(...args: tf.Tensor []) => tf.Tensor"
+        },
+        {
+            "name": "tf.valueAndGrad",
+            "params": [
+                {
+                    "name": "f",
+                    "type": "((x: tf.Tensor ) => tf.Tensor )",
+                    "doc": ""
+                }
+            ],
+            "return": "(\nx: tf.Tensor , dy?: tf.Tensor ) => {\nvalue: tf.Tensor ;\ngrad: tf.Tensor ;\n}"
+        },
+        {
+            "name": "tf.valueAndGrads",
+            "params": [
+                {
+                    "name": "f",
+                    "type": "((...args: tf.Tensor []) => tf.Tensor )",
+                    "doc": ""
+                }
+            ],
+            "return": "(\nargs: tf.Tensor [], dy?: tf.Tensor ) => {\ngrads: tf.Tensor [];\nvalue: tf.Tensor ;\n}"
+        },
+        {
+            "name": "tf.variableGrads",
+            "params": [
+                {
+                    "name": "f",
+                    "type": "(() => tf.Scalar )",
+                    "doc": "The function to execute. f() should return a scalar."
+                },
+                {
+                    "name": "varList",
+                    "type": "( tf.Variable [])",
+                    "doc": "The list of trainable variables. Defaults to all variables."
+                }
+            ],
+            "return": "{value: tf.Scalar , grads: {[name: string]: tf.Tensor }}"
+        },
+        {
+            "name": "tf.train.sgd",
+            "params": [
+                {
+                    "name": "learningRate",
+                    "type": "(number)",
+                    "doc": "The learning rate to use for the SGD algorithm."
+                }
+            ],
+            "return": "tf.SGDOptimizer"
+        },
+        {
+            "name": "tf.train.momentum",
+            "params": [
+                {
+                    "name": "learningRate",
+                    "type": "(number)",
+                    "doc": "The learning rate to use for the Momentum gradient\n              descent algorithm."
+                },
+                {
+                    "name": "momentum",
+                    "type": "(number)",
+                    "doc": "The momentum to use for the momentum gradient descent\n              algorithm."
+                },
+                {
+                    "name": "useNesterov",
+                    "type": "(boolean)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.MomentumOptimizer"
+        },
+        {
+            "name": "tf.train.adagrad",
+            "params": [
+                {
+                    "name": "learningRate",
+                    "type": "(number)",
+                    "doc": "The learning rate to use for the Adagrad gradient\n              descent algorithm."
+                },
+                {
+                    "name": "initialAccumulatorValue",
+                    "type": "(number)",
+                    "doc": "Starting value for the accumulators, must be\n              positive."
+                }
+            ],
+            "return": "tf.AdagradOptimizer"
+        },
+        {
+            "name": "tf.train.adadelta",
+            "params": [
+                {
+                    "name": "learningRate",
+                    "type": "(number)",
+                    "doc": "The learning rate to use for the Adadelta gradient\n              descent algorithm."
+                },
+                {
+                    "name": "rho",
+                    "type": "(number)",
+                    "doc": "The learning rate decay over each update."
+                },
+                {
+                    "name": "epsilon",
+                    "type": "(number)",
+                    "doc": "A constant epsilon used to better condition the grad\n              update."
+                }
+            ],
+            "return": "tf.AdadeltaOptimizer"
+        },
+        {
+            "name": "tf.train.adam",
+            "params": [
+                {
+                    "name": "learningRate",
+                    "type": "(number)",
+                    "doc": "The learning rate to use for the Adam gradient\n              descent algorithm."
+                },
+                {
+                    "name": "beta1",
+                    "type": "(number)",
+                    "doc": "The exponential decay rate for the 1st moment estimates."
+                },
+                {
+                    "name": "beta2",
+                    "type": "(number)",
+                    "doc": "The exponential decay rate for the 2nd moment estimates."
+                },
+                {
+                    "name": "epsilon",
+                    "type": "(number)",
+                    "doc": "A small constant for numerical stability."
+                }
+            ],
+            "return": "AdamOptimizer"
+        },
+        {
+            "name": "tf.train.adamax",
+            "params": [
+                {
+                    "name": "learningRate",
+                    "type": "(number)",
+                    "doc": "The learning rate to use for the Adamax gradient\n              descent algorithm."
+                },
+                {
+                    "name": "beta1",
+                    "type": "(number)",
+                    "doc": "The exponential decay rate for the 1st moment estimates."
+                },
+                {
+                    "name": "beta2",
+                    "type": "(number)",
+                    "doc": "The exponential decay rate for the 2nd moment estimates."
+                },
+                {
+                    "name": "epsilon",
+                    "type": "(number)",
+                    "doc": "A small constant for numerical stability."
+                },
+                {
+                    "name": "decay",
+                    "type": "(number)",
+                    "doc": "The learning rate decay over each update."
+                }
+            ],
+            "return": "AdamaxOptimizer"
+        },
+        {
+            "name": "tf.train.rmsprop",
+            "params": [
+                {
+                    "name": "learningRate",
+                    "type": "(number)",
+                    "doc": "The learning rate to use for the RMSProp gradient\n              descent algorithm."
+                },
+                {
+                    "name": "decay",
+                    "type": "(number)",
+                    "doc": "The discounting factor for the history/coming gradient."
+                },
+                {
+                    "name": "momentum",
+                    "type": "(number)",
+                    "doc": "The momentum to use for the RMSProp gradient descent\n              algorithm."
+                },
+                {
+                    "name": "epsilon",
+                    "type": "(number)",
+                    "doc": "Small value to avoid zero denominator."
+                },
+                {
+                    "name": "centered",
+                    "type": "(boolean)",
+                    "doc": "If true, gradients are normalized by the estimated\n              variance of the gradient."
+                }
+            ],
+            "return": "tf.RMSPropOptimizer"
+        },
+        {
+            "name": "tf.losses.absoluteDifference",
+            "params": [
+                {
+                    "name": "labels",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The ground truth output tensor, same dimensions as\n              'predictions'."
+                },
+                {
+                    "name": "predictions",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The predicted outputs."
+                },
+                {
+                    "name": "weights",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "Tensor whose rank is either 0, or the same rank as labels , and must be broadcastable to labels (i.e., all dimensions\n              must be either 1 , or the same as the corresponding losses dimension)."
+                },
+                {
+                    "name": "reduction",
+                    "type": "(Reduction)",
+                    "doc": "Type of reduction to apply to loss. Should be of type Reduction"
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.losses.computeWeightedLoss",
+            "params": [
+                {
+                    "name": "losses",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "Tensor of shape [batch_size, d1, ... dN] ."
+                },
+                {
+                    "name": "weights",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "Tensor whose rank is either 0, or the same rank as losses , and must be broadcastable to losses (i.e., all\n              dimensions must be either 1 , or the same as the corresponding losses dimension)."
+                },
+                {
+                    "name": "reduction",
+                    "type": "(Reduction)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.losses.cosineDistance",
+            "params": [
+                {
+                    "name": "labels",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The ground truth output tensor, same dimensions as\n              'predictions'."
+                },
+                {
+                    "name": "predictions",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The predicted outputs."
+                },
+                {
+                    "name": "axis",
+                    "type": "(number)",
+                    "doc": "The dimension along which the cosine distance is computed."
+                },
+                {
+                    "name": "weights",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "Tensor whose rank is either 0, or the same rank as labels , and must be broadcastable to labels (i.e., all dimensions\n              must be either 1 , or the same as the corresponding losses dimension)."
+                },
+                {
+                    "name": "reduction",
+                    "type": "(Reduction)",
+                    "doc": "Type of reduction to apply to loss. Should be of type Reduction"
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.losses.hingeLoss",
+            "params": [
+                {
+                    "name": "labels",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The ground truth output tensor, same dimensions as\n              'predictions'."
+                },
+                {
+                    "name": "predictions",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The predicted outputs."
+                },
+                {
+                    "name": "weights",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "Tensor whose rank is either 0, or the same rank as labels , and must be broadcastable to labels (i.e., all dimensions\n              must be either 1 , or the same as the corresponding losses dimension)."
+                },
+                {
+                    "name": "reduction",
+                    "type": "(Reduction)",
+                    "doc": "Type of reduction to apply to loss. Should be of type Reduction"
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.losses.huberLoss",
+            "params": [
+                {
+                    "name": "labels",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The ground truth output tensor, same dimensions as\n              'predictions'."
+                },
+                {
+                    "name": "predictions",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The predicted outputs."
+                },
+                {
+                    "name": "weights",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "Tensor whose rank is either 0, or the same rank as labels , and must be broadcastable to labels (i.e., all dimensions\n              must be either 1 , or the same as the corresponding losses dimension)."
+                },
+                {
+                    "name": "delta",
+                    "type": "(number)",
+                    "doc": "Point where huber loss changes from quadratic to linear."
+                },
+                {
+                    "name": "reduction",
+                    "type": "(Reduction)",
+                    "doc": "Type of reduction to apply to loss. Should be of type Reduction ."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.losses.logLoss",
+            "params": [
+                {
+                    "name": "labels",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The ground truth output tensor, same dimensions as\n              'predictions'."
+                },
+                {
+                    "name": "predictions",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The predicted outputs."
+                },
+                {
+                    "name": "weights",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "Tensor whose rank is either 0, or the same rank as labels , and must be broadcastable to labels (i.e., all dimensions\n              must be either 1 , or the same as the corresponding losses dimension)."
+                },
+                {
+                    "name": "epsilon",
+                    "type": "(number)",
+                    "doc": "A small increment to avoid taking log of zero"
+                },
+                {
+                    "name": "reduction",
+                    "type": "(Reduction)",
+                    "doc": "Type of reduction to apply to loss. Should be of type Reduction"
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.losses.meanSquaredError",
+            "params": [
+                {
+                    "name": "labels",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The ground truth output tensor, same dimensions as\n              'predictions'."
+                },
+                {
+                    "name": "predictions",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The predicted outputs."
+                },
+                {
+                    "name": "weights",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "Tensor whose rank is either 0, or the same rank as labels , and must be broadcastable to labels (i.e., all dimensions\n              must be either 1 , or the same as the corresponding losses dimension)."
+                },
+                {
+                    "name": "reduction",
+                    "type": "(Reduction)",
+                    "doc": "Type of reduction to apply to loss. Should be of type Reduction"
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.losses.sigmoidCrossEntropy",
+            "params": [
+                {
+                    "name": "multiClassLabels",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The ground truth output tensor of shape\n              [batch_size, num_classes], same dimensions as 'predictions'."
+                },
+                {
+                    "name": "logits",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The predicted outputs."
+                },
+                {
+                    "name": "weights",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "Tensor whose rank is either 0, or the same rank as labels , and must be broadcastable to labels (i.e., all dimensions\n              must be either 1 , or the same as the corresponding losses dimension)."
+                },
+                {
+                    "name": "labelSmoothing",
+                    "type": "(number)",
+                    "doc": "If greater than 0, then smooth the labels."
+                },
+                {
+                    "name": "reduction",
+                    "type": "(Reduction)",
+                    "doc": "Type of reduction to apply to loss. Should be of type Reduction"
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.losses.softmaxCrossEntropy",
+            "params": [
+                {
+                    "name": "onehotLabels",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "One hot encoded labels\n              [batch_size, num_classes], same dimensions as 'predictions'."
+                },
+                {
+                    "name": "logits",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "The predicted outputs."
+                },
+                {
+                    "name": "weights",
+                    "type": "( tf.Tensor | TypedArray |Array)",
+                    "doc": "Tensor whose rank is either 0, or 1, and must be\n              broadcastable to loss of shape [batch_size]"
+                },
+                {
+                    "name": "labelSmoothing",
+                    "type": "(number)",
+                    "doc": "If greater than 0, then smooth the labels."
+                },
+                {
+                    "name": "reduction",
+                    "type": "(Reduction)",
+                    "doc": "Type of reduction to apply to loss. Should be of type Reduction"
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.tidy",
+            "params": [
+                {
+                    "name": "nameOrFn",
+                    "type": "(string|Function)",
+                    "doc": "The name of the closure, or the function to execute.\n              If a name is provided, the 2nd argument should be the function.\n              If debug mode is on, the timing and the memory usage of the function\n              will be tracked and displayed on the console using the provided name."
+                },
+                {
+                    "name": "fn",
+                    "type": "(Function)",
+                    "doc": "The function to execute."
+                },
+                {
+                    "name": "gradMode",
+                    "type": "(boolean)",
+                    "doc": ""
+                }
+            ],
+            "return": "void|number|string| tf.Tensor | tf.Tensor []|{[key:\nstring]: tf.Tensor |number|string}"
+        },
+        {
+            "name": "tf.dispose",
+            "params": [
+                {
+                    "name": "container",
+                    "type": "(void|number|string| tf.Tensor | tf.Tensor []|{[key:\n              string]: tf.Tensor |number|string})",
+                    "doc": "an object that may be a tf.Tensor or may directly contain tf.Tensor s, such as a Tensor[] or {key: Tensor, ...} .  If the\n              object is not a tf.Tensor or does not contain Tensors , nothing\n              happens. In general it is safe to pass any object here, except that Promise s are not supported."
+                }
+            ],
+            "return": "void"
+        },
+        {
+            "name": "tf.keep",
+            "params": [
+                {
+                    "name": "result",
+                    "type": "( tf.Tensor )",
+                    "doc": "The tensor to keep from being disposed."
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.memory",
+            "params": [],
+            "return": "MemoryInfo"
+        },
+        {
+            "name": "tf.time",
+            "params": [
+                {
+                    "name": "f",
+                    "type": "(() => void)",
+                    "doc": "The function to execute and time."
+                }
+            ],
+            "return": "Promise"
+        },
+        {
+            "name": "tf.nextFrame",
+            "params": [],
+            "return": "Promise"
+        },
+        {
+            "name": "tf.disposeVariables",
+            "params": [],
+            "return": "void"
+        },
+        {
+            "name": "tf.getBackend",
+            "params": [],
+            "return": "string"
+        },
+        {
+            "name": "tf.setBackend",
+            "params": [
+                {
+                    "name": "backendName",
+                    "type": "(string)",
+                    "doc": "The name of the backend. Currently supports 'webgl'|'cpu' in the browser, and 'tensorflow' under node.js\n              (requires tfjs-node)."
+                },
+                {
+                    "name": "safeMode",
+                    "type": "(boolean)",
+                    "doc": "Defaults to false. In safe mode, you are forced to\n              construct tensors and call math operations inside a tidy() which\n              will automatically clean up intermediate tensors."
+                }
+            ],
+            "return": "void"
+        },
+        {
+            "name": "tf.constraints.maxNorm",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.constraints.Constraint"
+        },
+        {
+            "name": "tf.constraints.minMaxNorm",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.constraints.Constraint"
+        },
+        {
+            "name": "tf.constraints.nonNeg",
+            "params": [],
+            "return": "tf.constraints.Constraint"
+        },
+        {
+            "name": "tf.constraints.unitNorm",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.constraints.Constraint"
+        },
+        {
+            "name": "tf.initializers.constant",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.glorotNormal",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.glorotUniform",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.heNormal",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.identity",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.leCunNormal",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.ones",
+            "params": [],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.orthogonal",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.randomNormal",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.randomUniform",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.truncatedNormal",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.varianceScaling",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.initializers.Initializer"
+        },
+        {
+            "name": "tf.initializers.zeros",
+            "params": [],
+            "return": "Zeros"
+        },
+        {
+            "name": "tf.regularizers.l1",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "Regularizer"
+        },
+        {
+            "name": "tf.regularizers.l1l2",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "Regularizer"
+        },
+        {
+            "name": "tf.regularizers.l2",
+            "params": [
+                {
+                    "name": "config",
+                    "type": "(Object)",
+                    "doc": ""
+                }
+            ],
+            "return": "Regularizer"
+        },
+        {
+            "name": "tf.toPixels",
+            "params": [
+                {
+                    "name": "img",
+                    "type": "( tf.Tensor2D | tf.Tensor3D | TypedArray |Array)",
+                    "doc": "A rank-2 or rank-3 tensor. If rank-2, draws grayscale. If\n              rank-3, must have depth of 1, 3 or 4. When depth of 1, draws\n              grayscale. When depth of 3, we draw with the first three components of\n              the depth dimension corresponding to r, g, b and alpha = 1. When depth of\n              4, all four components of the depth dimension correspond to r, g, b, a."
+                },
+                {
+                    "name": "canvas",
+                    "type": "( HTMLCanvasElement )",
+                    "doc": "The canvas to draw to."
+                }
+            ],
+            "return": "Promise"
+        },
+        {
+            "name": "tf.metrics.binaryAccuracy",
+            "params": [
+                {
+                    "name": "yTrue",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                },
+                {
+                    "name": "yPred",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.metrics.binaryCrossentropy",
+            "params": [
+                {
+                    "name": "yTrue",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                },
+                {
+                    "name": "yPred",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.metrics.categoricalAccuracy",
+            "params": [
+                {
+                    "name": "yTrue",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                },
+                {
+                    "name": "yPred",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.metrics.categoricalCrossentropy",
+            "params": [
+                {
+                    "name": "yTrue",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                },
+                {
+                    "name": "yPred",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.metrics.cosineProximity",
+            "params": [
+                {
+                    "name": "yTrue",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                },
+                {
+                    "name": "yPred",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.metrics.meanAbsoluteError",
+            "params": [
+                {
+                    "name": "yTrue",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                },
+                {
+                    "name": "yPred",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.metrics.meanAbsolutePercentageError",
+            "params": [
+                {
+                    "name": "yTrue",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                },
+                {
+                    "name": "yPred",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.Tensor"
+        },
+        {
+            "name": "tf.metrics.meanSquaredError",
+            "params": [
+                {
+                    "name": "yTrue",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                },
+                {
+                    "name": "yPred",
+                    "type": "( tf.Tensor )",
+                    "doc": ""
+                }
+            ],
+            "return": "tf.Tensor"
+        }
+    ],
+    "classList": [
+        {
+            "name": "tf.Tensor",
+            "method": [
+                {
+                    "name": "flatten",
+                    "params": [],
+                    "return": "tf.Tensor1D"
+                },
+                {
+                    "name": "asScalar",
+                    "params": [],
+                    "return": "tf.Scalar"
+                },
+                {
+                    "name": "as1D",
+                    "params": [],
+                    "return": "tf.Tensor1D"
+                },
+                {
+                    "name": "as2D",
+                    "params": [
+                        {
+                            "name": "rows",
+                            "type": "(number)",
+                            "doc": "Number of rows in tf.Tensor2D ."
+                        },
+                        {
+                            "name": "columns",
+                            "type": "(number)",
+                            "doc": "Number of columns in tf.Tensor2D ."
+                        }
+                    ],
+                    "return": "tf.Tensor2D"
+                },
+                {
+                    "name": "as3D",
+                    "params": [
+                        {
+                            "name": "rows",
+                            "type": "(number)",
+                            "doc": "Number of rows in tf.Tensor3D ."
+                        },
+                        {
+                            "name": "columns",
+                            "type": "(number)",
+                            "doc": "Number of columns in tf.Tensor3D ."
+                        },
+                        {
+                            "name": "depth",
+                            "type": "(number)",
+                            "doc": "Depth of tf.Tensor3D ."
+                        }
+                    ],
+                    "return": "tf.Tensor3D"
+                },
+                {
+                    "name": "as4D",
+                    "params": [
+                        {
+                            "name": "rows",
+                            "type": "(number)",
+                            "doc": "Number of rows in tf.Tensor4D ."
+                        },
+                        {
+                            "name": "columns",
+                            "type": "(number)",
+                            "doc": "Number of columns in tf.Tensor4D ."
+                        },
+                        {
+                            "name": "depth",
+                            "type": "(number)",
+                            "doc": "Depth of tf.Tensor4D ."
+                        },
+                        {
+                            "name": "depth2",
+                            "type": "(number)",
+                            "doc": "4th dimension of tf.Tensor4D ."
+                        }
+                    ],
+                    "return": "tf.Tensor4D"
+                },
+                {
+                    "name": "asType",
+                    "params": [
+                        {
+                            "name": "dtype",
+                            "type": "('float32'|'int32'|'bool')",
+                            "doc": "Data-type to cast the tensor to."
+                        }
+                    ],
+                    "return": "this"
+                },
+                {
+                    "name": "buffer",
+                    "params": [],
+                    "return": "tf.TensorBuffer"
+                },
+                {
+                    "name": "data",
+                    "params": [],
+                    "return": "Promise"
+                },
+                {
+                    "name": "dataSync",
+                    "params": [],
+                    "return": "TypedArray"
+                },
+                {
+                    "name": "dispose",
+                    "params": [],
+                    "return": "void"
+                },
+                {
+                    "name": "toFloat",
+                    "params": [],
+                    "return": "this"
+                },
+                {
+                    "name": "toInt",
+                    "params": [],
+                    "return": "this"
+                },
+                {
+                    "name": "toBool",
+                    "params": [],
+                    "return": "this"
+                },
+                {
+                    "name": "print",
+                    "params": [
+                        {
+                            "name": "verbose",
+                            "type": "(boolean)",
+                            "doc": "Whether to print verbose information about the tensor,\n              including dtype and size."
+                        }
+                    ],
+                    "return": "void"
+                },
+                {
+                    "name": "reshape",
+                    "params": [
+                        {
+                            "name": "newShape",
+                            "type": "(number[])",
+                            "doc": "An array of integers defining the output tensor shape."
+                        }
+                    ],
+                    "return": "tf.Tensor"
+                },
+                {
+                    "name": "reshapeAs",
+                    "params": [
+                        {
+                            "name": "x",
+                            "type": "( tf.Tensor )",
+                            "doc": "The tensor of required shape."
+                        }
+                    ],
+                    "return": "tf.Tensor"
+                },
+                {
+                    "name": "expandDims",
+                    "params": [
+                        {
+                            "name": "axis",
+                            "type": "(number)",
+                            "doc": "The dimension index at which to insert shape of 1. Defaults to\n              0 (the first dimension)."
+                        }
+                    ],
+                    "return": "tf.Tensor"
+                },
+                {
+                    "name": "cumsum",
+                    "params": [
+                        {
+                            "name": "axis",
+                            "type": "(number)",
+                            "doc": "The axis along which to sum. Optional. Defaults to 0."
+                        },
+                        {
+                            "name": "exclusive",
+                            "type": "(boolean)",
+                            "doc": "Whether to perform exclusive cumulative sum. Defaults to\n              false. If set to true then the sum of each tensor entry does not include\n              its own value, but only the values previous to it along the specified\n              axis."
+                        },
+                        {
+                            "name": "reverse",
+                            "type": "(boolean)",
+                            "doc": "Whether to sum in the opposite direction. Defaults to\n              false."
+                        }
+                    ],
+                    "return": "tf.Tensor"
+                },
+                {
+                    "name": "squeeze",
+                    "params": [
+                        {
+                            "name": "axis",
+                            "type": "(number[])",
+                            "doc": "A list of numbers. If specified, only squeezes the\n              dimensions listed. The dimension index starts at 0. It is an error to\n              squeeze a dimension that is not 1."
+                        }
+                    ],
+                    "return": "tf.Tensor"
+                },
+                {
+                    "name": "clone",
+                    "params": [],
+                    "return": "tf.Tensor"
+                },
+                {
+                    "name": "toString",
+                    "params": [
+                        {
+                            "name": "verbose",
+                            "type": "(boolean)",
+                            "doc": ""
+                        }
+                    ],
+                    "return": "string"
+                }
+            ]
+        },
+        {
+            "extends": "tf.Tensor",
+            "name": "tf.Variable",
+            "method": [
+                {
+                    "name": "assign",
+                    "params": [
+                        {
+                            "name": "newValue",
+                            "type": "( tf.Tensor )",
+                            "doc": "New tensor to be assigned to this variable."
+                        }
+                    ],
+                    "return": "void"
+                }
+            ]
+        },
+        {
+            "name": "tf.TensorBuffer",
+            "method": [
+                {
+                    "name": "set",
+                    "params": [
+                        {
+                            "name": "value",
+                            "type": "(number)",
+                            "doc": "The value to set."
+                        },
+                        {
+                            "name": "...locs",
+                            "type": "(number[])",
+                            "doc": "The location indices."
+                        }
+                    ],
+                    "return": "void"
+                },
+                {
+                    "name": "get",
+                    "params": [
+                        {
+                            "name": "...locs",
+                            "type": "(number[])",
+                            "doc": "The location indices."
+                        }
+                    ],
+                    "return": "number"
+                },
+                {
+                    "name": "toTensor",
+                    "params": [],
+                    "return": "tf.Tensor"
+                }
+            ]
+        },
+        {
+            "extends": "tfc.InferenceModel",
+            "name": "tf.FrozenModel",
+            "method": []
+        },
+        {
+            "extends": "Container|tfc.InferenceModel",
+            "name": "tf.Model",
+            "method": [
+                {
+                    "name": "summary",
+                    "params": [
+                        {
+                            "name": "lineLength",
+                            "type": "(number)",
+                            "doc": "Custom line length, in number of characters."
+                        },
+                        {
+                            "name": "positions",
+                            "type": "(number[])",
+                            "doc": "Custom widths of each of the columns, as either\n              fractions of lineLength (e.g., [0.5, 0.75, 1] ) or absolute number\n              of characters (e.g., [30, 50, 65] ). Each number corresponds to\n              right-most (i.e., ending) position of a column."
+                        },
+                        {
+                            "name": "printFn",
+                            "type": "((message?: tf.any() , ...optionalParams: tf.any() []) => void)",
+                            "doc": "Custom print function. Can be used to replace the default console.log . For example, you can use x => {} to mute the printed\n              messages in the console."
+                        }
+                    ],
+                    "return": "void"
+                },
+                {
+                    "name": "compile",
+                    "params": [
+                        {
+                            "name": "config",
+                            "type": "(Object)",
+                            "doc": "a ModelCompileConfig specifying the loss, optimizer, and\n              metrics to be used for fitting and evaluating this model."
+                        }
+                    ],
+                    "return": "void"
+                },
+                {
+                    "name": "evaluate",
+                    "params": [
+                        {
+                            "name": "x",
+                            "type": "( tf.Tensor | tf.Tensor [])",
+                            "doc": "tf.Tensor of test data, or an Array of tf.Tensor s if the model has\n              multiple inputs."
+                        },
+                        {
+                            "name": "y",
+                            "type": "( tf.Tensor | tf.Tensor [])",
+                            "doc": "tf.Tensor of target data, or an Array of tf.Tensor s if the model\n              has multiple outputs."
+                        },
+                        {
+                            "name": "config",
+                            "type": "(Object)",
+                            "doc": "A ModelEvaluateConfig , containing optional fields."
+                        }
+                    ],
+                    "return": "tf.Scalar | tf.Scalar []"
+                },
+                {
+                    "name": "predict",
+                    "params": [
+                        {
+                            "name": "x",
+                            "type": "( tf.Tensor | tf.Tensor [])",
+                            "doc": "The input data, as an Tensor, or an Array of tf.Tensor s if\n              the model has multiple inputs."
+                        },
+                        {
+                            "name": "config",
+                            "type": "(Object)",
+                            "doc": "A ModelPredictConfig object containing optional fields."
+                        }
+                    ],
+                    "return": "tf.Tensor | tf.Tensor []"
+                },
+                {
+                    "name": "predictOnBatch",
+                    "params": [
+                        {
+                            "name": "x",
+                            "type": "( tf.Tensor )",
+                            "doc": ": Input samples, as an Tensor"
+                        }
+                    ],
+                    "return": "tf.Tensor | tf.Tensor []"
+                },
+                {
+                    "name": "fit",
+                    "params": [
+                        {
+                            "name": "x",
+                            "type": "( tf.Tensor | tf.Tensor []|{[inputName: string]: tf.Tensor })",
+                            "doc": "tf.Tensor of training data, or an array of tf.Tensor s if the model\n              has multiple inputs. If all inputs in the model are named, you can also\n              pass a dictionary mapping input names to tf.Tensor s."
+                        },
+                        {
+                            "name": "y",
+                            "type": "( tf.Tensor | tf.Tensor []|{[inputName: string]: tf.Tensor })",
+                            "doc": "tf.Tensor of target (label) data, or an array of tf.Tensor s if the\n              model has multiple outputs. If all outputs in the model are named, you\n              can also pass a dictionary mapping output names to tf.Tensor s."
+                        },
+                        {
+                            "name": "config",
+                            "type": "(Object)",
+                            "doc": "A ModelFitConfig , containing optional fields."
+                        }
+                    ],
+                    "return": "Promise"
+                },
+                {
+                    "name": "save",
+                    "params": [
+                        {
+                            "name": "handlerOrURL",
+                            "type": "(io.IOHandler|string)",
+                            "doc": "An instance of IOHandler or a URL-like,\n              scheme-based string shortcut for IOHandler ."
+                        },
+                        {
+                            "name": "config",
+                            "type": "(Object)",
+                            "doc": "Options for saving the model."
+                        }
+                    ],
+                    "return": "Promise"
+                },
+                {
+                    "name": "getLayer",
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "(string)",
+                            "doc": "Name of layer."
+                        },
+                        {
+                            "name": "index",
+                            "type": "(number)",
+                            "doc": "Index of layer."
+                        }
+                    ],
+                    "return": "tf.layers.Layer"
+                }
+            ]
+        },
+        {
+            "extends": "tf.Model",
+            "name": "tf.Sequential",
+            "method": [
+                {
+                    "name": "add",
+                    "params": [
+                        {
+                            "name": "layer",
+                            "type": "( tf.layers.Layer )",
+                            "doc": "Layer instance."
+                        }
+                    ],
+                    "return": "void"
+                },
+                {
+                    "name": "summary",
+                    "params": [
+                        {
+                            "name": "lineLength",
+                            "type": "(number)",
+                            "doc": "Custom line length, in number of characters."
+                        },
+                        {
+                            "name": "positions",
+                            "type": "(number[])",
+                            "doc": "Custom widths of each of the columns, as either\n              fractions of lineLength (e.g., [0.5, 0.75, 1] ) or absolute number\n              of characters (e.g., [30, 50, 65] ). Each number corresponds to\n              right-most (i.e., ending) position of a column."
+                        },
+                        {
+                            "name": "printFn",
+                            "type": "((message?: tf.any() , ...optionalParams: tf.any() []) => void)",
+                            "doc": "Custom print function. Can be used to replace the default console.log . For example, you can use x => {} to mute the printed\n              messages in the console."
+                        }
+                    ],
+                    "return": "void"
+                },
+                {
+                    "name": "evaluate",
+                    "params": [
+                        {
+                            "name": "x",
+                            "type": "( tf.Tensor | tf.Tensor [])",
+                            "doc": "tf.Tensor of test data, or an Array of tf.Tensor s if the model\n              has multiple inputs."
+                        },
+                        {
+                            "name": "y",
+                            "type": "( tf.Tensor | tf.Tensor [])",
+                            "doc": "tf.Tensor of target data, or an Array of tf.Tensor s if the model\n              has multiple outputs."
+                        },
+                        {
+                            "name": "config",
+                            "type": "(Object)",
+                            "doc": "A ModelEvaluateConfig , containing optional fields."
+                        }
+                    ],
+                    "return": "tf.Scalar | tf.Scalar []"
+                },
+                {
+                    "name": "predict",
+                    "params": [
+                        {
+                            "name": "x",
+                            "type": "( tf.Tensor | tf.Tensor [])",
+                            "doc": "The input data, as an Tensor, or an Array of tf.Tensor s if\n              the model has multiple inputs."
+                        },
+                        {
+                            "name": "config",
+                            "type": "(Object)",
+                            "doc": ""
+                        }
+                    ],
+                    "return": "tf.Tensor | tf.Tensor []"
+                },
+                {
+                    "name": "fit",
+                    "params": [
+                        {
+                            "name": "x",
+                            "type": "( tf.Tensor | tf.Tensor []|{[inputName: string]: tf.Tensor })",
+                            "doc": "tf.Tensor of training data, or an array of tf.Tensor s if the model\n              has multiple inputs. If all inputs in the model are named, you can also\n              pass a dictionary mapping input names to tf.Tensor s."
+                        },
+                        {
+                            "name": "y",
+                            "type": "( tf.Tensor | tf.Tensor []|{[inputName: string]: tf.Tensor })",
+                            "doc": "tf.Tensor of target (label) data, or an array of tf.Tensor s if the\n              model has multiple outputs. If all outputs in the model are named, you\n              can also pass a dictionary mapping output names to tf.Tensor s."
+                        },
+                        {
+                            "name": "config",
+                            "type": "(Object)",
+                            "doc": "A ModelFitConfig , containing optional fields."
+                        }
+                    ],
+                    "return": "Promise"
+                }
+            ]
+        },
+        {
+            "name": "tf.SymbolicTensor",
+            "method": []
+        },
+        {
+            "extends": "serialization.Serializable",
+            "name": "tf.layers.Layer",
+            "method": [
+                {
+                    "name": "apply",
+                    "params": [
+                        {
+                            "name": "inputs",
+                            "type": "( tf.Tensor | tf.Tensor []| tf.SymbolicTensor | tf.SymbolicTensor [])",
+                            "doc": "a tf.Tensor or tf.SymbolicTensor or an Array of them."
+                        },
+                        {
+                            "name": "kwargs",
+                            "type": "(Kwargs)",
+                            "doc": "Additional keyword arguments to be passed to call() ."
+                        }
+                    ],
+                    "return": "tf.Tensor | tf.Tensor []| tf.SymbolicTensor | tf.SymbolicTensor []"
+                }
+            ]
+        },
+        {
+            "extends": "Layer",
+            "name": "tf.RNNCell",
+            "method": []
+        },
+        {
+            "extends": "Serializable",
+            "name": "tf.train.Optimizer",
+            "method": [
+                {
+                    "name": "minimize",
+                    "params": [
+                        {
+                            "name": "f",
+                            "type": "(() => tf.Scalar )",
+                            "doc": "The function to execute and whose output to minimize."
+                        },
+                        {
+                            "name": "returnCost",
+                            "type": "(boolean)",
+                            "doc": "Whether to return the scalar cost value produced by\n              executing f() ."
+                        },
+                        {
+                            "name": "varList",
+                            "type": "( tf.Variable [])",
+                            "doc": "An optional list of variables to update. If specified, only\n              the trainable variables in varList will be updated by minimize. Defaults to\n              all trainable variables."
+                        }
+                    ],
+                    "return": "tf.Scalar |null"
+                }
+            ]
+        },
+        {
+            "extends": "serialization.Serializable",
+            "name": "tf.constraints.Constraint",
+            "method": []
+        },
+        {
+            "extends": "serialization.Serializable",
+            "name": "tf.initializers.Initializer",
+            "method": []
+        },
+        {
+            "extends": "Regularizer",
+            "name": "tf.regularizers.L1L2",
+            "method": []
+        }
+    ]
+}
