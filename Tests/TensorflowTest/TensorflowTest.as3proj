@@ -18,6 +18,8 @@
     <class path="src" />
     <class path="libs\laya\src" />
     <class path="libs\artoolkit\src" />
+    <class path="..\..\TensorflowDoc\DesToCode\bin\h5\out\tf\class\src" />
+    <class path="..\..\TensorflowDoc\DesToCode\bin\h5\out\tf\method\src" />
   </classpaths>
   <!-- Build options -->
   <build>
