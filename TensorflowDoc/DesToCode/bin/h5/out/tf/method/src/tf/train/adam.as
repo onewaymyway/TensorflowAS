@@ -2,7 +2,7 @@
 package tf.train
 {
 
-
+	import tf.AdamOptimizer;
 
 	/**
 	 * adam
@@ -13,9 +13,9 @@ package tf.train
 	 * @param epsilon (number) A small constant for numerical stability.
 	 * @return AdamOptimizer
 	 */
-	public function adam(learningRate:*=null,beta1:*=null,beta2:*=null,epsilon:*=null):*
+	public function adam(learningRate:*=null,beta1:*=null,beta2:*=null,epsilon:*=null):AdamOptimizer
 	{
-		return ;
+		return null;
 	}
 
 

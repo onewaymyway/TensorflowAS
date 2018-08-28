@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor2D;
 
 	/**
 	 * outerProduct
@@ -10,9 +10,9 @@ package tf
 	 * @param v2 ( tf.Tensor1D | TypedArray |Array) The second vector in the dot product operation.
 	 * @return tf.Tensor2D
 	 */
-	public function outerProduct(v1:*=null,v2:*=null):*
+	public function outerProduct(v1:*=null,v2:*=null):Tensor2D
 	{
-		return ;
+		return null;
 	}
 
 

@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor3D;
 
 	/**
 	 * fromPixels
@@ -13,9 +13,9 @@ package tf
               3 (ignores alpha channel of input image).
 	 * @return tf.Tensor3D
 	 */
-	public function fromPixels(pixels:*=null,numChannels:*=null):*
+	public function fromPixels(pixels:*=null,numChannels:*=null):Tensor3D
 	{
-		return ;
+		return null;
 	}
 
 

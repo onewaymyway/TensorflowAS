@@ -2,7 +2,7 @@
 package tf.train
 {
 
-
+	import tf.RMSPropOptimizer;
 
 	/**
 	 * rmsprop
@@ -16,9 +16,9 @@ package tf.train
               variance of the gradient.
 	 * @return tf.RMSPropOptimizer
 	 */
-	public function rmsprop(learningRate:*=null,decay:*=null,momentum:*=null,epsilon:*=null,centered:*=null):*
+	public function rmsprop(learningRate:*=null,decay:*=null,momentum:*=null,epsilon:*=null,centered:*=null):RMSPropOptimizer
 	{
-		return ;
+		return null;
 	}
 
 

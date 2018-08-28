@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor1D;
 
 	/**
 	 * range
@@ -12,9 +12,9 @@ package tf
 	 * @param dtype ('float32'|'int32') The data type of the output tensor. Defaults to 'float32'.
 	 * @return tf.Tensor1D
 	 */
-	public function range(start:*=null,stop:*=null,step:*=null,dtype:*=null):*
+	public function range(start:*=null,stop:*=null,step:*=null,dtype:*=null):Tensor1D
 	{
-		return ;
+		return null;
 	}
 
 

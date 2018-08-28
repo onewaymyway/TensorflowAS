@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor4D;
 
 	/**
 	 * maxPool
@@ -17,9 +17,9 @@ package tf
               and error if the output is of fractional size.
 	 * @return tf.Tensor3D | tf.Tensor4D
 	 */
-	public function maxPool(x:*=null,filterSize:*=null,strides:*=null,pad:*=null,dimRoundingMode:*=null):*
+	public function maxPool(x:*=null,filterSize:*=null,strides:*=null,pad:*=null,dimRoundingMode:*=null):Tensor4D
 	{
-		return ;
+		return null;
 	}
 
 

@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor6D;
 
 	/**
 	 * tensor6d
@@ -13,9 +13,9 @@ package tf
 	 * @param dtype ('float32'|'int32'|'bool') The data type.
 	 * @return tf.Tensor6D
 	 */
-	public function tensor6d(values:*=null,shape:*=null,dtype:*=null):*
+	public function tensor6d(values:*=null,shape:*=null,dtype:*=null):Tensor6D
 	{
-		return ;
+		return null;
 	}
 
 

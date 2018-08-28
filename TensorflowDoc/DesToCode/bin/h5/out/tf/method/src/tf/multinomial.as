@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor2D;
 
 	/**
 	 * multinomial
@@ -14,9 +14,9 @@ package tf
               probabilities (sum to 1). Defaults to false.
 	 * @return tf.Tensor1D | tf.Tensor2D
 	 */
-	public function multinomial(logits:*=null,numSamples:*=null,seed:*=null,normalized:*=null):*
+	public function multinomial(logits:*=null,numSamples:*=null,seed:*=null,normalized:*=null):Tensor2D
 	{
-		return ;
+		return null;
 	}
 
 

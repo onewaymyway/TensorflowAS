@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor2D;
 
 	/**
 	 * tensor2d
@@ -12,9 +12,9 @@ package tf
 	 * @param dtype ('float32'|'int32'|'bool') The data type.
 	 * @return tf.Tensor2D
 	 */
-	public function tensor2d(values:*=null,shape:*=null,dtype:*=null):*
+	public function tensor2d(values:*=null,shape:*=null,dtype:*=null):Tensor2D
 	{
-		return ;
+		return null;
 	}
 
 

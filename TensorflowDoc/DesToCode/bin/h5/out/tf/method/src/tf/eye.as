@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor2D;
 
 	/**
 	 * eye
@@ -17,9 +17,9 @@ package tf
 	 * @param dtype ('float32'|'int32'|'bool') Data type.
 	 * @return tf.Tensor2D
 	 */
-	public function eye(numRows:*=null,numColumns:*=null,batchShape:*=null,dtype:*=null):*
+	public function eye(numRows:*=null,numColumns:*=null,batchShape:*=null,dtype:*=null):Tensor2D
 	{
-		return ;
+		return null;
 	}
 
 

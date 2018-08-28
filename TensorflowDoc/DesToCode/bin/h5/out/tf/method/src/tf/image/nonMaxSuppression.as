@@ -2,7 +2,7 @@
 package tf.image
 {
 
-
+	import tf.Tensor1D;
 
 	/**
 	 * nonMaxSuppression
@@ -17,9 +17,9 @@ package tf.image
               on score. Defaults to -inf, which means any score is accepted.
 	 * @return tf.Tensor1D
 	 */
-	public function nonMaxSuppression(boxes:*=null,scores:*=null,maxOutputSize:*=null,iouThreshold:*=null,scoreThreshold:*=null):*
+	public function nonMaxSuppression(boxes:*=null,scores:*=null,maxOutputSize:*=null,iouThreshold:*=null,scoreThreshold:*=null):Tensor1D
 	{
-		return ;
+		return null;
 	}
 
 

@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor2D;
 
 	/**
 	 * matMul
@@ -12,9 +12,9 @@ package tf
 	 * @param transposeB (boolean) If true, b is transposed before multiplication.
 	 * @return tf.Tensor2D
 	 */
-	public function matMul(a:*=null,b:*=null,transposeA:*=null,transposeB:*=null):*
+	public function matMul(a:*=null,b:*=null,transposeA:*=null,transposeB:*=null):Tensor2D
 	{
-		return ;
+		return null;
 	}
 
 

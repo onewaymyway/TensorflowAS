@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor4D;
 
 	/**
 	 * conv2d
@@ -26,9 +26,9 @@ package tf
               and error if the output is of fractional size.
 	 * @return tf.Tensor3D | tf.Tensor4D
 	 */
-	public function conv2d(x:*=null,filter:*=null,strides:*=null,pad:*=null,dataFormat:*=null,dilations:*=null,dimRoundingMode:*=null):*
+	public function conv2d(x:*=null,filter:*=null,strides:*=null,pad:*=null,dataFormat:*=null,dilations:*=null,dimRoundingMode:*=null):Tensor4D
 	{
-		return ;
+		return null;
 	}
 
 

@@ -2,7 +2,7 @@
 package tf.train
 {
 
-
+	import tf.AdamaxOptimizer;
 
 	/**
 	 * adamax
@@ -14,9 +14,9 @@ package tf.train
 	 * @param decay (number) The learning rate decay over each update.
 	 * @return AdamaxOptimizer
 	 */
-	public function adamax(learningRate:*=null,beta1:*=null,beta2:*=null,epsilon:*=null,decay:*=null):*
+	public function adamax(learningRate:*=null,beta1:*=null,beta2:*=null,epsilon:*=null,decay:*=null):AdamaxOptimizer
 	{
-		return ;
+		return null;
 	}
 
 

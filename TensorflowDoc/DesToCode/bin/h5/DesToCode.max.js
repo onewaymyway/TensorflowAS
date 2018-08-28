@@ -476,16 +476,47 @@ var Laya=window.Laya=(function(window,document){
 	var ClassManager=(function(){
 		function ClassManager(){}
 		__class(ClassManager,'code.ClassManager');
+		ClassManager.addClzPath=function(folder){
+			if (!FileManager.exists(folder))return;
+			var files;
+			files=FileManager.getFileList(folder);
+			var i=0,len=0;
+			len=files.length;
+			var tFile;
+			var rPath;
+			var fileName;
+			for (i=0;i < len;i++){
+				tFile=files[i];
+				rPath=FileManager.getRelativePath(folder,tFile);
+				fileName=FileTools.getFileName(tFile);
+				rPath=rPath.replace(fileName+".as",fileName);
+				rPath=FileManager.adptToCommonUrl(rPath);
+				rPath=rPath.split("/").join(".");
+				ClassManager.addClz(rPath);
+			}
+		}
+
 		ClassManager.addClz=function(clzFullPath){
 			ClassManager._clzDic[ClassManager.getShorClass(clzFullPath)]=clzFullPath;
 		}
 
 		ClassManager.hasClass=function(clzPath){
+			var p;
+			p=clzPath;
 			clzPath=ClassManager.getShorClass(clzPath);
 			if (ClassManager._clzDic[clzPath]){
 				return true;
 			}
+			ClassManager._failDic[p]=p;
 			return false;
+		}
+
+		ClassManager.traceFailDic=function(){
+			console.log("Fails:");
+			var key;
+			for (key in ClassManager._failDic){
+				console.log(key);
+			}
 		}
 
 		ClassManager.getShorClass=function(clzPath){
@@ -496,8 +527,9 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		ClassManager.getFullPath=function(clz){
-			if (clz.indexOf(".")>=0)return clz;
-			if (ClassManager.hasClass(clz))return ClassManager._clzDic[clz];
+			var short;
+			short=ClassManager.getShorClass(clz);
+			if (ClassManager.hasClass(short))return ClassManager._clzDic[short];
 			return clz;
 		}
 
@@ -510,6 +542,7 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		ClassManager._clzDic={};
+		ClassManager._failDic={};
 		return ClassManager;
 	})()
 
@@ -686,6 +719,7 @@ var Laya=window.Laya=(function(window,document){
 			ClassCreater.exportPath=NodeJSTools.getPathByRelatviePath("out/tf/class/src");
 			FunctionCreater.exportPath=NodeJSTools.getPathByRelatviePath("out/tf/method/src");
 			ClassManager.addClz("Promise");
+			ClassManager.addClzPath(NodeJSTools.getPathByRelatviePath("out/tf/add/src"));
 			var configPath;
 			configPath=FileManager.getPath(myPath,"data/tensorflowDes.json");
 			var configData;
@@ -693,6 +727,7 @@ var Laya=window.Laya=(function(window,document){
 			ClassManager.setClassList(configData.classList);
 			this.createFunctionList(configData.functionList);
 			this.createClassList(configData.classList);
+			ClassManager.traceFailDic();
 		}
 
 		__proto.createClassList=function(clsList){

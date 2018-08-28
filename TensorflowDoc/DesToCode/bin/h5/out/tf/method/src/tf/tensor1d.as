@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor1D;
 
 	/**
 	 * tensor1d
@@ -11,9 +11,9 @@ package tf
 	 * @param dtype ('float32'|'int32'|'bool') The data type.
 	 * @return tf.Tensor1D
 	 */
-	public function tensor1d(values:*=null,dtype:*=null):*
+	public function tensor1d(values:*=null,dtype:*=null):Tensor1D
 	{
-		return ;
+		return null;
 	}
 
 

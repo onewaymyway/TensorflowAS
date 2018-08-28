@@ -2,7 +2,7 @@
 package tf.train
 {
 
-
+	import tf.AdadeltaOptimizer;
 
 	/**
 	 * adadelta
@@ -13,9 +13,9 @@ package tf.train
               update.
 	 * @return tf.AdadeltaOptimizer
 	 */
-	public function adadelta(learningRate:*=null,rho:*=null,epsilon:*=null):*
+	public function adadelta(learningRate:*=null,rho:*=null,epsilon:*=null):AdadeltaOptimizer
 	{
-		return ;
+		return null;
 	}
 
 

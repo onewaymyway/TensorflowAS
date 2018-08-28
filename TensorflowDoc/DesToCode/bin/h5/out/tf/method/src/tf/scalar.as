@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Scalar;
 
 	/**
 	 * scalar
@@ -10,9 +10,9 @@ package tf
 	 * @param dtype ('float32'|'int32'|'bool') The data type.
 	 * @return tf.Scalar
 	 */
-	public function scalar(value:*=null,dtype:*=null):*
+	public function scalar(value:*=null,dtype:*=null):Scalar
 	{
-		return ;
+		return null;
 	}
 
 

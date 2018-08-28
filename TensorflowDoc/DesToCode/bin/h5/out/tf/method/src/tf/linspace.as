@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor1D;
 
 	/**
 	 * linspace
@@ -11,9 +11,9 @@ package tf
 	 * @param num (number) The number of values to generate.
 	 * @return tf.Tensor1D
 	 */
-	public function linspace(start:*=null,stop:*=null,num:*=null):*
+	public function linspace(start:*=null,stop:*=null,num:*=null):Tensor1D
 	{
-		return ;
+		return null;
 	}
 
 

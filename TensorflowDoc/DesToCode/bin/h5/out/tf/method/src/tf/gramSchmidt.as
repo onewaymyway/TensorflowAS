@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor2D;
 
 	/**
 	 * gramSchmidt
@@ -13,9 +13,9 @@ package tf
               must be greater than or equal to the number of vectors.
 	 * @return tf.Tensor1D []| tf.Tensor2D
 	 */
-	public function gramSchmidt(xs:*=null):*
+	public function gramSchmidt(xs:*=null):Tensor2D
 	{
-		return ;
+		return null;
 	}
 
 

@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor5D;
 
 	/**
 	 * tensor5d
@@ -13,9 +13,9 @@ package tf
 	 * @param dtype ('float32'|'int32'|'bool') The data type.
 	 * @return tf.Tensor5D
 	 */
-	public function tensor5d(values:*=null,shape:*=null,dtype:*=null):*
+	public function tensor5d(values:*=null,shape:*=null,dtype:*=null):Tensor5D
 	{
-		return ;
+		return null;
 	}
 
 

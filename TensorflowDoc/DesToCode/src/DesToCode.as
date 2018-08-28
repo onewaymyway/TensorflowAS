@@ -37,6 +37,7 @@ package
 			FunctionCreater.exportPath=NodeJSTools.getPathByRelatviePath("out/tf/method/src");
 			
 			ClassManager.addClz("Promise");
+			ClassManager.addClzPath(NodeJSTools.getPathByRelatviePath("out/tf/add/src"));
 			var configPath:String;
 			configPath = FileManager.getPath(myPath, "data/tensorflowDes.json");
 			var configData:Object;
@@ -46,6 +47,8 @@ package
 			//trace("configData:", configData);
 			createFunctionList(configData.functionList);
 			createClassList(configData.classList);
+			
+			ClassManager.traceFailDic();
 		}
 		private function createClassList(clsList:Array):void
 		{

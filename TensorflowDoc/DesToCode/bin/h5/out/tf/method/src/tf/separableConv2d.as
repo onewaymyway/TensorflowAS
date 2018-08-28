@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor4D;
 
 	/**
 	 * separableConv2d
@@ -23,9 +23,9 @@ package tf
               height, width, channels]. Only "NHWC" is currently supported.
 	 * @return tf.Tensor3D | tf.Tensor4D
 	 */
-	public function separableConv2d(x:*=null,depthwiseFilter:*=null,pointwiseFilter:*=null,strides:*=null,pad:*=null,dilation:*=null,dataFormat:*=null):*
+	public function separableConv2d(x:*=null,depthwiseFilter:*=null,pointwiseFilter:*=null,strides:*=null,pad:*=null,dilation:*=null,dataFormat:*=null):Tensor4D
 	{
-		return ;
+		return null;
 	}
 
 

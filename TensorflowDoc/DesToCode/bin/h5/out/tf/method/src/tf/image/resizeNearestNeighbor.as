@@ -2,7 +2,7 @@
 package tf.image
 {
 
-
+	import tf.Tensor4D;
 
 	/**
 	 * resizeNearestNeighbor
@@ -14,9 +14,9 @@ package tf.image
               corners of images and resized images. If false, rescale by new_height / height . Treat similarly the width dimension.
 	 * @return tf.Tensor3D | tf.Tensor4D
 	 */
-	public function resizeNearestNeighbor(images:*=null,size:*=null,alignCorners:*=null):*
+	public function resizeNearestNeighbor(images:*=null,size:*=null,alignCorners:*=null):Tensor4D
 	{
-		return ;
+		return null;
 	}
 
 

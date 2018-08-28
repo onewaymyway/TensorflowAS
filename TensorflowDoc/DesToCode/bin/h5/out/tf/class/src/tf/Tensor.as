@@ -1,6 +1,11 @@
 /*[IF-FLASH]*/
 package tf 
 {
+	import tf.Tensor1D;
+	import tf.Scalar;
+	import tf.Tensor2D;
+	import tf.Tensor3D;
+	import tf.Tensor4D;
 	import tf.TensorBuffer;
 	import Promise;
 	import tf.Tensor;
@@ -19,27 +24,27 @@ package tf
 		 * flatten
 		 * @return tf.Tensor1D
 		 */
-		public function flatten():*
+		public function flatten():Tensor1D
 		{
-			return ;
+			return null;
 		}
 	
 		/**
 		 * asScalar
 		 * @return tf.Scalar
 		 */
-		public function asScalar():*
+		public function asScalar():Scalar
 		{
-			return ;
+			return null;
 		}
 	
 		/**
 		 * as1D
 		 * @return tf.Tensor1D
 		 */
-		public function as1D():*
+		public function as1D():Tensor1D
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -48,9 +53,9 @@ package tf
 		 * @param columns (number) Number of columns in tf.Tensor2D .
 		 * @return tf.Tensor2D
 		 */
-		public function as2D(rows:*=null,columns:*=null):*
+		public function as2D(rows:*=null,columns:*=null):Tensor2D
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -60,9 +65,9 @@ package tf
 		 * @param depth (number) Depth of tf.Tensor3D .
 		 * @return tf.Tensor3D
 		 */
-		public function as3D(rows:*=null,columns:*=null,depth:*=null):*
+		public function as3D(rows:*=null,columns:*=null,depth:*=null):Tensor3D
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -73,9 +78,9 @@ package tf
 		 * @param depth2 (number) 4th dimension of tf.Tensor4D .
 		 * @return tf.Tensor4D
 		 */
-		public function as4D(rows:*=null,columns:*=null,depth:*=null,depth2:*=null):*
+		public function as4D(rows:*=null,columns:*=null,depth:*=null,depth2:*=null):Tensor4D
 		{
-			return ;
+			return null;
 		}
 	
 		/**

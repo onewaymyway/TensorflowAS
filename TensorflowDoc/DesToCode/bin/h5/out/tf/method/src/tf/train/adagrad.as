@@ -2,7 +2,7 @@
 package tf.train
 {
 
-
+	import tf.AdagradOptimizer;
 
 	/**
 	 * adagrad
@@ -12,9 +12,9 @@ package tf.train
               positive.
 	 * @return tf.AdagradOptimizer
 	 */
-	public function adagrad(learningRate:*=null,initialAccumulatorValue:*=null):*
+	public function adagrad(learningRate:*=null,initialAccumulatorValue:*=null):AdagradOptimizer
 	{
-		return ;
+		return null;
 	}
 
 

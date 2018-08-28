@@ -2,7 +2,7 @@
 package tf
 {
 
-	import (...args: tf.Tensor []) => tf.Tensor;
+	import tf.Tensor;
 
 	/**
 	 * customGrad

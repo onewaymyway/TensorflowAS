@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor2D;
 
 	/**
 	 * oneHot
@@ -14,9 +14,9 @@ package tf
               not match the location.
 	 * @return tf.Tensor2D
 	 */
-	public function oneHot(indices:*=null,depth:*=null,onValue:*=null,offValue:*=null):*
+	public function oneHot(indices:*=null,depth:*=null,onValue:*=null,offValue:*=null):Tensor2D
 	{
-		return ;
+		return null;
 	}
 
 

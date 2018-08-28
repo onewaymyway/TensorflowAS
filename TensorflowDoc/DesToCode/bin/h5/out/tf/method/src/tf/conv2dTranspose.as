@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor4D;
 
 	/**
 	 * conv2dTranspose
@@ -17,9 +17,9 @@ package tf
               and error if the output is of fractional size.
 	 * @return tf.Tensor3D | tf.Tensor4D
 	 */
-	public function conv2dTranspose(x:*=null,filter:*=null,outputShape:*=null,strides:*=null,pad:*=null,dimRoundingMode:*=null):*
+	public function conv2dTranspose(x:*=null,filter:*=null,outputShape:*=null,strides:*=null,pad:*=null,dimRoundingMode:*=null):Tensor4D
 	{
-		return ;
+		return null;
 	}
 
 

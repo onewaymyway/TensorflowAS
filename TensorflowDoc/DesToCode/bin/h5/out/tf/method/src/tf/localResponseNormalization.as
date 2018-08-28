@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor4D;
 
 	/**
 	 * localResponseNormalization
@@ -16,9 +16,9 @@ package tf
 	 * @param beta (number) An exponent.
 	 * @return tf.Tensor3D | tf.Tensor4D
 	 */
-	public function localResponseNormalization(x:*=null,depthRadius:*=null,bias:*=null,alpha:*=null,beta:*=null):*
+	public function localResponseNormalization(x:*=null,depthRadius:*=null,bias:*=null,alpha:*=null,beta:*=null):Tensor4D
 	{
-		return ;
+		return null;
 	}
 
 

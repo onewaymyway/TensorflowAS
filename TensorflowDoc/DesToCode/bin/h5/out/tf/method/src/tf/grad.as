@@ -2,8 +2,7 @@
 package tf
 {
 
-	import (
-x: tf.Tensor , dy?: tf.Tensor ) => tf.Tensor;
+	import tf.Tensor;
 
 	/**
 	 * grad

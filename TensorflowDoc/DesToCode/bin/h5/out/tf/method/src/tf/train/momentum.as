@@ -2,7 +2,7 @@
 package tf.train
 {
 
-
+	import tf.MomentumOptimizer;
 
 	/**
 	 * momentum
@@ -13,9 +13,9 @@ package tf.train
 	 * @param useNesterov (boolean) 
 	 * @return tf.MomentumOptimizer
 	 */
-	public function momentum(learningRate:*=null,momentum:*=null,useNesterov:*=null):*
+	public function momentum(learningRate:*=null,momentum:*=null,useNesterov:*=null):MomentumOptimizer
 	{
-		return ;
+		return null;
 	}
 
 
