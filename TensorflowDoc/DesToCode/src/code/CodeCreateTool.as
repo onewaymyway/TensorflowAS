@@ -44,6 +44,18 @@ package code
 			}
 			return lines.join("\n");
 		}
+		
+		public static function createImportStr(importDic:Object):String
+		{
+			var importStrs:Array;
+			importStrs = [];
+			var key:String;
+			for (key in importDic)
+			{
+				importStrs.push("	import " + key+";" );
+			}
+			return importStrs.join("\n");
+		}
 	}
 
 }

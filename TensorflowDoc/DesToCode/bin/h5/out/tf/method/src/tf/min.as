@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * min
@@ -12,7 +12,7 @@ package tf
 	 * @param keepDims (boolean) If true, retains reduced dimensions with size 1.
 	 * @return tf.Tensor
 	 */
-	public function min(x:*=null,axis:*=null,keepDims:*=null):*
+	public function min(x:*=null,axis:*=null,keepDims:*=null):Tensor
 	{
 		return ;
 	}

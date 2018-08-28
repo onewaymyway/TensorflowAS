@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * expandDims
@@ -11,7 +11,7 @@ package tf
               to 0 (the first dimension).
 	 * @return tf.Tensor
 	 */
-	public function expandDims(x:*=null,axis:*=null):*
+	public function expandDims(x:*=null,axis:*=null):Tensor
 	{
 		return ;
 	}

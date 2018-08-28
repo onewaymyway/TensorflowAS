@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * movingAverage
@@ -13,7 +13,7 @@ package tf
 	 * @param zeroDebias (boolean) : Whether zeroDebias is to be performed (default: true ).
 	 * @return tf.Tensor
 	 */
-	public function movingAverage(v:*=null,x:*=null,decay:*=null,step:*=null,zeroDebias:*=null):*
+	public function movingAverage(v:*=null,x:*=null,decay:*=null,step:*=null,zeroDebias:*=null):Tensor
 	{
 		return ;
 	}

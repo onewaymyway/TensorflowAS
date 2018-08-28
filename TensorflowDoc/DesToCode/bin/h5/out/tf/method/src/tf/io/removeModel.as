@@ -2,7 +2,7 @@
 package tf.io
 {
 
-
+	import Promise;
 
 	/**
 	 * removeModel
@@ -10,7 +10,7 @@ package tf.io
               'localstorage://my-model-1', 'indexeddb://my/model/2'.
 	 * @return Promise
 	 */
-	public function removeModel(url:*=null):*
+	public function removeModel(url:*=null):Promise
 	{
 		return ;
 	}

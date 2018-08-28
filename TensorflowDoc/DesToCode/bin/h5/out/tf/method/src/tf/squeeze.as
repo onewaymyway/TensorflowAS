@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * squeeze
@@ -12,7 +12,7 @@ package tf
               is an error to squeeze a dimension that is not 1.
 	 * @return tf.Tensor
 	 */
-	public function squeeze(x:*=null,axis:*=null):*
+	public function squeeze(x:*=null,axis:*=null):Tensor
 	{
 		return ;
 	}

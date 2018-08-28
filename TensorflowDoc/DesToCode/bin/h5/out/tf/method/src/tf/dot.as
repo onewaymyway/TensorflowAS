@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * dot
@@ -10,7 +10,7 @@ package tf
 	 * @param t2 ( tf.Tensor | TypedArray |Array) The second tensor in the dot operation.
 	 * @return tf.Tensor
 	 */
-	public function dot(t1:*=null,t2:*=null):*
+	public function dot(t1:*=null,t2:*=null):Tensor
 	{
 		return ;
 	}

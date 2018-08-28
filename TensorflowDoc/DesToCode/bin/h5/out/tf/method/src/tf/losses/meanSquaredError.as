@@ -2,7 +2,7 @@
 package tf.losses
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * meanSquaredError
@@ -14,7 +14,7 @@ package tf.losses
 	 * @param reduction (Reduction) Type of reduction to apply to loss. Should be of type Reduction
 	 * @return tf.Tensor
 	 */
-	public function meanSquaredError(labels:*=null,predictions:*=null,weights:*=null,reduction:*=null):*
+	public function meanSquaredError(labels:*=null,predictions:*=null,weights:*=null,reduction:*=null):Tensor
 	{
 		return ;
 	}

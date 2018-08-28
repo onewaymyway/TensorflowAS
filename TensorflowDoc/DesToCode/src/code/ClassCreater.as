@@ -30,6 +30,8 @@ package code
 			var nameArr:Array;
 			nameArr = funNameFull.split(".");
 			
+			var importDic:Object;
+			importDic = { };
 			var dataO:Object;
 			dataO = { };
 			dataO.name = nameArr.pop();
@@ -50,8 +52,9 @@ package code
 			
 			dataO["package"] = packageStr;
 			
-			dataO.methods = createMethods(funO.method);
+			dataO.methods = createMethods(funO.method,importDic);
 			
+			dataO.imports=CodeCreateTool.createImportStr(importDic);
 			filePath = FileManager.getPath(filePath, dataO.name + ".as");
 			
 			var codeStr:String;
@@ -59,7 +62,7 @@ package code
 			FileManager.createTxtFile(filePath, codeStr);
 		}
 		
-		private static function createMethods(funList:Array):String
+		private static function createMethods(funList:Array,importDic:Object=null):String
 		{
 			if (!funList || funList.length == 0) return "";
 			var i:int, len:int;;
@@ -68,7 +71,7 @@ package code
 			funStrs = [];
 			for (i = 0; i < len; i++)
 			{
-				funStrs.push(FunctionCreater.createFunO(funList[i],false,methodTpl));
+				funStrs.push(FunctionCreater.createFunO(funList[i],false,methodTpl,importDic));
 			}
 			var rst:String;
 			rst = funStrs.join("\n");

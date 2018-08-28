@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * ones
@@ -11,7 +11,7 @@ package tf
               'float'.
 	 * @return tf.Tensor
 	 */
-	public function ones(shape:*=null,dtype:*=null):*
+	public function ones(shape:*=null,dtype:*=null):Tensor
 	{
 		return ;
 	}

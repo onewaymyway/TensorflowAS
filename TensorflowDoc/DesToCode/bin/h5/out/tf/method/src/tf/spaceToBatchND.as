@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * spaceToBatchND
@@ -21,7 +21,7 @@ package tf
               padded_shape[M] / block_shape[M-1]] + remaining_shape
 	 * @return tf.Tensor
 	 */
-	public function spaceToBatchND(x:*=null,blockShape:*=null,paddings:*=null):*
+	public function spaceToBatchND(x:*=null,blockShape:*=null,paddings:*=null):Tensor
 	{
 		return ;
 	}

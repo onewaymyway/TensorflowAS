@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * where
@@ -12,7 +12,7 @@ package tf
 	 * @param b ( tf.Tensor | TypedArray |Array) A tensor with the same shape and type as a .
 	 * @return tf.Tensor
 	 */
-	public function where(condition:*=null,a:*=null,b:*=null):*
+	public function where(condition:*=null,a:*=null,b:*=null):Tensor
 	{
 		return ;
 	}

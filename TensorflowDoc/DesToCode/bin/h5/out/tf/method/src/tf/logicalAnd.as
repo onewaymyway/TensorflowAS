@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * logicalAnd
@@ -10,7 +10,7 @@ package tf
 	 * @param b ( tf.Tensor | TypedArray |Array) The second input tensor. Must be of dtype bool.
 	 * @return tf.Tensor
 	 */
-	public function logicalAnd(a:*=null,b:*=null):*
+	public function logicalAnd(a:*=null,b:*=null):Tensor
 	{
 		return ;
 	}

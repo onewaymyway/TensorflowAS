@@ -2,7 +2,7 @@
 package tf.losses
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * hingeLoss
@@ -14,7 +14,7 @@ package tf.losses
 	 * @param reduction (Reduction) Type of reduction to apply to loss. Should be of type Reduction
 	 * @return tf.Tensor
 	 */
-	public function hingeLoss(labels:*=null,predictions:*=null,weights:*=null,reduction:*=null):*
+	public function hingeLoss(labels:*=null,predictions:*=null,weights:*=null,reduction:*=null):Tensor
 	{
 		return ;
 	}

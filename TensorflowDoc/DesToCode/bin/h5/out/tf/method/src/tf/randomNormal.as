@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * randomNormal
@@ -13,7 +13,7 @@ package tf
 	 * @param seed (number) The seed for the random number generator.
 	 * @return tf.Tensor
 	 */
-	public function randomNormal(shape:*=null,mean:*=null,stdDev:*=null,dtype:*=null,seed:*=null):*
+	public function randomNormal(shape:*=null,mean:*=null,stdDev:*=null,dtype:*=null,seed:*=null):Tensor
 	{
 		return ;
 	}

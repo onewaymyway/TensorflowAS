@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * concat
@@ -10,7 +10,7 @@ package tf
 	 * @param axis (number) The axis to concate along. Defaults to 0 (the first dim).
 	 * @return tf.Tensor
 	 */
-	public function concat(tensors:*=null,axis:*=null):*
+	public function concat(tensors:*=null,axis:*=null):Tensor
 	{
 		return ;
 	}

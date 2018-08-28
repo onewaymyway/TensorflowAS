@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * zeros
@@ -11,7 +11,7 @@ package tf
               be 'float32', 'int32' or 'bool'. Defaults to 'float'.
 	 * @return tf.Tensor
 	 */
-	public function zeros(shape:*=null,dtype:*=null):*
+	public function zeros(shape:*=null,dtype:*=null):Tensor
 	{
 		return ;
 	}

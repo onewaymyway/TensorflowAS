@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * less
@@ -10,7 +10,7 @@ package tf
 	 * @param b ( tf.Tensor | TypedArray |Array) The second input tensor. Must have the same dtype as a .
 	 * @return tf.Tensor
 	 */
-	public function less(a:*=null,b:*=null):*
+	public function less(a:*=null,b:*=null):Tensor
 	{
 		return ;
 	}

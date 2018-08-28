@@ -2,7 +2,7 @@
 package tf.losses
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * cosineDistance
@@ -15,7 +15,7 @@ package tf.losses
 	 * @param reduction (Reduction) Type of reduction to apply to loss. Should be of type Reduction
 	 * @return tf.Tensor
 	 */
-	public function cosineDistance(labels:*=null,predictions:*=null,axis:*=null,weights:*=null,reduction:*=null):*
+	public function cosineDistance(labels:*=null,predictions:*=null,axis:*=null,weights:*=null,reduction:*=null):Tensor
 	{
 		return ;
 	}

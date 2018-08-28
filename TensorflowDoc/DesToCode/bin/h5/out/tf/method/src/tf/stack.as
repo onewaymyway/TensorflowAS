@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * stack
@@ -10,7 +10,7 @@ package tf
 	 * @param axis (number) The axis to stack along. Defaults to 0 (the first dim).
 	 * @return tf.Tensor
 	 */
-	public function stack(tensors:*=null,axis:*=null):*
+	public function stack(tensors:*=null,axis:*=null):Tensor
 	{
 		return ;
 	}

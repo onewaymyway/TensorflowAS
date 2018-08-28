@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * gather
@@ -11,7 +11,7 @@ package tf
 	 * @param axis (number) The axis over which to select values. Defaults to 0.
 	 * @return tf.Tensor
 	 */
-	public function gather(x:*=null,indices:*=null,axis:*=null):*
+	public function gather(x:*=null,indices:*=null,axis:*=null):Tensor
 	{
 		return ;
 	}

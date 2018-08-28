@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * greater
@@ -10,7 +10,7 @@ package tf
 	 * @param b ( tf.Tensor | TypedArray |Array) The second input tensor. Must have the same dtype as a .
 	 * @return tf.Tensor
 	 */
-	public function greater(a:*=null,b:*=null):*
+	public function greater(a:*=null,b:*=null):Tensor
 	{
 		return ;
 	}

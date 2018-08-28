@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * atan2
@@ -10,7 +10,7 @@ package tf
 	 * @param b ( tf.Tensor | TypedArray |Array) The second tensor. Must have the same dtype as a .
 	 * @return tf.Tensor
 	 */
-	public function atan2(a:*=null,b:*=null):*
+	public function atan2(a:*=null,b:*=null):Tensor
 	{
 		return ;
 	}

@@ -2,7 +2,7 @@
 package tf.losses
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * huberLoss
@@ -15,7 +15,7 @@ package tf.losses
 	 * @param reduction (Reduction) Type of reduction to apply to loss. Should be of type Reduction .
 	 * @return tf.Tensor
 	 */
-	public function huberLoss(labels:*=null,predictions:*=null,weights:*=null,delta:*=null,reduction:*=null):*
+	public function huberLoss(labels:*=null,predictions:*=null,weights:*=null,delta:*=null,reduction:*=null):Tensor
 	{
 		return ;
 	}

@@ -1,7 +1,7 @@
 /*[IF-FLASH]*/
 package tf 
 {
-
+	import Promise;
 
 
 	public class Sequential 
@@ -76,7 +76,7 @@ package tf
 		 * @param config (Object) A ModelFitConfig , containing optional fields.
 		 * @return Promise
 		 */
-		public function fit(x:*=null,y:*=null,config:*=null):*
+		public function fit(x:*=null,y:*=null,config:*=null):Promise
 		{
 			return ;
 		}

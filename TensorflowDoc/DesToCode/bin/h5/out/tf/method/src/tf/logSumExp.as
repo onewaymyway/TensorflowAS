@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * logSumExp
@@ -13,7 +13,7 @@ package tf
               of 1. Defaults to false.
 	 * @return tf.Tensor
 	 */
-	public function logSumExp(x:*=null,axis:*=null,keepDims:*=null):*
+	public function logSumExp(x:*=null,axis:*=null,keepDims:*=null):Tensor
 	{
 		return ;
 	}

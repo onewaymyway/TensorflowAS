@@ -2,13 +2,13 @@
 package tf
 {
 
-
+	import Promise;
 
 	/**
 	 * nextFrame
 	 * @return Promise
 	 */
-	public function nextFrame():*
+	public function nextFrame():Promise
 	{
 		return ;
 	}

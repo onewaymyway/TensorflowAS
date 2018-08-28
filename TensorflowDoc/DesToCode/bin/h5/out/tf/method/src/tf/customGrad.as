@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import (...args: tf.Tensor []) => tf.Tensor;
 
 	/**
 	 * customGrad
@@ -11,7 +11,7 @@ package tf
               the custom gradients of f with respect to its inputs.
 	 * @return (...args: tf.Tensor []) => tf.Tensor
 	 */
-	public function customGrad(f:*=null):*
+	public function customGrad(f:*=null):Tensor
 	{
 		return ;
 	}

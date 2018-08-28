@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * pow
@@ -10,7 +10,7 @@ package tf
 	 * @param exp ( tf.Tensor | TypedArray |Array) The exponent tf.Tensor to pow element-wise.
 	 * @return tf.Tensor
 	 */
-	public function pow(base:*=null,exp:*=null):*
+	public function pow(base:*=null,exp:*=null):Tensor
 	{
 		return ;
 	}

@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * mod
@@ -10,7 +10,7 @@ package tf
 	 * @param b ( tf.Tensor | TypedArray |Array) The second tensor. Must have the same type as a .
 	 * @return tf.Tensor
 	 */
-	public function mod(a:*=null,b:*=null):*
+	public function mod(a:*=null,b:*=null):Tensor
 	{
 		return ;
 	}

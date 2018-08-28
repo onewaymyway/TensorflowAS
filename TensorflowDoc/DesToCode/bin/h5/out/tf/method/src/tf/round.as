@@ -2,14 +2,14 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * round
 	 * @param x ( tf.Tensor | TypedArray |Array) The input tensor.
 	 * @return tf.Tensor
 	 */
-	public function round(x:*=null):*
+	public function round(x:*=null):Tensor
 	{
 		return ;
 	}

@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * stridedSlice
@@ -21,7 +21,7 @@ package tf
               imply a slice of size 1 in the dimension.
 	 * @return tf.Tensor
 	 */
-	public function stridedSlice(x:*=null,begin:*=null,end:*=null,strides:*=null,beginMask:*=null,endMask:*=null,ellipsisMask:*=null,newAxisMask:*=null,shrinkAxisMask:*=null):*
+	public function stridedSlice(x:*=null,begin:*=null,end:*=null,strides:*=null,beginMask:*=null,endMask:*=null,ellipsisMask:*=null,newAxisMask:*=null,shrinkAxisMask:*=null):Tensor
 	{
 		return ;
 	}

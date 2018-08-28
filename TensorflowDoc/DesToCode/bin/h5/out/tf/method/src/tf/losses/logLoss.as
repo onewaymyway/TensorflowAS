@@ -2,7 +2,7 @@
 package tf.losses
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * logLoss
@@ -15,7 +15,7 @@ package tf.losses
 	 * @param reduction (Reduction) Type of reduction to apply to loss. Should be of type Reduction
 	 * @return tf.Tensor
 	 */
-	public function logLoss(labels:*=null,predictions:*=null,weights:*=null,epsilon:*=null,reduction:*=null):*
+	public function logLoss(labels:*=null,predictions:*=null,weights:*=null,epsilon:*=null,reduction:*=null):Tensor
 	{
 		return ;
 	}

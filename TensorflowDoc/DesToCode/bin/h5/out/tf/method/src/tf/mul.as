@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * mul
@@ -10,7 +10,7 @@ package tf
 	 * @param b ( tf.Tensor | TypedArray |Array) The second tensor to multiply. Must have the same dtype as a .
 	 * @return tf.Tensor
 	 */
-	public function mul(a:*=null,b:*=null):*
+	public function mul(a:*=null,b:*=null):Tensor
 	{
 		return ;
 	}

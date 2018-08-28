@@ -2,14 +2,14 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * atan
 	 * @param x ( tf.Tensor | TypedArray |Array) The input tensor.
 	 * @return tf.Tensor
 	 */
-	public function atan(x:*=null):*
+	public function atan(x:*=null):Tensor
 	{
 		return ;
 	}

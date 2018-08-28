@@ -1,7 +1,9 @@
 /*[IF-FLASH]*/
 package tf 
 {
-
+	import tf.TensorBuffer;
+	import Promise;
+	import tf.Tensor;
 
 
 	public class Tensor 
@@ -90,7 +92,7 @@ package tf
 		 * buffer
 		 * @return tf.TensorBuffer
 		 */
-		public function buffer():*
+		public function buffer():TensorBuffer
 		{
 			return ;
 		}
@@ -99,7 +101,7 @@ package tf
 		 * data
 		 * @return Promise
 		 */
-		public function data():*
+		public function data():Promise
 		{
 			return ;
 		}
@@ -165,7 +167,7 @@ package tf
 		 * @param newShape (number[]) An array of integers defining the output tensor shape.
 		 * @return tf.Tensor
 		 */
-		public function reshape(newShape:*=null):*
+		public function reshape(newShape:*=null):Tensor
 		{
 			return ;
 		}
@@ -175,7 +177,7 @@ package tf
 		 * @param x ( tf.Tensor ) The tensor of required shape.
 		 * @return tf.Tensor
 		 */
-		public function reshapeAs(x:*=null):*
+		public function reshapeAs(x:*=null):Tensor
 		{
 			return ;
 		}
@@ -186,7 +188,7 @@ package tf
 	              0 (the first dimension).
 		 * @return tf.Tensor
 		 */
-		public function expandDims(axis:*=null):*
+		public function expandDims(axis:*=null):Tensor
 		{
 			return ;
 		}
@@ -202,7 +204,7 @@ package tf
 	              false.
 		 * @return tf.Tensor
 		 */
-		public function cumsum(axis:*=null,exclusive:*=null,reverse:*=null):*
+		public function cumsum(axis:*=null,exclusive:*=null,reverse:*=null):Tensor
 		{
 			return ;
 		}
@@ -214,7 +216,7 @@ package tf
 	              squeeze a dimension that is not 1.
 		 * @return tf.Tensor
 		 */
-		public function squeeze(axis:*=null):*
+		public function squeeze(axis:*=null):Tensor
 		{
 			return ;
 		}
@@ -223,7 +225,7 @@ package tf
 		 * clone
 		 * @return tf.Tensor
 		 */
-		public function clone():*
+		public function clone():Tensor
 		{
 			return ;
 		}

@@ -2,7 +2,7 @@
 package tf.losses
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * absoluteDifference
@@ -14,7 +14,7 @@ package tf.losses
 	 * @param reduction (Reduction) Type of reduction to apply to loss. Should be of type Reduction
 	 * @return tf.Tensor
 	 */
-	public function absoluteDifference(labels:*=null,predictions:*=null,weights:*=null,reduction:*=null):*
+	public function absoluteDifference(labels:*=null,predictions:*=null,weights:*=null,reduction:*=null):Tensor
 	{
 		return ;
 	}

@@ -1,7 +1,8 @@
 /*[IF-FLASH]*/
 package tf 
 {
-
+	import Promise;
+	import tf.layers.Layer;
 
 
 	public class Model 
@@ -87,7 +88,7 @@ package tf
 		 * @param config (Object) A ModelFitConfig , containing optional fields.
 		 * @return Promise
 		 */
-		public function fit(x:*=null,y:*=null,config:*=null):*
+		public function fit(x:*=null,y:*=null,config:*=null):Promise
 		{
 			return ;
 		}
@@ -99,7 +100,7 @@ package tf
 		 * @param config (Object) Options for saving the model.
 		 * @return Promise
 		 */
-		public function save(handlerOrURL:*=null,config:*=null):*
+		public function save(handlerOrURL:*=null,config:*=null):Promise
 		{
 			return ;
 		}
@@ -110,7 +111,7 @@ package tf
 		 * @param index (number) Index of layer.
 		 * @return tf.layers.Layer
 		 */
-		public function getLayer(name:*=null,index:*=null):*
+		public function getLayer(name:*=null,index:*=null):Layer
 		{
 			return ;
 		}

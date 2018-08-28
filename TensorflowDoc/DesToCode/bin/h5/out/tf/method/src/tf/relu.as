@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * relu
@@ -10,7 +10,7 @@ package tf
               `int32'.
 	 * @return tf.Tensor
 	 */
-	public function relu(x:*=null):*
+	public function relu(x:*=null):Tensor
 	{
 		return ;
 	}

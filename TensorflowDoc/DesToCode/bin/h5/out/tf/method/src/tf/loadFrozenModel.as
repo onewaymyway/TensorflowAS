@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import Promise;
 
 	/**
 	 * loadFrozenModel
@@ -13,7 +13,7 @@ package tf
               and custom headers.
 	 * @return Promise
 	 */
-	public function loadFrozenModel(modelUrl:*=null,weightsManifestUrl:*=null,requestOption:*=null):*
+	public function loadFrozenModel(modelUrl:*=null,weightsManifestUrl:*=null,requestOption:*=null):Promise
 	{
 		return ;
 	}

@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * clipByValue
@@ -11,7 +11,7 @@ package tf
 	 * @param clipValueMax (number) Upper-bound of range to be clipped to.
 	 * @return tf.Tensor
 	 */
-	public function clipByValue(x:*=null,clipValueMin:*=null,clipValueMax:*=null):*
+	public function clipByValue(x:*=null,clipValueMin:*=null,clipValueMax:*=null):Tensor
 	{
 		return ;
 	}

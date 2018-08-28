@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * transpose
@@ -10,7 +10,7 @@ package tf
 	 * @param perm (number[]) The permutation of the dimensions of a.
 	 * @return tf.Tensor
 	 */
-	public function transpose(x:*=null,perm:*=null):*
+	public function transpose(x:*=null,perm:*=null):Tensor
 	{
 		return ;
 	}

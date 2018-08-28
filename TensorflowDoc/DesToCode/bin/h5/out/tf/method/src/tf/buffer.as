@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.TensorBuffer;
 
 	/**
 	 * buffer
@@ -12,7 +12,7 @@ package tf
               zeros.
 	 * @return tf.TensorBuffer
 	 */
-	public function buffer(shape:*=null,dtype:*=null,values:*=null):*
+	public function buffer(shape:*=null,dtype:*=null,values:*=null):TensorBuffer
 	{
 		return ;
 	}

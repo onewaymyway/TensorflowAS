@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * leakyRelu
@@ -10,7 +10,7 @@ package tf
 	 * @param alpha (number) The scaling factor for negative values, defaults to 0.2.
 	 * @return tf.Tensor
 	 */
-	public function leakyRelu(x:*=null,alpha:*=null):*
+	public function leakyRelu(x:*=null,alpha:*=null):Tensor
 	{
 		return ;
 	}

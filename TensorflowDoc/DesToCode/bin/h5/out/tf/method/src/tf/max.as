@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * max
@@ -12,7 +12,7 @@ package tf
 	 * @param keepDims (boolean) If true, retains reduced dimensions with size 1.
 	 * @return tf.Tensor
 	 */
-	public function max(x:*=null,axis:*=null,keepDims:*=null):*
+	public function max(x:*=null,axis:*=null,keepDims:*=null):Tensor
 	{
 		return ;
 	}

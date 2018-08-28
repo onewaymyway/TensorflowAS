@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * sub
@@ -10,7 +10,7 @@ package tf
 	 * @param b ( tf.Tensor | TypedArray |Array) The second tf.Tensor to be subtracted. Must have the same dtype as a .
 	 * @return tf.Tensor
 	 */
-	public function sub(a:*=null,b:*=null):*
+	public function sub(a:*=null,b:*=null):Tensor
 	{
 		return ;
 	}

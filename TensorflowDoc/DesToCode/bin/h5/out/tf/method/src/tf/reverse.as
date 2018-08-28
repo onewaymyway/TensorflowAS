@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * reverse
@@ -11,7 +11,7 @@ package tf
               range [-rank(x), rank(x)). Defaults to all axes.
 	 * @return tf.Tensor
 	 */
-	public function reverse(x:*=null,axis:*=null):*
+	public function reverse(x:*=null,axis:*=null):Tensor
 	{
 		return ;
 	}

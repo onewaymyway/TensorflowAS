@@ -1,6 +1,7 @@
 package  
 {
 	import code.ClassCreater;
+	import code.ClassManager;
 	import code.FunctionCreater;
 	import nodetools.devices.FileManager;
 	import nodetools.devices.NodeJSTools;
@@ -35,10 +36,13 @@ package
 			ClassCreater.exportPath = NodeJSTools.getPathByRelatviePath("out/tf/class/src");
 			FunctionCreater.exportPath=NodeJSTools.getPathByRelatviePath("out/tf/method/src");
 			
+			ClassManager.addClz("Promise");
 			var configPath:String;
 			configPath = FileManager.getPath(myPath, "data/tensorflowDes.json");
 			var configData:Object;
 			configData = FileManager.readJSONFile(configPath);
+			
+			ClassManager.setClassList(configData.classList);
 			//trace("configData:", configData);
 			createFunctionList(configData.functionList);
 			createClassList(configData.classList);

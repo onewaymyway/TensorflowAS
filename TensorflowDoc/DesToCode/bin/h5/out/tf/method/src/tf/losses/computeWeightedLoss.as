@@ -2,7 +2,7 @@
 package tf.losses
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * computeWeightedLoss
@@ -12,7 +12,7 @@ package tf.losses
 	 * @param reduction (Reduction) 
 	 * @return tf.Tensor
 	 */
-	public function computeWeightedLoss(losses:*=null,weights:*=null,reduction:*=null):*
+	public function computeWeightedLoss(losses:*=null,weights:*=null,reduction:*=null):Tensor
 	{
 		return ;
 	}

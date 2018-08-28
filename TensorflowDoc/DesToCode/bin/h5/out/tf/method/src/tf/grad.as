@@ -2,7 +2,8 @@
 package tf
 {
 
-
+	import (
+x: tf.Tensor , dy?: tf.Tensor ) => tf.Tensor;
 
 	/**
 	 * grad
@@ -10,7 +11,7 @@ package tf
 	 * @return (
 x: tf.Tensor , dy?: tf.Tensor ) => tf.Tensor
 	 */
-	public function grad(f:*=null):*
+	public function grad(f:*=null):Tensor
 	{
 		return ;
 	}

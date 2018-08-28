@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * norm
@@ -21,7 +21,7 @@ package tf
               as the input.
 	 * @return tf.Tensor
 	 */
-	public function norm(x:*=null,ord:*=null,axis:*=null,keepDims:*=null):*
+	public function norm(x:*=null,ord:*=null,axis:*=null,keepDims:*=null):Tensor
 	{
 		return ;
 	}

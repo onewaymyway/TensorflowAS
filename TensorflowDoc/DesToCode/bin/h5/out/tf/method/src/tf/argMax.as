@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * argMax
@@ -10,7 +10,7 @@ package tf
 	 * @param axis (number) The dimension to reduce. Defaults to 0 (outer-most dimension).
 	 * @return tf.Tensor
 	 */
-	public function argMax(x:*=null,axis:*=null):*
+	public function argMax(x:*=null,axis:*=null):Tensor
 	{
 		return ;
 	}

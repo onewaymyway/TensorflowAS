@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * randomUniform
@@ -14,7 +14,7 @@ package tf
 	 * @param dtype ('float32'|'int32'|'bool') The data type of the output tensor. Defaults to 'float32'.
 	 * @return tf.Tensor
 	 */
-	public function randomUniform(shape:*=null,minval:*=null,maxval:*=null,dtype:*=null):*
+	public function randomUniform(shape:*=null,minval:*=null,maxval:*=null,dtype:*=null):Tensor
 	{
 		return ;
 	}

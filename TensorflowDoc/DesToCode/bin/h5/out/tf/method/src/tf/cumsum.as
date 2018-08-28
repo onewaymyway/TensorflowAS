@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * cumsum
@@ -16,7 +16,7 @@ package tf
               Defaults to false.
 	 * @return tf.Tensor
 	 */
-	public function cumsum(x:*=null,axis:*=null,exclusive:*=null,reverse:*=null):*
+	public function cumsum(x:*=null,axis:*=null,exclusive:*=null,reverse:*=null):Tensor
 	{
 		return ;
 	}

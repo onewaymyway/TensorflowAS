@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * cast
@@ -10,7 +10,7 @@ package tf
 	 * @param dtype ('float32'|'int32'|'bool') The dtype to cast the input tensor to.
 	 * @return tf.Tensor
 	 */
-	public function cast(x:*=null,dtype:*=null):*
+	public function cast(x:*=null,dtype:*=null):Tensor
 	{
 		return ;
 	}

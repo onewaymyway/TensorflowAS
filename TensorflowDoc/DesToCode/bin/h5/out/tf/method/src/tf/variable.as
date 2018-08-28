@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Variable;
 
 	/**
 	 * variable
@@ -12,7 +12,7 @@ package tf
 	 * @param dtype ('float32'|'int32'|'bool') If set, initialValue will be converted to the given type.
 	 * @return tf.Variable
 	 */
-	public function variable(initialValue:*=null,trainable:*=null,name:*=null,dtype:*=null):*
+	public function variable(initialValue:*=null,trainable:*=null,name:*=null,dtype:*=null):Variable
 	{
 		return ;
 	}

@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * reshape
@@ -10,7 +10,7 @@ package tf
 	 * @param shape (number[]) An array of integers defining the output tensor shape.
 	 * @return tf.Tensor
 	 */
-	public function reshape(x:*=null,shape:*=null):*
+	public function reshape(x:*=null,shape:*=null):Tensor
 	{
 		return ;
 	}

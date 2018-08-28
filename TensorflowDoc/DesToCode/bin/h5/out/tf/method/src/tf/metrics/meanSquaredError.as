@@ -2,7 +2,7 @@
 package tf.metrics
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * meanSquaredError
@@ -10,7 +10,7 @@ package tf.metrics
 	 * @param yPred ( tf.Tensor ) 
 	 * @return tf.Tensor
 	 */
-	public function meanSquaredError(yTrue:*=null,yPred:*=null):*
+	public function meanSquaredError(yTrue:*=null,yPred:*=null):Tensor
 	{
 		return ;
 	}

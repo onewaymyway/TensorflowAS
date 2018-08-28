@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * unsortedSegmentSum
@@ -12,7 +12,7 @@ package tf
 	 * @param numSegments (number) The number of distinct segmentIds
 	 * @return tf.Tensor
 	 */
-	public function unsortedSegmentSum(x:*=null,segmentIds:*=null,numSegments:*=null):*
+	public function unsortedSegmentSum(x:*=null,segmentIds:*=null,numSegments:*=null):Tensor
 	{
 		return ;
 	}

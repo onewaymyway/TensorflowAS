@@ -2,13 +2,13 @@
 package tf.io
 {
 
-
+	import Promise;
 
 	/**
 	 * listModels
 	 * @return Promise
 	 */
-	public function listModels():*
+	public function listModels():Promise
 	{
 		return ;
 	}

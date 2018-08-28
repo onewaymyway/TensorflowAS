@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * batchNormalization
@@ -14,7 +14,7 @@ package tf
 	 * @param offset ( tf.Tensor | tf.Tensor1D | TypedArray |Array) An offset Tensor.
 	 * @return tf.Tensor
 	 */
-	public function batchNormalization(x:*=null,mean:*=null,variance:*=null,varianceEpsilon:*=null,scale:*=null,offset:*=null):*
+	public function batchNormalization(x:*=null,mean:*=null,variance:*=null,varianceEpsilon:*=null,scale:*=null,offset:*=null):Tensor
 	{
 		return ;
 	}

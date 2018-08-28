@@ -21,9 +21,9 @@ package code
 			exportPath = NodeJSTools.getPathByRelatviePath("out/fun");
 		}
 		
-		public static function createFunO(funO:Object,createFile:Boolean=true,tpl:String=null):String
+		public static function createFunO(funO:Object,createFile:Boolean=true,tpl:String=null,importDic:Object=null):String
 		{
-			
+			if (!importDic) importDic = { };
 			tpl = tpl || funTpl;
 			var funNameFull:String;
 			funNameFull = funO.name;
@@ -32,6 +32,7 @@ package code
 			
 			var returnStr:String;
 			returnStr = funO["return"];
+			
 			
 			var nameArr:Array;
 			nameArr = funNameFull.split(".");
@@ -45,8 +46,19 @@ package code
 			dataO["return"] = "";
 			dataO.params = createParamStr(params);
 			
+			if (returnStr && ClassManager.hasClass(returnStr))
+			{
+				dataO.returntype = ClassManager.getShorClass(returnStr);
+				importDic[ClassManager.getFullPath(returnStr)] = returnStr;
+				
+				dataO["return"] = "null";
+			}
+			
+			dataO.imports = CodeCreateTool.createImportStr(importDic);
 			var packageStr:String;
 			var filePath:String;
+			
+			
 			if (nameArr.length > 0)
 			{
 				packageStr = nameArr.join(".");

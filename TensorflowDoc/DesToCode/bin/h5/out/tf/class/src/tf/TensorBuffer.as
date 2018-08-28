@@ -1,7 +1,7 @@
 /*[IF-FLASH]*/
 package tf 
 {
-
+	import tf.Tensor;
 
 
 	public class TensorBuffer 
@@ -38,7 +38,7 @@ package tf
 		 * toTensor
 		 * @return tf.Tensor
 		 */
-		public function toTensor():*
+		public function toTensor():Tensor
 		{
 			return ;
 		}

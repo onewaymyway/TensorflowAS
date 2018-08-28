@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * tile
@@ -10,7 +10,7 @@ package tf
 	 * @param reps (number[]) Determines the number of replications per dimension.
 	 * @return tf.Tensor
 	 */
-	public function tile(x:*=null,reps:*=null):*
+	public function tile(x:*=null,reps:*=null):Tensor
 	{
 		return ;
 	}

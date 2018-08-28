@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * pad
@@ -13,7 +13,7 @@ package tf
 	 * @param constantValue (number) The pad value to use. Defaults to 0.
 	 * @return tf.Tensor
 	 */
-	public function pad(x:*=null,paddings:*=null,constantValue:*=null):*
+	public function pad(x:*=null,paddings:*=null,constantValue:*=null):Tensor
 	{
 		return ;
 	}

@@ -2,7 +2,7 @@
 package tf.metrics
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * categoricalAccuracy
@@ -10,7 +10,7 @@ package tf.metrics
 	 * @param yPred ( tf.Tensor ) 
 	 * @return tf.Tensor
 	 */
-	public function categoricalAccuracy(yTrue:*=null,yPred:*=null):*
+	public function categoricalAccuracy(yTrue:*=null,yPred:*=null):Tensor
 	{
 		return ;
 	}

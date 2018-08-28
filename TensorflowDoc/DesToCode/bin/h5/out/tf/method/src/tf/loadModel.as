@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import Promise;
 
 	/**
 	 * loadModel
@@ -21,7 +21,7 @@ package tf
               and missing weights will be silently ignored.
 	 * @return Promise
 	 */
-	public function loadModel(pathOrIOHandler:*=null,strict:*=null):*
+	public function loadModel(pathOrIOHandler:*=null,strict:*=null):Promise
 	{
 		return ;
 	}

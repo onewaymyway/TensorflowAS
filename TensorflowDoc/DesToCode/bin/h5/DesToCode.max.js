@@ -412,6 +412,8 @@ var Laya=window.Laya=(function(window,document){
 			funNameFull=funO.name;
 			var nameArr;
 			nameArr=funNameFull.split(".");
+			var importDic;
+			importDic={};
 			var dataO;
 			dataO={};
 			dataO.name=nameArr.pop();
@@ -427,21 +429,22 @@ var Laya=window.Laya=(function(window,document){
 				filePath=ClassCreater.exportPath;
 			}
 			dataO["package"]=packageStr;
-			dataO.methods=ClassCreater.createMethods(funO.method);
+			dataO.methods=ClassCreater.createMethods(funO.method,importDic);
+			dataO.imports=CodeCreateTool.createImportStr(importDic);
 			filePath=FileManager.getPath(filePath,dataO.name+".as");
 			var codeStr;
 			codeStr=CodeCreateTool.createExportCode(ClassCreater.clzTpl,dataO);
 			FileManager.createTxtFile(filePath,codeStr);
 		}
 
-		ClassCreater.createMethods=function(funList){
+		ClassCreater.createMethods=function(funList,importDic){
 			if (!funList || funList.length==0)return "";
 			var i=0,len=0;;
 			len=funList.length;
 			var funStrs;
 			funStrs=[];
 			for (i=0;i < len;i++){
-				funStrs.push(FunctionCreater.createFunO(funList[i],false,ClassCreater.methodTpl));
+				funStrs.push(FunctionCreater.createFunO(funList[i],false,ClassCreater.methodTpl,importDic));
 			};
 			var rst;
 			rst=funStrs.join("\n");
@@ -453,6 +456,52 @@ var Laya=window.Laya=(function(window,document){
 		ClassCreater.methodTpl=null
 		ClassCreater.exportPath=null
 		return ClassCreater;
+	})()
+
+
+	/**
+	*...
+	*@author ww
+	*/
+	//class code.ClassManager
+	var ClassManager=(function(){
+		function ClassManager(){}
+		__class(ClassManager,'code.ClassManager');
+		ClassManager.addClz=function(clzFullPath){
+			ClassManager._clzDic[ClassManager.getShorClass(clzFullPath)]=clzFullPath;
+		}
+
+		ClassManager.hasClass=function(clzPath){
+			clzPath=ClassManager.getShorClass(clzPath);
+			if (ClassManager._clzDic[clzPath]){
+				return true;
+			}
+			return false;
+		}
+
+		ClassManager.getShorClass=function(clzPath){
+			if (clzPath.indexOf(".")< 0)return clzPath;
+			var p;
+			p=clzPath.split(".");
+			return p[p.length-1];
+		}
+
+		ClassManager.getFullPath=function(clz){
+			if (clz.indexOf(".")>=0)return clz;
+			if (ClassManager.hasClass(clz))return ClassManager._clzDic[clz];
+			return clz;
+		}
+
+		ClassManager.setClassList=function(clzList){
+			var i=0,len=0;
+			len=clzList.length;
+			for (i=0;i < len;i++){
+				ClassManager.addClz(clzList[i].name);
+			}
+		}
+
+		ClassManager._clzDic={};
+		return ClassManager;
 	})()
 
 
@@ -488,6 +537,16 @@ var Laya=window.Laya=(function(window,document){
 			return lines.join("\n");
 		}
 
+		CodeCreateTool.createImportStr=function(importDic){
+			var importStrs;
+			importStrs=[];
+			var key;
+			for (key in importDic){
+				importStrs.push("	import "+key+";");
+			}
+			return importStrs.join("\n");
+		}
+
 		return CodeCreateTool;
 	})()
 
@@ -505,8 +564,9 @@ var Laya=window.Laya=(function(window,document){
 			FunctionCreater.exportPath=NodeJSTools.getPathByRelatviePath("out/fun");
 		}
 
-		FunctionCreater.createFunO=function(funO,createFile,tpl){
+		FunctionCreater.createFunO=function(funO,createFile,tpl,importDic){
 			(createFile===void 0)&& (createFile=true);
+			if (!importDic)importDic={};
 			tpl=tpl || FunctionCreater.funTpl;
 			var funNameFull;
 			funNameFull=funO.name;
@@ -524,6 +584,11 @@ var Laya=window.Laya=(function(window,document){
 			dataO.returntype="*";
 			dataO["return"]="";
 			dataO.params=FunctionCreater.createParamStr(params);
+			if (returnStr && ClassManager.hasClass(returnStr)){
+				dataO.returntype=ClassManager.getShorClass(returnStr);
+				importDic[ClassManager.getFullPath(returnStr)]=returnStr;
+			}
+			dataO.imports=CodeCreateTool.createImportStr(importDic);
 			var packageStr;
 			var filePath;
 			if (nameArr.length > 0){
@@ -610,10 +675,12 @@ var Laya=window.Laya=(function(window,document){
 			ClassCreater.init();
 			ClassCreater.exportPath=NodeJSTools.getPathByRelatviePath("out/tf/class/src");
 			FunctionCreater.exportPath=NodeJSTools.getPathByRelatviePath("out/tf/method/src");
+			ClassManager.addClz("Promise");
 			var configPath;
 			configPath=FileManager.getPath(myPath,"data/tensorflowDes.json");
 			var configData;
 			configData=FileManager.readJSONFile(configPath);
+			ClassManager.setClassList(configData.classList);
 			this.createFunctionList(configData.functionList);
 			this.createClassList(configData.classList);
 		}

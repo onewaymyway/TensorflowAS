@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * softmax
@@ -10,7 +10,7 @@ package tf
 	 * @param dim (number) The dimension softmax would be performed on. Defaults to -1 which indicates the last dimension.
 	 * @return tf.Tensor
 	 */
-	public function softmax(logits:*=null,dim:*=null):*
+	public function softmax(logits:*=null,dim:*=null):Tensor
 	{
 		return ;
 	}

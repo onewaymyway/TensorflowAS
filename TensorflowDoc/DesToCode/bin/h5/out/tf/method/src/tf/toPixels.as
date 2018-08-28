@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import Promise;
 
 	/**
 	 * toPixels
@@ -14,7 +14,7 @@ package tf
 	 * @param canvas ( HTMLCanvasElement ) The canvas to draw to.
 	 * @return Promise
 	 */
-	public function toPixels(img:*=null,canvas:*=null):*
+	public function toPixels(img:*=null,canvas:*=null):Promise
 	{
 		return ;
 	}

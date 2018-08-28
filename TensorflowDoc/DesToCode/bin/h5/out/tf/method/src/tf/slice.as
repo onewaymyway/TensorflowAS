@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * slice
@@ -17,7 +17,7 @@ package tf
               in which case it specifies the size of the first axis.
 	 * @return tf.Tensor
 	 */
-	public function slice(x:*=null,begin:*=null,size:*=null):*
+	public function slice(x:*=null,begin:*=null,size:*=null):Tensor
 	{
 		return ;
 	}

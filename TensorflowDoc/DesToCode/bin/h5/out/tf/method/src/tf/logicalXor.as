@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * logicalXor
@@ -10,7 +10,7 @@ package tf
 	 * @param b ( tf.Tensor | TypedArray |Array) The second input tensor. Must be of dtype bool.
 	 * @return tf.Tensor
 	 */
-	public function logicalXor(a:*=null,b:*=null):*
+	public function logicalXor(a:*=null,b:*=null):Tensor
 	{
 		return ;
 	}

@@ -2,7 +2,7 @@
 package tf.losses
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * softmaxCrossEntropy
@@ -15,7 +15,7 @@ package tf.losses
 	 * @param reduction (Reduction) Type of reduction to apply to loss. Should be of type Reduction
 	 * @return tf.Tensor
 	 */
-	public function softmaxCrossEntropy(onehotLabels:*=null,logits:*=null,weights:*=null,labelSmoothing:*=null,reduction:*=null):*
+	public function softmaxCrossEntropy(onehotLabels:*=null,logits:*=null,weights:*=null,labelSmoothing:*=null,reduction:*=null):Tensor
 	{
 		return ;
 	}

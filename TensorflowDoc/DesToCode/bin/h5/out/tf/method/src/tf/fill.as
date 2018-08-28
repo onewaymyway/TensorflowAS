@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * fill
@@ -12,7 +12,7 @@ package tf
               'float'.
 	 * @return tf.Tensor
 	 */
-	public function fill(shape:*=null,value:*=null,dtype:*=null):*
+	public function fill(shape:*=null,value:*=null,dtype:*=null):Tensor
 	{
 		return ;
 	}

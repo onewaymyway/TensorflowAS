@@ -2,7 +2,7 @@
 package tf.metrics
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * binaryAccuracy
@@ -10,7 +10,7 @@ package tf.metrics
 	 * @param yPred ( tf.Tensor ) 
 	 * @return tf.Tensor
 	 */
-	public function binaryAccuracy(yTrue:*=null,yPred:*=null):*
+	public function binaryAccuracy(yTrue:*=null,yPred:*=null):Tensor
 	{
 		return ;
 	}

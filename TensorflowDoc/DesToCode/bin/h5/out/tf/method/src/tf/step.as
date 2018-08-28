@@ -2,7 +2,7 @@
 package tf
 {
 
-
+	import tf.Tensor;
 
 	/**
 	 * step
@@ -10,7 +10,7 @@ package tf
 	 * @param alpha (number) The gradient when input is negative.
 	 * @return tf.Tensor
 	 */
-	public function step(x:*=null,alpha:*=null):*
+	public function step(x:*=null,alpha:*=null):Tensor
 	{
 		return ;
 	}

@@ -2,7 +2,7 @@
 package tf.io
 {
 
-
+	import Promise;
 
 	/**
 	 * copyModel
@@ -10,7 +10,7 @@ package tf.io
 	 * @param destURL (string) Destination URL of copying.
 	 * @return Promise
 	 */
-	public function copyModel(sourceURL:*=null,destURL:*=null):*
+	public function copyModel(sourceURL:*=null,destURL:*=null):Promise
 	{
 		return ;
 	}
