@@ -11,6 +11,13 @@ AS3.0 version of tensorflow.js
 
 看看能不能先搞出点好玩的东西，先在应用层玩，应用层玩熟了再去搞底层的东西
 
+0.1.PoseNet demo 可运行
+
+0.2.FaceAPI demo 可运行
+
+0.3.webcam-transfer-learning demo 计划中
+
+
 第一步：
 
 生成as版的语法提示，目的是能在as3项目中使用tensorflow.js的api
