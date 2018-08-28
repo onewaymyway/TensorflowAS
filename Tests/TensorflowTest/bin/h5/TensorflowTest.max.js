@@ -199,31 +199,101 @@ var Laya=window.Laya=(function(window,document){
 	*...
 	*@author ww
 	*/
-	//class demo.TestTFAPI
-	var TestTFAPI=(function(){
-		function TestTFAPI(){
+	//class demo.TestPolynomialRegression
+	var TestPolynomialRegression=(function(){
+		function TestPolynomialRegression(){
+			this.a=null;
+			this.b=null;
+			this.c=null;
+			this.d=null;
+			this.numIterations=1000;
+			this.learningRate=0.5;
+			this.optimizer=null;
 			this.test();
 		}
 
-		__class(TestTFAPI,'demo.TestTFAPI');
-		var __proto=TestTFAPI.prototype;
+		__class(TestPolynomialRegression,'demo.TestPolynomialRegression');
+		var __proto=TestPolynomialRegression.prototype;
 		__proto.test=function(){
-			var model=tf.sequential();
-			model.add(tf.layers.dense({units:1,inputShape:[1]}));
-			model.compile({loss:'meanSquaredError',optimizer:'SGD'});
-			var xs=tf.tensor2d([[1],[2],[3],[4]],[4,1]);
-			var ys=tf.tensor2d([[1],[3],[5],[7]],[4,1]);
-			model.fit(xs,ys,{epochs:500}).then(function(){
-				var output=model.predict(tf.tensor2d([[5]],[1,1]));
-				output.print();
+			this.inits();
+		}
+
+		__proto.traceRst=function(){
+			console.log("a:",this.a.dataSync()[0]);
+			console.log("b:",this.b.dataSync()[0]);
+			console.log("c:",this.c.dataSync()[0]);
+			console.log("d:",this.d.dataSync()[0]);
+		}
+
+		__proto.inits=function(){
+			this.a=tf.variable(tf.scalar(Math.random()));
+			this.b=tf.variable(tf.scalar(Math.random()));
+			this.c=tf.variable(tf.scalar(Math.random()));
+			this.d=tf.variable(tf.scalar(Math.random()));
+			this.optimizer=tf.train.sgd(this.learningRate);
+			var trueCoefficients={a:-.8,b:-.2,c:.9,d:.5};
+			var trainingData=this.generateData(100,trueCoefficients);
+			debugger;
+			this.train(trainingData.xs,trainingData.ys,this.numIterations);
+			debugger;
+			this.traceRst();
+		}
+
+		__proto.generateData=function(numPoints,coeff,sigma){
+			(sigma===void 0)&& (sigma=0.04);
+			return tf.tidy(function(){
+				var a,b,c,d;
+				a=tf.scalar(coeff.a);
+				b=tf.scalar(coeff.b);
+				c=tf.scalar(coeff.c);
+				d=tf.scalar(coeff.d);
+				var xs=tf.randomUniform([numPoints],-1,1);
+				var three=tf.scalar(3,'int32');
+				var ys=a.mul(xs.pow(three))
+				.add(b.mul(xs.square()))
+				.add(c.mul(xs))
+				.add(d)
+				.add(tf.randomNormal([numPoints],0,sigma));
+				var ymin=ys.min();
+				var ymax=ys.max();
+				var yrange=ymax.sub(ymin);
+				var ysNormalized=ys.sub(ymin).div(yrange);
+				return {
+					xs:xs,
+					ys:ysNormalized
+				};
 			})
 		}
 
-		return TestTFAPI;
+		__proto.predict=function(x){
+			var _$this=this;
+			return tf.tidy(function(){
+				return _$this.a.mul(x.pow(tf.scalar(3,'int32'))).add(_$this.b.mul(x.square())).add(_$this.c.mul(x)).add(_$this.d);
+			});
+		}
+
+		__proto.loss=function(prediction,labels){
+			return prediction.sub(labels).square().mean();
+		}
+
+		__proto.train=function(xs,ys,numIterations){
+			var _$this=this;
+			var i=0,len=0;
+			len=numIterations;
+			for (i=0;i < len;i++){
+				this.optimizer.minimize(
+				function(){
+					var pd=_$this.predict(xs);
+					return _$this.loss(pd,ys);
+				});
+			}
+		}
+
+		return TestPolynomialRegression;
 	})()
 
 
 
-	new demo.TestTFAPI();
+	new demo.TestPolynomialRegression();
 
 })(window,document,Laya);
