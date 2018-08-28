@@ -17,7 +17,7 @@ package tf.losses
 	 */
 	public function softmaxCrossEntropy(onehotLabels:*=null,logits:*=null,weights:*=null,labelSmoothing:*=null,reduction:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

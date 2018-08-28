@@ -14,7 +14,7 @@ package tf
 	 */
 	public function buffer(shape:*=null,dtype:*=null,values:*=null):TensorBuffer
 	{
-		return ;
+		return null;
 	}
 
 

@@ -11,7 +11,7 @@ package tf.layers
 	 */
 	public function conv2dTranspose(config:*=null):Layer
 	{
-		return ;
+		return null;
 	}
 
 

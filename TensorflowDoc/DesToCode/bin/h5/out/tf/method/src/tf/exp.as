@@ -11,7 +11,7 @@ package tf
 	 */
 	public function exp(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

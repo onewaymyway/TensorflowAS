@@ -13,7 +13,7 @@ package tf
 	 */
 	public function expandDims(x:*=null,axis:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -14,7 +14,7 @@ package tf
 	 */
 	public function squeeze(x:*=null,axis:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

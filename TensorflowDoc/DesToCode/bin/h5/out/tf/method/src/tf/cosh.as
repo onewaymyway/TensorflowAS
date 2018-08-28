@@ -11,7 +11,7 @@ package tf
 	 */
 	public function cosh(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -11,7 +11,7 @@ package tf
 	 */
 	public function cos(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -15,7 +15,7 @@ package tf
 	 */
 	public function loadFrozenModel(modelUrl:*=null,weightsManifestUrl:*=null,requestOption:*=null):Promise
 	{
-		return ;
+		return null;
 	}
 
 

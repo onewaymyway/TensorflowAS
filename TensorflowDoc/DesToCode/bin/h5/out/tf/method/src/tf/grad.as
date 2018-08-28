@@ -13,7 +13,7 @@ x: tf.Tensor , dy?: tf.Tensor ) => tf.Tensor
 	 */
 	public function grad(f:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

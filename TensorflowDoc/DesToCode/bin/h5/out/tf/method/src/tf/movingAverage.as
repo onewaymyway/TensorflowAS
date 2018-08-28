@@ -15,7 +15,7 @@ package tf
 	 */
 	public function movingAverage(v:*=null,x:*=null,decay:*=null,step:*=null,zeroDebias:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

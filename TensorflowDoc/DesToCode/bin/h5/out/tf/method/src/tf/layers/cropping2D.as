@@ -11,7 +11,7 @@ package tf.layers
 	 */
 	public function cropping2D(config:*=null):Layer
 	{
-		return ;
+		return null;
 	}
 
 

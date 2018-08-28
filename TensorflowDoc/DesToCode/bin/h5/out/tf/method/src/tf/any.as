@@ -14,7 +14,7 @@ package tf
 	 */
 	public function any(x:*=null,axis:*=null,keepDims:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

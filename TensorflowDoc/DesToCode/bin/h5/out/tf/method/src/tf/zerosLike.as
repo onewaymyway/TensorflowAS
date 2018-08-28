@@ -11,7 +11,7 @@ package tf
 	 */
 	public function zerosLike(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

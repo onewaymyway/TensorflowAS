@@ -11,7 +11,7 @@ package tf.layers
 	 */
 	public function concatenate(config:*=null):Layer
 	{
-		return ;
+		return null;
 	}
 
 

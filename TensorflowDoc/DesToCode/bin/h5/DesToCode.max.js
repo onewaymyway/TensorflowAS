@@ -419,6 +419,7 @@ var Laya=window.Laya=(function(window,document){
 			dataO.name=nameArr.pop();
 			dataO.doc="";
 			dataO.imports="";
+			dataO["extends"]="";
 			var packageStr;
 			var filePath;
 			if (nameArr.length > 0){
@@ -427,6 +428,14 @@ var Laya=window.Laya=(function(window,document){
 				}else{
 				packageStr="";
 				filePath=ClassCreater.exportPath;
+			};
+			var extendsClz;
+			extendsClz=funO["extends"];
+			if (extendsClz){
+				if (ClassManager.hasClass(extendsClz)){
+					dataO["extends"]="extends "+ClassManager.getShorClass(extendsClz);
+					importDic[ClassManager.getFullPath(extendsClz)]=extendsClz;
+				}
 			}
 			dataO["package"]=packageStr;
 			dataO.methods=ClassCreater.createMethods(funO.method,importDic);
@@ -587,6 +596,7 @@ var Laya=window.Laya=(function(window,document){
 			if (returnStr && ClassManager.hasClass(returnStr)){
 				dataO.returntype=ClassManager.getShorClass(returnStr);
 				importDic[ClassManager.getFullPath(returnStr)]=returnStr;
+				dataO["return"]="null";
 			}
 			dataO.imports=CodeCreateTool.createImportStr(importDic);
 			var packageStr;

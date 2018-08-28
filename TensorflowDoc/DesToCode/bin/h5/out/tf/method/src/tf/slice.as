@@ -19,7 +19,7 @@ package tf
 	 */
 	public function slice(x:*=null,begin:*=null,size:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

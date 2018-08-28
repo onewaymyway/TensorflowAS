@@ -11,7 +11,7 @@ package tf.layers
 	 */
 	public function leakyReLU(config:*=null):Layer
 	{
-		return ;
+		return null;
 	}
 
 

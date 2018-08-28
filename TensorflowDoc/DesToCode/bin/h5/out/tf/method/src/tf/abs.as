@@ -11,7 +11,7 @@ package tf
 	 */
 	public function abs(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -12,7 +12,7 @@ package tf.io
 	 */
 	public function removeModel(url:*=null):Promise
 	{
-		return ;
+		return null;
 	}
 
 

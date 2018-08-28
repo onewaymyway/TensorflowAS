@@ -12,7 +12,7 @@ package tf.metrics
 	 */
 	public function meanSquaredError(yTrue:*=null,yPred:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

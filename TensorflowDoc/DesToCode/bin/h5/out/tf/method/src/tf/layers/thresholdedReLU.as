@@ -11,7 +11,7 @@ package tf.layers
 	 */
 	public function thresholdedReLU(config:*=null):Layer
 	{
-		return ;
+		return null;
 	}
 
 

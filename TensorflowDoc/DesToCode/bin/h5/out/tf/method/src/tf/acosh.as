@@ -11,7 +11,7 @@ package tf
 	 */
 	public function acosh(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

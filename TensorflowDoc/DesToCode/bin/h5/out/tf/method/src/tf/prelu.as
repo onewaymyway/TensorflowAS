@@ -12,7 +12,7 @@ package tf
 	 */
 	public function prelu(x:*=null,alpha:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -17,7 +17,7 @@ package tf.losses
 	 */
 	public function huberLoss(labels:*=null,predictions:*=null,weights:*=null,delta:*=null,reduction:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

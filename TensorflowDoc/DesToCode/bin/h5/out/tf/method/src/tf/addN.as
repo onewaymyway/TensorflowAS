@@ -11,7 +11,7 @@ package tf
 	 */
 	public function addN(tensors:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

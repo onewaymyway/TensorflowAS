@@ -12,7 +12,7 @@ package tf
 	 */
 	public function greater(a:*=null,b:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

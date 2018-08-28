@@ -11,7 +11,7 @@ package tf
 	 */
 	public function sequential(config:*=null):Sequential
 	{
-		return ;
+		return null;
 	}
 
 

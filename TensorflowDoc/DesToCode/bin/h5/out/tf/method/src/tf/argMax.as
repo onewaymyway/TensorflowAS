@@ -12,7 +12,7 @@ package tf
 	 */
 	public function argMax(x:*=null,axis:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

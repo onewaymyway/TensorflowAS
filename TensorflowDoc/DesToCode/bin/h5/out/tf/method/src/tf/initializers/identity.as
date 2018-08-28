@@ -11,7 +11,7 @@ package tf.initializers
 	 */
 	public function identity(config:*=null):Initializer
 	{
-		return ;
+		return null;
 	}
 
 

@@ -12,7 +12,7 @@ package tf
 	 */
 	public function step(x:*=null,alpha:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

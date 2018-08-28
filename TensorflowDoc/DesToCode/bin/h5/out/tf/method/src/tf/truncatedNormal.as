@@ -15,7 +15,7 @@ package tf
 	 */
 	public function truncatedNormal(shape:*=null,mean:*=null,stdDev:*=null,dtype:*=null,seed:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

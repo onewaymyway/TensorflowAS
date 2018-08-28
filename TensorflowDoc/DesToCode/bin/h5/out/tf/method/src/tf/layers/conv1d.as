@@ -11,7 +11,7 @@ package tf.layers
 	 */
 	public function conv1d(config:*=null):Layer
 	{
-		return ;
+		return null;
 	}
 
 

@@ -13,7 +13,7 @@ package tf
 	 */
 	public function clipByValue(x:*=null,clipValueMin:*=null,clipValueMax:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

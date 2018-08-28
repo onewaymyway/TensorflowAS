@@ -11,7 +11,7 @@ package tf
 	 */
 	public function selu(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

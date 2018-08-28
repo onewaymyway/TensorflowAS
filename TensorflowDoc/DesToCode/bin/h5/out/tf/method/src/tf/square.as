@@ -11,7 +11,7 @@ package tf
 	 */
 	public function square(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

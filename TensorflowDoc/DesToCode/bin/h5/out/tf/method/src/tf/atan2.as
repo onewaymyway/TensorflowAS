@@ -12,7 +12,7 @@ package tf
 	 */
 	public function atan2(a:*=null,b:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

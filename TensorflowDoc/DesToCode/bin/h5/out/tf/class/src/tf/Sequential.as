@@ -1,10 +1,11 @@
 /*[IF-FLASH]*/
 package tf 
 {
+	import tf.Model;
 	import Promise;
 
 
-	public class Sequential 
+	public class Sequential extends Model
 	{
 		
 		public function Sequential() 
@@ -78,7 +79,7 @@ package tf
 		 */
 		public function fit(x:*=null,y:*=null,config:*=null):Promise
 		{
-			return ;
+			return null;
 		}
 	}
 

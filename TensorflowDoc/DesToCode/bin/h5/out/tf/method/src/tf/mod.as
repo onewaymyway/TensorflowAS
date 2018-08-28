@@ -12,7 +12,7 @@ package tf
 	 */
 	public function mod(a:*=null,b:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

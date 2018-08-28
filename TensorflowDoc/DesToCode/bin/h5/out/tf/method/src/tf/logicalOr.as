@@ -12,7 +12,7 @@ package tf
 	 */
 	public function logicalOr(a:*=null,b:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

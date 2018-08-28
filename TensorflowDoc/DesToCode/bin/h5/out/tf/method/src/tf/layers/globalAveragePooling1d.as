@@ -11,7 +11,7 @@ package tf.layers
 	 */
 	public function globalAveragePooling1d(config:*=null):Layer
 	{
-		return ;
+		return null;
 	}
 
 

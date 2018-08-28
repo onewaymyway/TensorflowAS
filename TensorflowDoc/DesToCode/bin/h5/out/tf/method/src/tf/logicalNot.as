@@ -11,7 +11,7 @@ package tf
 	 */
 	public function logicalNot(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

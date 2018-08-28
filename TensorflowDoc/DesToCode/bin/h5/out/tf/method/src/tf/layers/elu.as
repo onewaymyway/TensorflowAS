@@ -11,7 +11,7 @@ package tf.layers
 	 */
 	public function elu(config:*=null):Layer
 	{
-		return ;
+		return null;
 	}
 
 

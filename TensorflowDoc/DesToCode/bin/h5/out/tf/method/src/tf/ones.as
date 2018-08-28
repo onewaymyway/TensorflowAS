@@ -13,7 +13,7 @@ package tf
 	 */
 	public function ones(shape:*=null,dtype:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

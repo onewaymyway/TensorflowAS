@@ -11,7 +11,7 @@ package tf
 	 */
 	public function model(config:*=null):Model
 	{
-		return ;
+		return null;
 	}
 
 

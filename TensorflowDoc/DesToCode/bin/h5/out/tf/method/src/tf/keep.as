@@ -11,7 +11,7 @@ package tf
 	 */
 	public function keep(result:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -11,7 +11,7 @@ package tf.constraints
 	 */
 	public function unitNorm(config:*=null):Constraint
 	{
-		return ;
+		return null;
 	}
 
 

@@ -94,7 +94,7 @@ package tf
 		 */
 		public function buffer():TensorBuffer
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -103,7 +103,7 @@ package tf
 		 */
 		public function data():Promise
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -169,7 +169,7 @@ package tf
 		 */
 		public function reshape(newShape:*=null):Tensor
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -179,7 +179,7 @@ package tf
 		 */
 		public function reshapeAs(x:*=null):Tensor
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -190,7 +190,7 @@ package tf
 		 */
 		public function expandDims(axis:*=null):Tensor
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -206,7 +206,7 @@ package tf
 		 */
 		public function cumsum(axis:*=null,exclusive:*=null,reverse:*=null):Tensor
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -218,7 +218,7 @@ package tf
 		 */
 		public function squeeze(axis:*=null):Tensor
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -227,7 +227,7 @@ package tf
 		 */
 		public function clone():Tensor
 		{
-			return ;
+			return null;
 		}
 	
 		/**

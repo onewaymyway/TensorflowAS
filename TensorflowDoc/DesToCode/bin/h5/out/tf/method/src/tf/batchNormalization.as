@@ -16,7 +16,7 @@ package tf
 	 */
 	public function batchNormalization(x:*=null,mean:*=null,variance:*=null,varianceEpsilon:*=null,scale:*=null,offset:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

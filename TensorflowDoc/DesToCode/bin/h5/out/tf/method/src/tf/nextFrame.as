@@ -10,7 +10,7 @@ package tf
 	 */
 	public function nextFrame():Promise
 	{
-		return ;
+		return null;
 	}
 
 

@@ -90,7 +90,7 @@ package tf
 		 */
 		public function fit(x:*=null,y:*=null,config:*=null):Promise
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -102,7 +102,7 @@ package tf
 		 */
 		public function save(handlerOrURL:*=null,config:*=null):Promise
 		{
-			return ;
+			return null;
 		}
 	
 		/**
@@ -113,7 +113,7 @@ package tf
 		 */
 		public function getLayer(name:*=null,index:*=null):Layer
 		{
-			return ;
+			return null;
 		}
 	}
 

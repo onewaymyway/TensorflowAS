@@ -11,7 +11,7 @@ package tf
 	 */
 	public function onesLike(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

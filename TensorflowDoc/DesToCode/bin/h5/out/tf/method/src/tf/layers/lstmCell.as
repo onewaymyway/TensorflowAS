@@ -11,7 +11,7 @@ package tf.layers
 	 */
 	public function lstmCell(config:*=null):RNNCell
 	{
-		return ;
+		return null;
 	}
 
 

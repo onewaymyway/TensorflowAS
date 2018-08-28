@@ -12,7 +12,7 @@ package tf
 	 */
 	public function relu(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

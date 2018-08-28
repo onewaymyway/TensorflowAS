@@ -12,7 +12,7 @@ package tf
 	 */
 	public function tile(x:*=null,reps:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

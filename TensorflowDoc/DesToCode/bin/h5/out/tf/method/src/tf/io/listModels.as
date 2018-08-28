@@ -10,7 +10,7 @@ package tf.io
 	 */
 	public function listModels():Promise
 	{
-		return ;
+		return null;
 	}
 
 

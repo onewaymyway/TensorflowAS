@@ -15,7 +15,7 @@ package tf
 	 */
 	public function pad(x:*=null,paddings:*=null,constantValue:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

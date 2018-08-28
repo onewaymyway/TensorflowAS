@@ -11,7 +11,7 @@ package tf
 	 */
 	public function sin(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -11,7 +11,7 @@ package tf.layers
 	 */
 	public function upSampling2d(config:*=null):Layer
 	{
-		return ;
+		return null;
 	}
 
 

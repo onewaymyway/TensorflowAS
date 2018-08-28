@@ -10,7 +10,7 @@ package tf.initializers
 	 */
 	public function ones():Initializer
 	{
-		return ;
+		return null;
 	}
 
 

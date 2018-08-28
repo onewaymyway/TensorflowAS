@@ -23,7 +23,7 @@ package tf
 	 */
 	public function loadModel(pathOrIOHandler:*=null,strict:*=null):Promise
 	{
-		return ;
+		return null;
 	}
 
 

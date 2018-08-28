@@ -15,7 +15,7 @@ package tf
 	 */
 	public function tensor(values:*=null,shape:*=null,dtype:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

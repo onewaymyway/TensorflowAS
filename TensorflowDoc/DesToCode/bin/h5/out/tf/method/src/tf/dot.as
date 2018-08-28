@@ -12,7 +12,7 @@ package tf
 	 */
 	public function dot(t1:*=null,t2:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

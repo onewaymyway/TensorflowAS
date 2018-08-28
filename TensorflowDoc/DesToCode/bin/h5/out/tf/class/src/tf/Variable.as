@@ -1,10 +1,10 @@
 /*[IF-FLASH]*/
 package tf 
 {
+	import tf.Tensor;
 
 
-
-	public class Variable 
+	public class Variable extends Tensor
 	{
 		
 		public function Variable() 

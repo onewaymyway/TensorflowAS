@@ -23,7 +23,7 @@ package tf
 	 */
 	public function spaceToBatchND(x:*=null,blockShape:*=null,paddings:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

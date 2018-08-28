@@ -13,7 +13,7 @@ package tf
 	 */
 	public function customGrad(f:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

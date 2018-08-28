@@ -11,7 +11,7 @@ package tf
 	 */
 	public function input(config:*=null):SymbolicTensor
 	{
-		return ;
+		return null;
 	}
 
 

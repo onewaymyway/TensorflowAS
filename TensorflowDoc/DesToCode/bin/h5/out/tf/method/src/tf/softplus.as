@@ -11,7 +11,7 @@ package tf
 	 */
 	public function softplus(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

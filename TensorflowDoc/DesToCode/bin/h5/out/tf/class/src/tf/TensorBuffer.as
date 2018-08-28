@@ -40,7 +40,7 @@ package tf
 		 */
 		public function toTensor():Tensor
 		{
-			return ;
+			return null;
 		}
 	}
 

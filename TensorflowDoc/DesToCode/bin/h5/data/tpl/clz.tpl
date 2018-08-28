@@ -4,7 +4,7 @@ package {#@package#}
 {#@imports#}
 
 {#@doc#}
-	public class {#@name#} 
+	public class {#@name#} {#@extends#}
 	{
 		
 		public function {#@name#}() 

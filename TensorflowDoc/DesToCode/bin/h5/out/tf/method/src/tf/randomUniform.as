@@ -16,7 +16,7 @@ package tf
 	 */
 	public function randomUniform(shape:*=null,minval:*=null,maxval:*=null,dtype:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

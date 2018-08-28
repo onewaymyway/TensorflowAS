@@ -11,7 +11,7 @@ package tf.constraints
 	 */
 	public function maxNorm(config:*=null):Constraint
 	{
-		return ;
+		return null;
 	}
 
 

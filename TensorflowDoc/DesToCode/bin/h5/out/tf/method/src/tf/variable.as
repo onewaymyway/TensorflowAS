@@ -14,7 +14,7 @@ package tf
 	 */
 	public function variable(initialValue:*=null,trainable:*=null,name:*=null,dtype:*=null):Variable
 	{
-		return ;
+		return null;
 	}
 
 

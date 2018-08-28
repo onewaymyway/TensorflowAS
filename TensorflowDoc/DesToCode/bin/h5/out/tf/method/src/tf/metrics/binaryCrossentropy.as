@@ -12,7 +12,7 @@ package tf.metrics
 	 */
 	public function binaryCrossentropy(yTrue:*=null,yPred:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

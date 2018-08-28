@@ -14,7 +14,7 @@ package tf
 	 */
 	public function unsortedSegmentSum(x:*=null,segmentIds:*=null,numSegments:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

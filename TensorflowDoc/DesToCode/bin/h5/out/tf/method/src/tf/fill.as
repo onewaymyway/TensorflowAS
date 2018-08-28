@@ -14,7 +14,7 @@ package tf
 	 */
 	public function fill(shape:*=null,value:*=null,dtype:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -11,7 +11,7 @@ package tf
 	 */
 	public function log(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

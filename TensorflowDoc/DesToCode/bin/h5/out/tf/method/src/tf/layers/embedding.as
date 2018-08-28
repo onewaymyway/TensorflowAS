@@ -11,7 +11,7 @@ package tf.layers
 	 */
 	public function embedding(config:*=null):Layer
 	{
-		return ;
+		return null;
 	}
 
 

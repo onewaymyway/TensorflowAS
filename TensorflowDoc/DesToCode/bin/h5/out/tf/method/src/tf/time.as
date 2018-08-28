@@ -11,7 +11,7 @@ package tf
 	 */
 	public function time(f:*=null):Promise
 	{
-		return ;
+		return null;
 	}
 
 

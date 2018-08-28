@@ -14,7 +14,7 @@ package tf.losses
 	 */
 	public function computeWeightedLoss(losses:*=null,weights:*=null,reduction:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

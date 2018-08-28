@@ -12,7 +12,7 @@ package tf
 	 */
 	public function argMin(x:*=null,axis:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

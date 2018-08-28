@@ -11,7 +11,7 @@ package tf
 	 */
 	public function atanh(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

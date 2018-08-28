@@ -12,7 +12,7 @@ package tf.io
 	 */
 	public function copyModel(sourceURL:*=null,destURL:*=null):Promise
 	{
-		return ;
+		return null;
 	}
 
 

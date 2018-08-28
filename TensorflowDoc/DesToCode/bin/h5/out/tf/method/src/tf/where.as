@@ -14,7 +14,7 @@ package tf
 	 */
 	public function where(condition:*=null,a:*=null,b:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

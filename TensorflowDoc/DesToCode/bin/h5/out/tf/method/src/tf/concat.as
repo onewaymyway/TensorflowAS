@@ -12,7 +12,7 @@ package tf
 	 */
 	public function concat(tensors:*=null,axis:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

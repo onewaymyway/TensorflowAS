@@ -12,7 +12,7 @@ package tf
 	 */
 	public function div(a:*=null,b:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

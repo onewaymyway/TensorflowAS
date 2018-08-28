@@ -11,7 +11,7 @@ package tf
 	 */
 	public function sigmoid(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

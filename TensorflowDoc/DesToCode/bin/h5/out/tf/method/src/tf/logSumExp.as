@@ -15,7 +15,7 @@ package tf
 	 */
 	public function logSumExp(x:*=null,axis:*=null,keepDims:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

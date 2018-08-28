@@ -11,7 +11,7 @@ package tf
 	 */
 	public function neg(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

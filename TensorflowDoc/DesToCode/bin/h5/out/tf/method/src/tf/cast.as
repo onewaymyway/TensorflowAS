@@ -12,7 +12,7 @@ package tf
 	 */
 	public function cast(x:*=null,dtype:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

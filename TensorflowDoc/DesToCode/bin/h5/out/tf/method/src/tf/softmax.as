@@ -12,7 +12,7 @@ package tf
 	 */
 	public function softmax(logits:*=null,dim:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

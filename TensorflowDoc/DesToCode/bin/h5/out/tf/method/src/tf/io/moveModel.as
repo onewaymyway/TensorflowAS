@@ -12,7 +12,7 @@ package tf.io
 	 */
 	public function moveModel(sourceURL:*=null,destURL:*=null):Promise
 	{
-		return ;
+		return null;
 	}
 
 

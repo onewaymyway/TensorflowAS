@@ -16,7 +16,7 @@ package tf.losses
 	 */
 	public function meanSquaredError(labels:*=null,predictions:*=null,weights:*=null,reduction:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

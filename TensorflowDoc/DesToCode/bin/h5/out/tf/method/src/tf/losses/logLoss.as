@@ -17,7 +17,7 @@ package tf.losses
 	 */
 	public function logLoss(labels:*=null,predictions:*=null,weights:*=null,epsilon:*=null,reduction:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

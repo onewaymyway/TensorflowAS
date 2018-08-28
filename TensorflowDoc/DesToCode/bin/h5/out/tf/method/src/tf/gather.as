@@ -13,7 +13,7 @@ package tf
 	 */
 	public function gather(x:*=null,indices:*=null,axis:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

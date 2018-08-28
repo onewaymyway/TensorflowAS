@@ -16,7 +16,7 @@ package tf
 	 */
 	public function toPixels(img:*=null,canvas:*=null):Promise
 	{
-		return ;
+		return null;
 	}
 
 

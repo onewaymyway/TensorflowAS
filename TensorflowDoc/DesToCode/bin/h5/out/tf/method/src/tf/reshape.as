@@ -12,7 +12,7 @@ package tf
 	 */
 	public function reshape(x:*=null,shape:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -18,7 +18,7 @@ package tf
 	 */
 	public function cumsum(x:*=null,axis:*=null,exclusive:*=null,reverse:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

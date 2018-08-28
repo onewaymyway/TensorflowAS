@@ -12,7 +12,7 @@ package tf.metrics
 	 */
 	public function categoricalAccuracy(yTrue:*=null,yPred:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

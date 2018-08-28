@@ -13,7 +13,7 @@ package tf
 	 */
 	public function batchToSpaceND(x:*=null,blockShape:*=null,crops:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

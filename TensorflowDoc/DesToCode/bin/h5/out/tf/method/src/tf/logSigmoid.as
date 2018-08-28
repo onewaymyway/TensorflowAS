@@ -11,7 +11,7 @@ package tf
 	 */
 	public function logSigmoid(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -17,7 +17,7 @@ package tf.losses
 	 */
 	public function cosineDistance(labels:*=null,predictions:*=null,axis:*=null,weights:*=null,reduction:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

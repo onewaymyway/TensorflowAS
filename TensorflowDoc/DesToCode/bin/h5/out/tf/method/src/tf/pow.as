@@ -12,7 +12,7 @@ package tf
 	 */
 	public function pow(base:*=null,exp:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

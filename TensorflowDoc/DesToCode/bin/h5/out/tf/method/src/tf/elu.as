@@ -11,7 +11,7 @@ package tf
 	 */
 	public function elu(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

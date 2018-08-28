@@ -11,7 +11,7 @@ package tf.initializers
 	 */
 	public function randomNormal(config:*=null):Initializer
 	{
-		return ;
+		return null;
 	}
 
 

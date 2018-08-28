@@ -23,7 +23,7 @@ package tf
 	 */
 	public function norm(x:*=null,ord:*=null,axis:*=null,keepDims:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -23,7 +23,7 @@ package tf
 	 */
 	public function stridedSlice(x:*=null,begin:*=null,end:*=null,strides:*=null,beginMask:*=null,endMask:*=null,ellipsisMask:*=null,newAxisMask:*=null,shrinkAxisMask:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

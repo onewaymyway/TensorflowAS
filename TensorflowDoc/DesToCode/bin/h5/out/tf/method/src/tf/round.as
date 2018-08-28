@@ -11,7 +11,7 @@ package tf
 	 */
 	public function round(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

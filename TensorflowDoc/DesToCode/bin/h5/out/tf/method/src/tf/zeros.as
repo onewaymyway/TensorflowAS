@@ -13,7 +13,7 @@ package tf
 	 */
 	public function zeros(shape:*=null,dtype:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

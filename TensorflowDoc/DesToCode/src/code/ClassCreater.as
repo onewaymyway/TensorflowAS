@@ -37,6 +37,7 @@ package code
 			dataO.name = nameArr.pop();
 			dataO.doc = "";
 			dataO.imports = "";
+			dataO["extends"] = "";
 			
 			var packageStr:String;
 			var filePath:String;
@@ -48,6 +49,18 @@ package code
 			{
 				packageStr = "";
 				filePath = exportPath;
+			}
+			
+			var extendsClz:String;
+			extendsClz = funO["extends"];
+			if (extendsClz)
+			{
+				
+				if (ClassManager.hasClass(extendsClz))
+				{
+					dataO["extends"] = "extends " + ClassManager.getShorClass(extendsClz);
+					importDic[ClassManager.getFullPath(extendsClz)] = extendsClz;
+				}
 			}
 			
 			dataO["package"] = packageStr;

@@ -12,7 +12,7 @@ package tf.metrics
 	 */
 	public function categoricalCrossentropy(yTrue:*=null,yPred:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

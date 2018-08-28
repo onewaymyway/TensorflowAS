@@ -11,7 +11,7 @@ package tf
 	 */
 	public function sign(x:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

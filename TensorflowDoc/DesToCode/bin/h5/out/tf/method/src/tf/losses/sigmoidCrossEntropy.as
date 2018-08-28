@@ -17,7 +17,7 @@ package tf.losses
 	 */
 	public function sigmoidCrossEntropy(multiClassLabels:*=null,logits:*=null,weights:*=null,labelSmoothing:*=null,reduction:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

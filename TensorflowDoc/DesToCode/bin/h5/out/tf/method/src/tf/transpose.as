@@ -12,7 +12,7 @@ package tf
 	 */
 	public function transpose(x:*=null,perm:*=null):Tensor
 	{
-		return ;
+		return null;
 	}
 
 

@@ -10,7 +10,7 @@ package tf.constraints
 	 */
 	public function nonNeg():Constraint
 	{
-		return ;
+		return null;
 	}
 
 
