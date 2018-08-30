@@ -506,6 +506,12 @@
                         throw new Error("Not found variable " + varName);
                     }
                     var values = new Float32Array(xhr.response);
+					//console.log("url:",xhr.responseURL)
+					//console.log("data:",values);
+					if(xhr.responseURL.indexOf("MobilenetV1_Conv2d_10_pointwise_weights")>=0)
+					{
+						//debugger;
+					}
                     var tensor = tf.Tensor.make(_this.checkpointManifest[varName].shape, { values: values });
                     resolve(tensor);
                 };

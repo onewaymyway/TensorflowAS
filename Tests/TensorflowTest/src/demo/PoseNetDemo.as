@@ -14,7 +14,7 @@ package demo
 		{
 			super();
 			useVideo = true;
-			//PoseNetTools.setModuleRoot("");
+			PoseNetTools.setModuleRoot("");
 		}
 		
 		
