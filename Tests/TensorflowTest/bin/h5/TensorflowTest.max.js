@@ -196,6 +196,7 @@ var Laya=window.Laya=(function(window,document){
 (function(window,document,Laya){
 	var __un=Laya.un,__uns=Laya.uns,__static=Laya.static,__class=Laya.class,__getset=Laya.getset,__newvec=Laya.__newvec;
 	Laya.interface('laya.runtime.IMarket');
+	Laya.interface('laya.filters.IFilter');
 	Laya.interface('laya.display.ILayout');
 	Laya.interface('laya.resource.IDispose');
 	Laya.interface('laya.runtime.IConchNode');
@@ -422,7 +423,11 @@ var Laya=window.Laya=(function(window,document){
 	//class demo.TestMobileNet
 	var TestMobileNet=(function(){
 		function TestMobileNet(){
-			this.test();
+			this.pic=null;
+			Laya.init(1000,900);
+			this.pic="res/cat.png";
+			this.pic="res/rabit.png";
+			Laya.loader.load(this.pic,new Handler(this,this.test));
 		}
 
 		__class(TestMobileNet,'demo.TestMobileNet');
@@ -435,6 +440,37 @@ var Laya=window.Laya=(function(window,document){
 
 		__proto.onModelLoaded=function(modelO){
 			console.log(modelO);
+			var tex;
+			tex=Loader.getRes(this.pic);
+			var image;
+			image=new Image();
+			image.skin=this.pic;
+			image.pos(100,100);
+			Laya.stage.addChild(image);
+			var ele;
+			ele=tex.bitmap.source;
+			ele.width=224;
+			ele.height=224;
+			MobileNetTool.predict(modelO,ele,4,new Handler(this,this.onPredicted));
+		}
+
+		__proto.onPredicted=function(rst){
+			console.log(rst);
+			var i=0,len=0;
+			len=rst.length;
+			var text;
+			text=new Text();
+			text.color="#ff0000";
+			text.pos(100,100);
+			Laya.stage.addChild(text);
+			var strs;
+			strs=[];
+			for (i=0;i < len;i++){
+				var tP;
+				tP=rst[i];
+				strs.push(tP.className+":"+Math.floor(tP.probability*100));
+			}
+			text.text=strs.join("\n");
 		}
 
 		return TestMobileNet;
@@ -490,6 +526,74 @@ var Laya=window.Laya=(function(window,document){
 	*...
 	*@author ww
 	*/
+	//class tftool.ImageClass
+	var ImageClass=(function(){
+		function ImageClass(){}
+		__class(ImageClass,'tftool.ImageClass');
+		ImageClass.getTopKClasses=function(values,topK){
+			var valuesAndIndices=[];
+			for (var i=0;i < values.length;i++){
+				valuesAndIndices.push({value:values[i],index:i});
+			}
+			valuesAndIndices.sort(function(a,b){
+				return b.value-a.value;
+			});
+			var topkValues=new Float32Array(topK);
+			var topkIndices=new Int32Array(topK);
+			for (i=0;i < topK;i++){
+				topkValues[i]=valuesAndIndices[i].value;
+				topkIndices[i]=valuesAndIndices[i].index;
+			};
+			var topClassesAndProbs=[];
+			for (i=0;i < topkIndices.length;i++){
+				topClassesAndProbs.push({className:ImageClass.IMAGENET_CLASSES[topkIndices[i]],probability:topkValues[i]})
+			}
+			return topClassesAndProbs;
+		}
+
+		__static(ImageClass,
+		['IMAGENET_CLASSES',function(){return this.IMAGENET_CLASSES={0:'tench, Tinca tinca',1:'goldfish, Carassius auratus',2:'great white shark, white shark, man-eater, man-eating shark, '+'Carcharodon carcharias',3:'tiger shark, Galeocerdo cuvieri',4:'hammerhead, hammerhead shark',5:'electric ray, crampfish, numbfish, torpedo',6:'stingray',7:'cock',8:'hen',9:'ostrich, Struthio camelus',10:'brambling, Fringilla montifringilla',11:'goldfinch, Carduelis carduelis',12:'house finch, linnet, Carpodacus mexicanus',13:'junco, snowbird',14:'indigo bunting, indigo finch, indigo bird, Passerina cyanea',15:'robin, American robin, Turdus migratorius',16:'bulbul',17:'jay',18:'magpie',19:'chickadee',20:'water ouzel, dipper',21:'kite',22:'bald eagle, American eagle, Haliaeetus leucocephalus',23:'vulture',24:'great grey owl, great gray owl, Strix nebulosa',25:'European fire salamander, Salamandra salamandra',26:'common newt, Triturus vulgaris',27:'eft',28:'spotted salamander, Ambystoma maculatum',29:'axolotl, mud puppy, Ambystoma mexicanum',30:'bullfrog, Rana catesbeiana',31:'tree frog, tree-frog',32:'tailed frog, bell toad, ribbed toad, tailed toad, Ascaphus trui',33:'loggerhead, loggerhead turtle, Caretta caretta',34:'leatherback turtle, leatherback, leathery turtle, Dermochelys coriacea',35:'mud turtle',36:'terrapin',37:'box turtle, box tortoise',38:'banded gecko',39:'common iguana, iguana, Iguana iguana',40:'American chameleon, anole, Anolis carolinensis',41:'whiptail, whiptail lizard',42:'agama',43:'frilled lizard, Chlamydosaurus kingi',44:'alligator lizard',45:'Gila monster, Heloderma suspectum',46:'green lizard, Lacerta viridis',47:'African chameleon, Chamaeleo chamaeleon',48:'Komodo dragon, Komodo lizard, dragon lizard, giant lizard, '+'Varanus komodoensis',49:'African crocodile, Nile crocodile, Crocodylus niloticus',50:'American alligator, Alligator mississipiensis',51:'triceratops',52:'thunder snake, worm snake, Carphophis amoenus',53:'ringneck snake, ring-necked snake, ring snake',54:'hognose snake, puff adder, sand viper',55:'green snake, grass snake',56:'king snake, kingsnake',57:'garter snake, grass snake',58:'water snake',59:'vine snake',60:'night snake, Hypsiglena torquata',61:'boa constrictor, Constrictor constrictor',62:'rock python, rock snake, Python sebae',63:'Indian cobra, Naja naja',64:'green mamba',65:'sea snake',66:'horned viper, cerastes, sand viper, horned asp, Cerastes cornutus',67:'diamondback, diamondback rattlesnake, Crotalus adamanteus',68:'sidewinder, horned rattlesnake, Crotalus cerastes',69:'trilobite',70:'harvestman, daddy longlegs, Phalangium opilio',71:'scorpion',72:'black and gold garden spider, Argiope aurantia',73:'barn spider, Araneus cavaticus',74:'garden spider, Aranea diademata',75:'black widow, Latrodectus mactans',76:'tarantula',77:'wolf spider, hunting spider',78:'tick',79:'centipede',80:'black grouse',81:'ptarmigan',82:'ruffed grouse, partridge, Bonasa umbellus',83:'prairie chicken, prairie grouse, prairie fowl',84:'peacock',85:'quail',86:'partridge',87:'African grey, African gray, Psittacus erithacus',88:'macaw',89:'sulphur-crested cockatoo, Kakatoe galerita, Cacatua galerita',90:'lorikeet',91:'coucal',92:'bee eater',93:'hornbill',94:'hummingbird',95:'jacamar',96:'toucan',97:'drake',98:'red-breasted merganser, Mergus serrator',99:'goose',100:'black swan, Cygnus atratus',101:'tusker',102:'echidna, spiny anteater, anteater',103:'platypus, duckbill, duckbilled platypus, duck-billed platypus, '+'Ornithorhynchus anatinus',104:'wallaby, brush kangaroo',105:'koala, koala bear, kangaroo bear, native bear, Phascolarctos cinereus',106:'wombat',107:'jelly fish',108:'sea anemone, anemone',109:'brain coral',110:'flatworm, platyhelminth',111:'nematode, nematode worm, roundworm',112:'conch',113:'snail',114:'slug',115:'sea slug, nudibranch',116:'chiton, coat-of-mail shell, sea cradle, polyplacophore',117:'chambered nautilus, pearly nautilus, nautilus',118:'Dungeness crab, Cancer magister',119:'rock crab, Cancer irroratus',120:'fiddler crab',121:'king crab, Alaska crab, Alaskan king crab, Alaska king crab, '+'Paralithodes camtschatica',122:'American lobster, Northern lobster, Maine lobster, Homarus americanus',123:'spiny lobster, langouste, rock lobster, crawfish, crayfish, sea '+'crawfish',124:'crayfish, crawfish, crawdad, crawdaddy',125:'hermit crab',126:'isopod',127:'white stork, Ciconia ciconia',128:'black stork, Ciconia nigra',129:'spoonbill',130:'flamingo',131:'little blue heron, Egretta caerulea',132:'American egret, great white heron, Egretta albus',133:'bittern',134:'crane',135:'limpkin, Aramus pictus',136:'European gallinule, Porphyrio porphyrio',137:'American coot, marsh hen, mud hen, water hen, Fulica americana',138:'bustard',139:'ruddy turnstone, Arenaria interpres',140:'red-backed sandpiper, dunlin, Erolia alpina',141:'redshank, Tringa totanus',142:'dowitcher',143:'oystercatcher, oyster catcher',144:'pelican',145:'king penguin, Aptenodytes patagonica',146:'albatross, mollymawk',147:'grey whale, gray whale, devilfish, Eschrichtius gibbosus, '+'Eschrichtius robustus',148:'killer whale, killer, orca, grampus, sea wolf, Orcinus orca',149:'dugong, Dugong dugon',150:'sea lion',151:'Chihuahua',152:'Japanese spaniel',153:'Maltese dog, Maltese terrier, Maltese',154:'Pekinese, Pekingese, Peke',155:'Shih-Tzu',156:'Blenheim spaniel',157:'papillon',158:'toy terrier',159:'Rhodesian ridgeback',160:'Afghan hound, Afghan',161:'basset, basset hound',162:'beagle',163:'bloodhound, sleuthhound',164:'bluetick',165:'black-and-tan coonhound',166:'Walker hound, Walker foxhound',167:'English foxhound',168:'redbone',169:'borzoi, Russian wolfhound',170:'Irish wolfhound',171:'Italian greyhound',172:'whippet',173:'Ibizan hound, Ibizan Podenco',174:'Norwegian elkhound, elkhound',175:'otterhound, otter hound',176:'Saluki, gazelle hound',177:'Scottish deerhound, deerhound',178:'Weimaraner',179:'Staffordshire bullterrier, Staffordshire bull terrier',180:'American Staffordshire terrier, Staffordshire terrier, American pit '+'bull terrier, pit bull terrier',181:'Bedlington terrier',182:'Border terrier',183:'Kerry blue terrier',184:'Irish terrier',185:'Norfolk terrier',186:'Norwich terrier',187:'Yorkshire terrier',188:'wire-haired fox terrier',189:'Lakeland terrier',190:'Sealyham terrier, Sealyham',191:'Airedale, Airedale terrier',192:'cairn, cairn terrier',193:'Australian terrier',194:'Dandie Dinmont, Dandie Dinmont terrier',195:'Boston bull, Boston terrier',196:'miniature schnauzer',197:'giant schnauzer',198:'standard schnauzer',199:'Scotch terrier, Scottish terrier, Scottie',200:'Tibetan terrier, chrysanthemum dog',201:'silky terrier, Sydney silky',202:'soft-coated wheaten terrier',203:'West Highland white terrier',204:'Lhasa, Lhasa apso',205:'flat-coated retriever',206:'curly-coated retriever',207:'golden retriever',208:'Labrador retriever',209:'Chesapeake Bay retriever',210:'German short-haired pointer',211:'vizsla, Hungarian pointer',212:'English setter',213:'Irish setter, red setter',214:'Gordon setter',215:'Brittany spaniel',216:'clumber, clumber spaniel',217:'English springer, English springer spaniel',218:'Welsh springer spaniel',219:'cocker spaniel, English cocker spaniel, cocker',220:'Sussex spaniel',221:'Irish water spaniel',222:'kuvasz',223:'schipperke',224:'groenendael',225:'malinois',226:'briard',227:'kelpie',228:'komondor',229:'Old English sheepdog, bobtail',230:'Shetland sheepdog, Shetland sheep dog, Shetland',231:'collie',232:'Border collie',233:'Bouvier des Flandres, Bouviers des Flandres',234:'Rottweiler',235:'German shepherd, German shepherd dog, German police dog, alsatian',236:'Doberman, Doberman pinscher',237:'miniature pinscher',238:'Greater Swiss Mountain dog',239:'Bernese mountain dog',240:'Appenzeller',241:'EntleBucher',242:'boxer',243:'bull mastiff',244:'Tibetan mastiff',245:'French bulldog',246:'Great Dane',247:'Saint Bernard, St Bernard',248:'Eskimo dog, husky',249:'malamute, malemute, Alaskan malamute',250:'Siberian husky',251:'dalmatian, coach dog, carriage dog',252:'affenpinscher, monkey pinscher, monkey dog',253:'basenji',254:'pug, pug-dog',255:'Leonberg',256:'Newfoundland, Newfoundland dog',257:'Great Pyrenees',258:'Samoyed, Samoyede',259:'Pomeranian',260:'chow, chow chow',261:'keeshond',262:'Brabancon griffon',263:'Pembroke, Pembroke Welsh corgi',264:'Cardigan, Cardigan Welsh corgi',265:'toy poodle',266:'miniature poodle',267:'standard poodle',268:'Mexican hairless',269:'timber wolf, grey wolf, gray wolf, Canis lupus',270:'white wolf, Arctic wolf, Canis lupus tundrarum',271:'red wolf, maned wolf, Canis rufus, Canis niger',272:'coyote, prairie wolf, brush wolf, Canis latrans',273:'dingo, warrigal, warragal, Canis dingo',274:'dhole, Cuon alpinus',275:'African hunting dog, hyena dog, Cape hunting dog, Lycaon pictus',276:'hyena, hyaena',277:'red fox, Vulpes vulpes',278:'kit fox, Vulpes macrotis',279:'Arctic fox, white fox, Alopex lagopus',280:'grey fox, gray fox, Urocyon cinereoargenteus',281:'tabby, tabby cat',282:'tiger cat',283:'Persian cat',284:'Siamese cat, Siamese',285:'Egyptian cat',286:'cougar, puma, catamount, mountain lion, painter, panther, '+'Felis concolor',287:'lynx, catamount',288:'leopard, Panthera pardus',289:'snow leopard, ounce, Panthera uncia',290:'jaguar, panther, Panthera onca, Felis onca',291:'lion, king of beasts, Panthera leo',292:'tiger, Panthera tigris',293:'cheetah, chetah, Acinonyx jubatus',294:'brown bear, bruin, Ursus arctos',295:'American black bear, black bear, Ursus americanus, Euarctos '+'americanus',296:'ice bear, polar bear, Ursus Maritimus, Thalarctos maritimus',297:'sloth bear, Melursus ursinus, Ursus ursinus',298:'mongoose',299:'meerkat, mierkat',300:'tiger beetle',301:'ladybug, ladybeetle, lady beetle, ladybird, ladybird beetle',302:'ground beetle, carabid beetle',303:'long-horned beetle, longicorn, longicorn beetle',304:'leaf beetle, chrysomelid',305:'dung beetle',306:'rhinoceros beetle',307:'weevil',308:'fly',309:'bee',310:'ant, emmet, pismire',311:'grasshopper, hopper',312:'cricket',313:'walking stick, walkingstick, stick insect',314:'cockroach, roach',315:'mantis, mantid',316:'cicada, cicala',317:'leafhopper',318:'lacewing, lacewing fly',319:'dragonfly, darning needle, devil\'s darning needle, sewing needle, '+'snake feeder, snake doctor, mosquito hawk, skeeter hawk',320:'damselfly',321:'admiral',322:'ringlet, ringlet butterfly',323:'monarch, monarch butterfly, milkweed butterfly, Danaus plexippus',324:'cabbage butterfly',325:'sulphur butterfly, sulfur butterfly',326:'lycaenid, lycaenid butterfly',327:'starfish, sea star',328:'sea urchin',329:'sea cucumber, holothurian',330:'wood rabbit, cottontail, cottontail rabbit',331:'hare',332:'Angora, Angora rabbit',333:'hamster',334:'porcupine, hedgehog',335:'fox squirrel, eastern fox squirrel, Sciurus niger',336:'marmot',337:'beaver',338:'guinea pig, Cavia cobaya',339:'sorrel',340:'zebra',341:'hog, pig, grunter, squealer, Sus scrofa',342:'wild boar, boar, Sus scrofa',343:'warthog',344:'hippopotamus, hippo, river horse, Hippopotamus amphibius',345:'ox',346:'water buffalo, water ox, Asiatic buffalo, Bubalus bubalis',347:'bison',348:'ram, tup',349:'bighorn, bighorn sheep, cimarron, Rocky Mountain bighorn, Rocky '+'Mountain sheep, Ovis canadensis',350:'ibex, Capra ibex',351:'hartebeest',352:'impala, Aepyceros melampus',353:'gazelle',354:'Arabian camel, dromedary, Camelus dromedarius',355:'llama',356:'weasel',357:'mink',358:'polecat, fitch, foulmart, foumart, Mustela putorius',359:'black-footed ferret, ferret, Mustela nigripes',360:'otter',361:'skunk, polecat, wood pussy',362:'badger',363:'armadillo',364:'three-toed sloth, ai, Bradypus tridactylus',365:'orangutan, orang, orangutang, Pongo pygmaeus',366:'gorilla, Gorilla gorilla',367:'chimpanzee, chimp, Pan troglodytes',368:'gibbon, Hylobates lar',369:'siamang, Hylobates syndactylus, Symphalangus syndactylus',370:'guenon, guenon monkey',371:'patas, hussar monkey, Erythrocebus patas',372:'baboon',373:'macaque',374:'langur',375:'colobus, colobus monkey',376:'proboscis monkey, Nasalis larvatus',377:'marmoset',378:'capuchin, ringtail, Cebus capucinus',379:'howler monkey, howler',380:'titi, titi monkey',381:'spider monkey, Ateles geoffroyi',382:'squirrel monkey, Saimiri sciureus',383:'Madagascar cat, ring-tailed lemur, Lemur catta',384:'indri, indris, Indri indri, Indri brevicaudatus',385:'Indian elephant, Elephas maximus',386:'African elephant, Loxodonta africana',387:'lesser panda, red panda, panda, bear cat, cat bear, Ailurus fulgens',388:'giant panda, panda, panda bear, coon bear, Ailuropoda melanoleuca',389:'barracouta, snoek',390:'eel',391:'coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus '+'kisutch',392:'rock beauty, Holocanthus tricolor',393:'anemone fish',394:'sturgeon',395:'gar, garfish, garpike, billfish, Lepisosteus osseus',396:'lionfish',397:'puffer, pufferfish, blowfish, globefish',398:'abacus',399:'abaya',400:'academic gown, academic robe, judge\'s robe',401:'accordion, piano accordion, squeeze box',402:'acoustic guitar',403:'aircraft carrier, carrier, flattop, attack aircraft carrier',404:'airliner',405:'airship, dirigible',406:'altar',407:'ambulance',408:'amphibian, amphibious vehicle',409:'analog clock',410:'apiary, bee house',411:'apron',412:'ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, '+'dustbin, trash barrel, trash bin',413:'assault rifle, assault gun',414:'backpack, back pack, knapsack, packsack, rucksack, haversack',415:'bakery, bakeshop, bakehouse',416:'balance beam, beam',417:'balloon',418:'ballpoint, ballpoint pen, ballpen, Biro',419:'Band Aid',420:'banjo',421:'bannister, banister, balustrade, balusters, handrail',422:'barbell',423:'barber chair',424:'barbershop',425:'barn',426:'barometer',427:'barrel, cask',428:'barrow, garden cart, lawn cart, wheelbarrow',429:'baseball',430:'basketball',431:'bassinet',432:'bassoon',433:'bathing cap, swimming cap',434:'bath towel',435:'bathtub, bathing tub, bath, tub',436:'beach wagon, station wagon, wagon, estate car, beach waggon, station '+'waggon, waggon',437:'beacon, lighthouse, beacon light, pharos',438:'beaker',439:'bearskin, busby, shako',440:'beer bottle',441:'beer glass',442:'bell cote, bell cot',443:'bib',444:'bicycle-built-for-two, tandem bicycle, tandem',445:'bikini, two-piece',446:'binder, ring-binder',447:'binoculars, field glasses, opera glasses',448:'birdhouse',449:'boathouse',450:'bobsled, bobsleigh, bob',451:'bolo tie, bolo, bola tie, bola',452:'bonnet, poke bonnet',453:'bookcase',454:'bookshop, bookstore, bookstall',455:'bottlecap',456:'bow',457:'bow tie, bow-tie, bowtie',458:'brass, memorial tablet, plaque',459:'brassiere, bra, bandeau',460:'breakwater, groin, groyne, mole, bulwark, seawall, jetty',461:'breastplate, aegis, egis',462:'broom',463:'bucket, pail',464:'buckle',465:'bulletproof vest',466:'bullet train, bullet',467:'butcher shop, meat market',468:'cab, hack, taxi, taxicab',469:'caldron, cauldron',470:'candle, taper, wax light',471:'cannon',472:'canoe',473:'can opener, tin opener',474:'cardigan',475:'car mirror',476:'carousel, carrousel, merry-go-round, roundabout, whirligig',477:'carpenter\'s kit, tool kit',478:'carton',479:'car wheel',480:'cash machine, cash dispenser, automated teller machine, automatic '+'teller machine, automated teller, automatic teller, ATM',481:'cassette',482:'cassette player',483:'castle',484:'catamaran',485:'CD player',486:'cello, violoncello',487:'cellular telephone, cellular phone, cellphone, cell, mobile phone',488:'chain',489:'chainlink fence',490:'chain mail, ring mail, mail, chain armor, chain armour, ring armor, '+'ring armour',491:'chain saw, chainsaw',492:'chest',493:'chiffonier, commode',494:'chime, bell, gong',495:'china cabinet, china closet',496:'Christmas stocking',497:'church, church building',498:'cinema, movie theater, movie theatre, movie house, picture palace',499:'cleaver, meat cleaver, chopper',500:'cliff dwelling',501:'cloak',502:'clog, geta, patten, sabot',503:'cocktail shaker',504:'coffee mug',505:'coffeepot',506:'coil, spiral, volute, whorl, helix',507:'combination lock',508:'computer keyboard, keypad',509:'confectionery, confectionary, candy store',510:'container ship, containership, container vessel',511:'convertible',512:'corkscrew, bottle screw',513:'cornet, horn, trumpet, trump',514:'cowboy boot',515:'cowboy hat, ten-gallon hat',516:'cradle',517:'crane',518:'crash helmet',519:'crate',520:'crib, cot',521:'Crock Pot',522:'croquet ball',523:'crutch',524:'cuirass',525:'dam, dike, dyke',526:'desk',527:'desktop computer',528:'dial telephone, dial phone',529:'diaper, nappy, napkin',530:'digital clock',531:'digital watch',532:'dining table, board',533:'dishrag, dishcloth',534:'dishwasher, dish washer, dishwashing machine',535:'disk brake, disc brake',536:'dock, dockage, docking facility',537:'dogsled, dog sled, dog sleigh',538:'dome',539:'doormat, welcome mat',540:'drilling platform, offshore rig',541:'drum, membranophone, tympan',542:'drumstick',543:'dumbbell',544:'Dutch oven',545:'electric fan, blower',546:'electric guitar',547:'electric locomotive',548:'entertainment center',549:'envelope',550:'espresso maker',551:'face powder',552:'feather boa, boa',553:'file, file cabinet, filing cabinet',554:'fireboat',555:'fire engine, fire truck',556:'fire screen, fireguard',557:'flagpole, flagstaff',558:'flute, transverse flute',559:'folding chair',560:'football helmet',561:'forklift',562:'fountain',563:'fountain pen',564:'four-poster',565:'freight car',566:'French horn, horn',567:'frying pan, frypan, skillet',568:'fur coat',569:'garbage truck, dustcart',570:'gasmask, respirator, gas helmet',571:'gas pump, gasoline pump, petrol pump, island dispenser',572:'goblet',573:'go-kart',574:'golf ball',575:'golfcart, golf cart',576:'gondola',577:'gong, tam-tam',578:'gown',579:'grand piano, grand',580:'greenhouse, nursery, glasshouse',581:'grille, radiator grille',582:'grocery store, grocery, food market, market',583:'guillotine',584:'hair slide',585:'hair spray',586:'half track',587:'hammer',588:'hamper',589:'hand blower, blow dryer, blow drier, hair dryer, hair drier',590:'hand-held computer, hand-held microcomputer',591:'handkerchief, hankie, hanky, hankey',592:'hard disc, hard disk, fixed disk',593:'harmonica, mouth organ, harp, mouth harp',594:'harp',595:'harvester, reaper',596:'hatchet',597:'holster',598:'home theater, home theatre',599:'honeycomb',600:'hook, claw',601:'hoopskirt, crinoline',602:'horizontal bar, high bar',603:'horse cart, horse-cart',604:'hourglass',605:'iPod',606:'iron, smoothing iron',607:'jack-o\'-lantern',608:'jean, blue jean, denim',609:'jeep, landrover',610:'jersey, T-shirt, tee shirt',611:'jigsaw puzzle',612:'jinrikisha, ricksha, rickshaw',613:'joystick',614:'kimono',615:'knee pad',616:'knot',617:'lab coat, laboratory coat',618:'ladle',619:'lampshade, lamp shade',620:'laptop, laptop computer',621:'lawn mower, mower',622:'lens cap, lens cover',623:'letter opener, paper knife, paperknife',624:'library',625:'lifeboat',626:'lighter, light, igniter, ignitor',627:'limousine, limo',628:'liner, ocean liner',629:'lipstick, lip rouge',630:'Loafer',631:'lotion',632:'loudspeaker, speaker, speaker unit, loudspeaker system, speaker '+'system',633:'loupe, jeweler\'s loupe',634:'lumbermill, sawmill',635:'magnetic compass',636:'mailbag, postbag',637:'mailbox, letter box',638:'maillot',639:'maillot, tank suit',640:'manhole cover',641:'maraca',642:'marimba, xylophone',643:'mask',644:'matchstick',645:'maypole',646:'maze, labyrinth',647:'measuring cup',648:'medicine chest, medicine cabinet',649:'megalith, megalithic structure',650:'microphone, mike',651:'microwave, microwave oven',652:'military uniform',653:'milk can',654:'minibus',655:'miniskirt, mini',656:'minivan',657:'missile',658:'mitten',659:'mixing bowl',660:'mobile home, manufactured home',661:'Model T',662:'modem',663:'monastery',664:'monitor',665:'moped',666:'mortar',667:'mortarboard',668:'mosque',669:'mosquito net',670:'motor scooter, scooter',671:'mountain bike, all-terrain bike, off-roader',672:'mountain tent',673:'mouse, computer mouse',674:'mousetrap',675:'moving van',676:'muzzle',677:'nail',678:'neck brace',679:'necklace',680:'nipple',681:'notebook, notebook computer',682:'obelisk',683:'oboe, hautboy, hautbois',684:'ocarina, sweet potato',685:'odometer, hodometer, mileometer, milometer',686:'oil filter',687:'organ, pipe organ',688:'oscilloscope, scope, cathode-ray oscilloscope, CRO',689:'overskirt',690:'oxcart',691:'oxygen mask',692:'packet',693:'paddle, boat paddle',694:'paddlewheel, paddle wheel',695:'padlock',696:'paintbrush',697:'pajama, pyjama, pj\'s, jammies',698:'palace',699:'panpipe, pandean pipe, syrinx',700:'paper towel',701:'parachute, chute',702:'parallel bars, bars',703:'park bench',704:'parking meter',705:'passenger car, coach, carriage',706:'patio, terrace',707:'pay-phone, pay-station',708:'pedestal, plinth, footstall',709:'pencil box, pencil case',710:'pencil sharpener',711:'perfume, essence',712:'Petri dish',713:'photocopier',714:'pick, plectrum, plectron',715:'pickelhaube',716:'picket fence, paling',717:'pickup, pickup truck',718:'pier',719:'piggy bank, penny bank',720:'pill bottle',721:'pillow',722:'ping-pong ball',723:'pinwheel',724:'pirate, pirate ship',725:'pitcher, ewer',726:'plane, carpenter\'s plane, woodworking plane',727:'planetarium',728:'plastic bag',729:'plate rack',730:'plow, plough',731:'plunger, plumber\'s helper',732:'Polaroid camera, Polaroid Land camera',733:'pole',734:'police van, police wagon, paddy wagon, patrol wagon, wagon, black '+'Maria',735:'poncho',736:'pool table, billiard table, snooker table',737:'pop bottle, soda bottle',738:'pot, flowerpot',739:'potter\'s wheel',740:'power drill',741:'prayer rug, prayer mat',742:'printer',743:'prison, prison house',744:'projectile, missile',745:'projector',746:'puck, hockey puck',747:'punching bag, punch bag, punching ball, punchball',748:'purse',749:'quill, quill pen',750:'quilt, comforter, comfort, puff',751:'racer, race car, racing car',752:'racket, racquet',753:'radiator',754:'radio, wireless',755:'radio telescope, radio reflector',756:'rain barrel',757:'recreational vehicle, RV, R.V.',758:'reel',759:'reflex camera',760:'refrigerator, icebox',761:'remote control, remote',762:'restaurant, eating house, eating place, eatery',763:'revolver, six-gun, six-shooter',764:'rifle',765:'rocking chair, rocker',766:'rotisserie',767:'rubber eraser, rubber, pencil eraser',768:'rugby ball',769:'rule, ruler',770:'running shoe',771:'safe',772:'safety pin',773:'saltshaker, salt shaker',774:'sandal',775:'sarong',776:'sax, saxophone',777:'scabbard',778:'scale, weighing machine',779:'school bus',780:'schooner',781:'scoreboard',782:'screen, CRT screen',783:'screw',784:'screwdriver',785:'seat belt, seatbelt',786:'sewing machine',787:'shield, buckler',788:'shoe shop, shoe-shop, shoe store',789:'shoji',790:'shopping basket',791:'shopping cart',792:'shovel',793:'shower cap',794:'shower curtain',795:'ski',796:'ski mask',797:'sleeping bag',798:'slide rule, slipstick',799:'sliding door',800:'slot, one-armed bandit',801:'snorkel',802:'snowmobile',803:'snowplow, snowplough',804:'soap dispenser',805:'soccer ball',806:'sock',807:'solar dish, solar collector, solar furnace',808:'sombrero',809:'soup bowl',810:'space bar',811:'space heater',812:'space shuttle',813:'spatula',814:'speedboat',815:'spider web, spider\'s web',816:'spindle',817:'sports car, sport car',818:'spotlight, spot',819:'stage',820:'steam locomotive',821:'steel arch bridge',822:'steel drum',823:'stethoscope',824:'stole',825:'stone wall',826:'stopwatch, stop watch',827:'stove',828:'strainer',829:'streetcar, tram, tramcar, trolley, trolley car',830:'stretcher',831:'studio couch, day bed',832:'stupa, tope',833:'submarine, pigboat, sub, U-boat',834:'suit, suit of clothes',835:'sundial',836:'sunglass',837:'sunglasses, dark glasses, shades',838:'sunscreen, sunblock, sun blocker',839:'suspension bridge',840:'swab, swob, mop',841:'sweatshirt',842:'swimming trunks, bathing trunks',843:'swing',844:'switch, electric switch, electrical switch',845:'syringe',846:'table lamp',847:'tank, army tank, armored combat vehicle, armoured combat vehicle',848:'tape player',849:'teapot',850:'teddy, teddy bear',851:'television, television system',852:'tennis ball',853:'thatch, thatched roof',854:'theater curtain, theatre curtain',855:'thimble',856:'thresher, thrasher, threshing machine',857:'throne',858:'tile roof',859:'toaster',860:'tobacco shop, tobacconist shop, tobacconist',861:'toilet seat',862:'torch',863:'totem pole',864:'tow truck, tow car, wrecker',865:'toyshop',866:'tractor',867:'trailer truck, tractor trailer, trucking rig, rig, articulated '+'lorry, semi',868:'tray',869:'trench coat',870:'tricycle, trike, velocipede',871:'trimaran',872:'tripod',873:'triumphal arch',874:'trolleybus, trolley coach, trackless trolley',875:'trombone',876:'tub, vat',877:'turnstile',878:'typewriter keyboard',879:'umbrella',880:'unicycle, monocycle',881:'upright, upright piano',882:'vacuum, vacuum cleaner',883:'vase',884:'vault',885:'velvet',886:'vending machine',887:'vestment',888:'viaduct',889:'violin, fiddle',890:'volleyball',891:'waffle iron',892:'wall clock',893:'wallet, billfold, notecase, pocketbook',894:'wardrobe, closet, press',895:'warplane, military plane',896:'washbasin, handbasin, washbowl, lavabo, wash-hand basin',897:'washer, automatic washer, washing machine',898:'water bottle',899:'water jug',900:'water tower',901:'whiskey jug',902:'whistle',903:'wig',904:'window screen',905:'window shade',906:'Windsor tie',907:'wine bottle',908:'wing',909:'wok',910:'wooden spoon',911:'wool, woolen, woollen',912:'worm fence, snake fence, snake-rail fence, Virginia fence',913:'wreck',914:'yawl',915:'yurt',916:'web site, website, internet site, site',917:'comic book',918:'crossword puzzle, crossword',919:'street sign',920:'traffic light, traffic signal, stoplight',921:'book jacket, dust cover, dust jacket, dust wrapper',922:'menu',923:'plate',924:'guacamole',925:'consomme',926:'hot pot, hotpot',927:'trifle',928:'ice cream, icecream',929:'ice lolly, lolly, lollipop, popsicle',930:'French loaf',931:'bagel, beigel',932:'pretzel',933:'cheeseburger',934:'hotdog, hot dog, red hot',935:'mashed potato',936:'head cabbage',937:'broccoli',938:'cauliflower',939:'zucchini, courgette',940:'spaghetti squash',941:'acorn squash',942:'butternut squash',943:'cucumber, cuke',944:'artichoke, globe artichoke',945:'bell pepper',946:'cardoon',947:'mushroom',948:'Granny Smith',949:'strawberry',950:'orange',951:'lemon',952:'fig',953:'pineapple, ananas',954:'banana',955:'jackfruit, jak, jack',956:'custard apple',957:'pomegranate',958:'hay',959:'carbonara',960:'chocolate sauce, chocolate syrup',961:'dough',962:'meat loaf, meatloaf',963:'pizza, pizza pie',964:'potpie',965:'burrito',966:'red wine',967:'espresso',968:'cup',969:'eggnog',970:'alp',971:'bubble',972:'cliff, drop, drop-off',973:'coral reef',974:'geyser',975:'lakeside, lakeshore',976:'promontory, headland, head, foreland',977:'sandbar, sand bar',978:'seashore, coast, seacoast, sea-coast',979:'valley, vale',980:'volcano',981:'ballplayer, baseball player',982:'groom, bridegroom',983:'scuba diver',984:'rapeseed',985:'daisy',986:'yellow lady\'s slipper, yellow lady-slipper, Cypripedium calceolus, '+'Cypripedium parviflorum',987:'corn',988:'acorn',989:'hip, rose hip, rosehip',990:'buckeye, horse chestnut, conker',991:'coral fungus',992:'agaric',993:'gyromitra',994:'stinkhorn, carrion fungus',995:'earthstar',996:'hen-of-the-woods, hen of the woods, Polyporus frondosus, Grifola '+'frondosa',997:'bolete',998:'ear, spike, capitulum',999:'toilet tissue, toilet paper, bathroom tissue'};}
+		]);
+		return ImageClass;
+	})()
+
+
+	/**
+	*...
+	*@author ww
+	*/
+	//class tftool.ImageTools
+	var ImageTools=(function(){
+		function ImageTools(){}
+		__class(ImageTools,'tftool.ImageTools');
+		ImageTools.elementToTFImage=function(webcamElement,width,height){
+			(width===void 0)&& (width=224);
+			(height===void 0)&& (height=224);
+			return tf.tidy(function(){
+				var webcamImage=tf.fromPixels(webcamElement);
+				var croppedImage=ImageTools.cropImage(webcamImage,width,height);
+				var batchedImage=croppedImage.expandDims(0);
+				return batchedImage.toFloat().div(tf.scalar(127)).sub(tf.scalar(1));
+			});
+		}
+
+		ImageTools.cropImage=function(img,width,height){
+			var size=Math.min(img.shape[0],img.shape[1]);
+			var centerHeight=img.shape[0] / 2;
+			var beginHeight=centerHeight-(height / 2);
+			var centerWidth=img.shape[1] / 2;
+			var beginWidth=centerWidth-(width / 2);
+			return img.slice([beginHeight,beginWidth,0],[width,height,3]);
+		}
+
+		return ImageTools;
+	})()
+
+
+	/**
+	*...
+	*@author ww
+	*/
 	//class tftool.MobileNetTool
 	var MobileNetTool=(function(){
 		function MobileNetTool(){}
@@ -499,7 +603,7 @@ var Laya=window.Laya=(function(window,document){
 			if (!path)path="https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json";
 			tf.loadModel(path).then(
 			function(mobilenet){
-				if (forTransform){
+				if (!forTransform){
 					complete.runWith(mobilenet);
 					return;
 				};
@@ -508,6 +612,15 @@ var Laya=window.Laya=(function(window,document){
 				modelO=tf.model({inputs:mobilenet.inputs,outputs:layer.output});
 				complete.runWith(modelO);
 			});
+		}
+
+		MobileNetTool.predict=function(modelO,ele,topK,complete){
+			var img=ImageTools.elementToTFImage(ele);
+			modelO.predict(img).data().then(
+			function(rst){
+				var clist=ImageClass.getTopKClasses(rst,4);
+				complete.runWith([clist]);
+			})
 		}
 
 		return MobileNetTool;
@@ -6668,6 +6781,126 @@ var Laya=window.Laya=(function(window,document){
 	})()
 
 
+	/**
+	*<code>LayoutStyle</code> 是一个布局样式类。
+	*/
+	//class laya.ui.LayoutStyle
+	var LayoutStyle=(function(){
+		function LayoutStyle(){
+			this.enable=false;
+			this.top=NaN;
+			this.bottom=NaN;
+			this.left=NaN;
+			this.right=NaN;
+			this.centerX=NaN;
+			this.centerY=NaN;
+			this.anchorX=NaN;
+			this.anchorY=NaN;
+		}
+
+		__class(LayoutStyle,'laya.ui.LayoutStyle');
+		__static(LayoutStyle,
+		['EMPTY',function(){return this.EMPTY=new LayoutStyle();}
+		]);
+		return LayoutStyle;
+	})()
+
+
+	/**
+	*<code>Styles</code> 定义了组件常用的样式属性。
+	*/
+	//class laya.ui.Styles
+	var Styles=(function(){
+		function Styles(){};
+		__class(Styles,'laya.ui.Styles');
+		Styles.labelColor="#000000";
+		Styles.buttonStateNum=3;
+		Styles.scrollBarMinNum=15;
+		Styles.scrollBarDelayTime=500;
+		__static(Styles,
+		['defaultSizeGrid',function(){return this.defaultSizeGrid=[4,4,4,4,0];},'labelPadding',function(){return this.labelPadding=[2,2,2,2];},'inputLabelPadding',function(){return this.inputLabelPadding=[1,1,1,3];},'buttonLabelColors',function(){return this.buttonLabelColors=["#32556b","#32cc6b","#ff0000","#C0C0C0"];},'comboBoxItemColors',function(){return this.comboBoxItemColors=["#5e95b6","#ffffff","#000000","#8fa4b1","#ffffff"];}
+		]);
+		return Styles;
+	})()
+
+
+	/**
+	*<code>UIUtils</code> 是文本工具集。
+	*/
+	//class laya.ui.UIUtils
+	var UIUtils=(function(){
+		function UIUtils(){};
+		__class(UIUtils,'laya.ui.UIUtils');
+		UIUtils.fillArray=function(arr,str,type){
+			var temp=arr.concat();
+			if (str){
+				var a=str.split(",");
+				for (var i=0,n=Math.min(temp.length,a.length);i < n;i++){
+					var value=a[i];
+					temp[i]=(value=="true" ? true :(value=="false" ? false :value));
+					if (type !=null)temp[i]=type(value);
+				}
+			}
+			return temp;
+		}
+
+		UIUtils.toColor=function(color){
+			return Utils.toHexColor(color);
+		}
+
+		UIUtils.gray=function(traget,isGray){
+			(isGray===void 0)&& (isGray=true);
+			if (isGray){
+				UIUtils.addFilter(traget,UIUtils.grayFilter);
+				}else {
+				UIUtils.clearFilter(traget,ColorFilter);
+			}
+		}
+
+		UIUtils.addFilter=function(target,filter){
+			var filters=target.filters || [];
+			filters.push(filter);
+			target.filters=filters;
+		}
+
+		UIUtils.clearFilter=function(target,filterType){
+			var filters=target.filters;
+			if (filters !=null && filters.length > 0){
+				for (var i=filters.length-1;i >-1;i--){
+					var filter=filters[i];
+					if (Laya.__typeof(filter,filterType))filters.splice(i,1);
+				}
+				target.filters=filters;
+			}
+		}
+
+		UIUtils._getReplaceStr=function(word){
+			return UIUtils.escapeSequence[word];
+		}
+
+		UIUtils.adptString=function(str){
+			return str.replace(/\\(\w)/g,UIUtils._getReplaceStr);
+		}
+
+		UIUtils.getBindFun=function(value){
+			var fun=UIUtils._funMap.get(value);
+			if (fun==null){
+				var temp="\""+value+"\"";
+				temp=temp.replace(/^"\${|}"$/g,"").replace(/\${/g,"\"+").replace(/}/g,"+\"");
+				var str="(function(data){if(data==null)return;with(data){try{\nreturn "+temp+"\n}catch(e){}}})";
+				fun=Laya._runScript(str);
+				UIUtils._funMap.set(value,fun);
+			}
+			return fun;
+		}
+
+		__static(UIUtils,
+		['grayFilter',function(){return this.grayFilter=new ColorFilter([0.3086,0.6094,0.082,0,0,0.3086,0.6094,0.082,0,0,0.3086,0.6094,0.082,0,0,0,0,0,1,0]);},'escapeSequence',function(){return this.escapeSequence={"\\n":"\n","\\t":"\t"};},'_funMap',function(){return this._funMap=new WeakObject();}
+		]);
+		return UIUtils;
+	})()
+
+
 	SoundManager;
 	/**
 	*<code>Browser</code> 是浏览器代理类。封装浏览器及原生 js 提供的一些功能。
@@ -11879,6 +12112,206 @@ var Laya=window.Laya=(function(window,document){
 
 
 	/**
+	*<code>AutoBitmap</code> 类是用于表示位图图像或绘制图形的显示对象。
+	*<p>封装了位置，宽高及九宫格的处理，供UI组件使用。</p>
+	*/
+	//class laya.ui.AutoBitmap extends laya.display.Graphics
+	var AutoBitmap=(function(_super){
+		function AutoBitmap(){
+			this.autoCacheCmd=true;
+			this._width=0;
+			this._height=0;
+			this._source=null;
+			this._sizeGrid=null;
+			this._isChanged=false;
+			this._offset=null;
+			AutoBitmap.__super.call(this);
+		}
+
+		__class(AutoBitmap,'laya.ui.AutoBitmap',_super);
+		var __proto=AutoBitmap.prototype;
+		/**@inheritDoc */
+		__proto.destroy=function(){
+			_super.prototype.destroy.call(this);
+			this._source=null;
+			this._sizeGrid=null;
+			this._offset=null;
+		}
+
+		/**@private */
+		__proto._setChanged=function(){
+			if (!this._isChanged){
+				this._isChanged=true;
+				Laya.timer.callLater(this,this.changeSource);
+			}
+		}
+
+		/**
+		*@private
+		*修改纹理资源。
+		*/
+		__proto.changeSource=function(){
+			this._isChanged=false;
+			var source=this._source;
+			if (!source || !source.bitmap)return;
+			var width=this.width;
+			var height=this.height;
+			var sizeGrid=this._sizeGrid;
+			var sw=source.sourceWidth;
+			var sh=source.sourceHeight;
+			if (!sizeGrid || (sw===width && sh===height)){
+				this.cleanByTexture(source,this._offset ? this._offset[0] :0,this._offset ? this._offset[1] :0,width,height);
+				}else {
+				source.$_GID || (source.$_GID=Utils.getGID());
+				var key=source.$_GID+"."+width+"."+height+"."+sizeGrid.join(".");
+				if (Utils.isOKCmdList(WeakObject.I.get(key))){
+					this.cmds=WeakObject.I.get(key);
+					return;
+				}
+				this.clear();
+				var top=sizeGrid[0];
+				var right=sizeGrid[1];
+				var bottom=sizeGrid[2];
+				var left=sizeGrid[3];
+				var repeat=sizeGrid[4];
+				var needClip=false;
+				if (width==sw){
+					left=right=0;
+				}
+				if (height==sh){
+					top=bottom=0;
+				}
+				if (left+right > width){
+					var clipWidth=width;
+					needClip=true;
+					width=left+right;
+					this.save();
+					this.clipRect(0,0,clipWidth,height);
+				}
+				left && top && this.drawTexture(AutoBitmap.getTexture(source,0,0,left,top),0,0,left,top);
+				right && top && this.drawTexture(AutoBitmap.getTexture(source,sw-right,0,right,top),width-right,0,right,top);
+				left && bottom && this.drawTexture(AutoBitmap.getTexture(source,0,sh-bottom,left,bottom),0,height-bottom,left,bottom);
+				right && bottom && this.drawTexture(AutoBitmap.getTexture(source,sw-right,sh-bottom,right,bottom),width-right,height-bottom,right,bottom);
+				top && this.drawBitmap(repeat,AutoBitmap.getTexture(source,left,0,sw-left-right,top),left,0,width-left-right,top);
+				bottom && this.drawBitmap(repeat,AutoBitmap.getTexture(source,left,sh-bottom,sw-left-right,bottom),left,height-bottom,width-left-right,bottom);
+				left && this.drawBitmap(repeat,AutoBitmap.getTexture(source,0,top,left,sh-top-bottom),0,top,left,height-top-bottom);
+				right && this.drawBitmap(repeat,AutoBitmap.getTexture(source,sw-right,top,right,sh-top-bottom),width-right,top,right,height-top-bottom);
+				this.drawBitmap(repeat,AutoBitmap.getTexture(source,left,top,sw-left-right,sh-top-bottom),left,top,width-left-right,height-top-bottom);
+				if (needClip)this.restore();
+				if (this.autoCacheCmd && !Render.isConchApp)WeakObject.I.set(key,this.cmds);
+			}
+			this._repaint();
+		}
+
+		__proto.drawBitmap=function(repeat,tex,x,y,width,height){
+			(width===void 0)&& (width=0);
+			(height===void 0)&& (height=0);
+			if (width < 0.1 || height < 0.1)return;
+			if (repeat && (tex.width !=width || tex.height !=height))this.fillTexture(tex,x,y,width,height);
+			else this.drawTexture(tex,x,y,width,height);
+		}
+
+		__proto.clear=function(recoverCmds){
+			(recoverCmds===void 0)&& (recoverCmds=true);
+			_super.prototype.clear.call(this,false);
+		}
+
+		/**
+		*当前实例的有效缩放网格数据。
+		*<p>如果设置为null,则在应用任何缩放转换时，将正常缩放整个显示对象。</p>
+		*<p>数据格式：[上边距,右边距,下边距,左边距,是否重复填充(值为0：不重复填充，1：重复填充)]。
+		*<ul><li>例如：[4,4,4,4,1]</li></ul></p>
+		*<p> <code>sizeGrid</code> 的值如下所示：
+		*<ol>
+		*<li>上边距</li>
+		*<li>右边距</li>
+		*<li>下边距</li>
+		*<li>左边距</li>
+		*<li>是否重复填充(值为0：不重复填充，1：重复填充)</li>
+		*</ol></p>
+		*<p>当定义 <code>sizeGrid</code> 属性时，该显示对象被分割到以 <code>sizeGrid</code> 数据中的"上边距,右边距,下边距,左边距" 组成的矩形为基础的具有九个区域的网格中，该矩形定义网格的中心区域。网格的其它八个区域如下所示：
+		*<ul>
+		*<li>矩形上方的区域</li>
+		*<li>矩形外的右上角</li>
+		*<li>矩形左侧的区域</li>
+		*<li>矩形右侧的区域</li>
+		*<li>矩形外的左下角</li>
+		*<li>矩形下方的区域</li>
+		*<li>矩形外的右下角</li>
+		*<li>矩形外的左上角</li>
+		*</ul>
+		*同时也支持3宫格，比如0,4,0,4,1为水平3宫格，4,0,4,0,1为垂直3宫格，3宫格性能比9宫格高。
+		*</p>
+		*/
+		__getset(0,__proto,'sizeGrid',function(){
+			return this._sizeGrid;
+			},function(value){
+			this._sizeGrid=value;
+			this._setChanged();
+		});
+
+		/**
+		*表示显示对象的宽度，以像素为单位。
+		*/
+		__getset(0,__proto,'width',function(){
+			if (this._width)return this._width;
+			if (this._source)return this._source.sourceWidth;
+			return 0;
+			},function(value){
+			if (this._width !=value){
+				this._width=value;
+				this._setChanged();
+			}
+		});
+
+		/**
+		*表示显示对象的高度，以像素为单位。
+		*/
+		__getset(0,__proto,'height',function(){
+			if (this._height)return this._height;
+			if (this._source)return this._source.sourceHeight;
+			return 0;
+			},function(value){
+			if (this._height !=value){
+				this._height=value;
+				this._setChanged();
+			}
+		});
+
+		/**
+		*对象的纹理资源。
+		*@see laya.resource.Texture
+		*/
+		__getset(0,__proto,'source',function(){
+			return this._source;
+			},function(value){
+			if (value){
+				this._source=value
+				this._setChanged();
+				}else {
+				this._source=null;
+				this.clear();
+			}
+		});
+
+		AutoBitmap.getTexture=function(tex,x,y,width,height){
+			if (width <=0)width=1;
+			if (height <=0)height=1;
+			tex.$_GID || (tex.$_GID=Utils.getGID())
+			var key=tex.$_GID+"."+x+"."+y+"."+width+"."+height;
+			var texture=WeakObject.I.get(key);
+			if (!texture||!texture.source){
+				texture=Texture.createFromTexture(tex,x,y,width,height);
+				WeakObject.I.set(key,texture);
+			}
+			return texture;
+		}
+
+		return AutoBitmap;
+	})(Graphics)
+
+
+	/**
 	*@private
 	*<code>CSSStyle</code> 类是元素CSS样式定义类。
 	*/
@@ -12616,6 +13049,21 @@ var Laya=window.Laya=(function(window,document){
 
 		return ColorFilter;
 	})(Filter)
+
+
+	/**
+	*<code>UIEvent</code> 类用来定义UI组件类的事件类型。
+	*/
+	//class laya.ui.UIEvent extends laya.events.Event
+	var UIEvent=(function(_super){
+		function UIEvent(){UIEvent.__super.call(this);;
+		};
+
+		__class(UIEvent,'laya.ui.UIEvent',_super);
+		UIEvent.SHOW_TIP="showtip";
+		UIEvent.HIDE_TIP="hidetip";
+		return UIEvent;
+	})(Event)
 
 
 	/**
@@ -14441,6 +14889,493 @@ var Laya=window.Laya=(function(window,document){
 
 
 	/**
+	*<code>Component</code> 是ui控件类的基类。
+	*<p>生命周期：preinitialize > createChildren > initialize > 组件构造函数</p>
+	*/
+	//class laya.ui.Component extends laya.display.Sprite
+	var Component=(function(_super){
+		function Component(){
+			this._comXml=null;
+			this._dataSource=null;
+			this._toolTip=null;
+			this._tag=null;
+			this._disabled=false;
+			this._gray=false;
+			this.layoutEnabled=true;
+			Component.__super.call(this);
+			this._layout=LayoutStyle.EMPTY;
+			this.preinitialize();
+			this.createChildren();
+			this.initialize();
+		}
+
+		__class(Component,'laya.ui.Component',_super);
+		var __proto=Component.prototype;
+		Laya.imps(__proto,{"laya.ui.IComponent":true})
+		/**@inheritDoc */
+		__proto.destroy=function(destroyChild){
+			(destroyChild===void 0)&& (destroyChild=true);
+			_super.prototype.destroy.call(this,destroyChild);
+			this._dataSource=this._layout=null;
+			this._tag=null;
+			this._toolTip=null;
+		}
+
+		/**
+		*<p>预初始化。</p>
+		*@internal 子类可在此函数内设置、修改属性默认值
+		*/
+		__proto.preinitialize=function(){}
+		/**
+		*<p>创建并添加控件子节点。</p>
+		*@internal 子类可在此函数内创建并添加子节点。
+		*/
+		__proto.createChildren=function(){}
+		/**
+		*<p>控件初始化。</p>
+		*@internal 在此子对象已被创建，可以对子对象进行修改。
+		*/
+		__proto.initialize=function(){}
+		/**
+		*<p>延迟运行指定的函数。</p>
+		*<p>在控件被显示在屏幕之前调用，一般用于延迟计算数据。</p>
+		*@param method 要执行的函数的名称。例如，functionName。
+		*@param args 传递给 <code>method</code> 函数的可选参数列表。
+		*
+		*@see #runCallLater()
+		*/
+		__proto.callLater=function(method,args){
+			Laya.timer.callLater(this,method,args);
+		}
+
+		/**
+		*<p>如果有需要延迟调用的函数（通过 <code>callLater</code> 函数设置），则立即执行延迟调用函数。</p>
+		*@param method 要执行的函数名称。例如，functionName。
+		*@see #callLater()
+		*/
+		__proto.runCallLater=function(method){
+			Laya.timer.runCallLater(this,method);
+		}
+
+		/**
+		*<p>立即执行影响宽高度量的延迟调用函数。</p>
+		*@internal <p>使用 <code>runCallLater</code> 函数，立即执行影响宽高度量的延迟运行函数(使用 <code>callLater</code> 设置延迟执行函数)。</p>
+		*@see #callLater()
+		*@see #runCallLater()
+		*/
+		__proto.commitMeasure=function(){}
+		/**
+		*<p>重新调整对象的大小。</p>
+		*/
+		__proto.changeSize=function(){
+			this.event("resize");
+		}
+
+		/**
+		*@private
+		*<p>获取对象的布局样式。</p>
+		*/
+		__proto.getLayout=function(){
+			this._layout===LayoutStyle.EMPTY && (this._layout=new LayoutStyle());
+			return this._layout;
+		}
+
+		/**
+		*@private
+		*<p>指定对象是否可使用布局。</p>
+		*<p>如果值为true,则此对象可以使用布局样式，否则不使用布局样式。</p>
+		*@param value 一个 Boolean 值，指定对象是否可使用布局。
+		*/
+		__proto._setLayoutEnabled=function(value){
+			if (this._layout && this._layout.enable !=value){
+				this._layout.enable=value;
+				this.on("added",this,this.onAdded);
+				this.on("removed",this,this.onRemoved);
+				if (this.parent){
+					this.onAdded();
+				}
+			}
+		}
+
+		/**
+		*对象从显示列表移除的事件侦听处理函数。
+		*/
+		__proto.onRemoved=function(){
+			this.parent.off("resize",this,this.onCompResize);
+		}
+
+		/**
+		*对象被添加到显示列表的事件侦听处理函数。
+		*/
+		__proto.onAdded=function(){
+			this.parent.on("resize",this,this.onCompResize);
+			this.resetLayoutX();
+			this.resetLayoutY();
+		}
+
+		/**
+		*父容器的 <code>Event.RESIZE</code> 事件侦听处理函数。
+		*/
+		__proto.onCompResize=function(){
+			if (this._layout && this._layout.enable){
+				this.resetLayoutX();
+				this.resetLayoutY();
+			}
+		}
+
+		/**
+		*<p>重置对象的 <code>X</code> 轴（水平方向）布局。</p>
+		*/
+		__proto.resetLayoutX=function(){
+			var layout=this._layout;
+			if (!isNaN(layout.anchorX))this.pivotX=layout.anchorX *this.width;
+			if (!this.layoutEnabled)return;
+			var parent=this.parent;
+			if (parent){
+				if (!isNaN(layout.centerX)){
+					this.x=Math.round((parent.width-this.displayWidth)*0.5+layout.centerX+this.pivotX *this.scaleX);
+					}else if (!isNaN(layout.left)){
+					this.x=Math.round(layout.left+this.pivotX *this.scaleX);
+					if (!isNaN(layout.right)){
+						this.width=(parent._width-layout.left-layout.right)/ (this.scaleX || 0.01);
+					}
+					}else if (!isNaN(layout.right)){
+					this.x=Math.round(parent.width-this.displayWidth-layout.right+this.pivotX *this.scaleX);
+				}
+			}
+		}
+
+		/**
+		*<p>重置对象的 <code>Y</code> 轴（垂直方向）布局。</p>
+		*/
+		__proto.resetLayoutY=function(){
+			var layout=this._layout;
+			if (!isNaN(layout.anchorY))this.pivotY=layout.anchorY *this.height;
+			if (!this.layoutEnabled)return;
+			var parent=this.parent;
+			if (parent){
+				if (!isNaN(layout.centerY)){
+					this.y=Math.round((parent.height-this.displayHeight)*0.5+layout.centerY+this.pivotY *this.scaleY);
+					}else if (!isNaN(layout.top)){
+					this.y=Math.round(layout.top+this.pivotY *this.scaleY);
+					if (!isNaN(layout.bottom)){
+						this.height=(parent._height-layout.top-layout.bottom)/ (this.scaleY || 0.01);
+					}
+					}else if (!isNaN(layout.bottom)){
+					this.y=Math.round(parent.height-this.displayHeight-layout.bottom+this.pivotY *this.scaleY);
+				}
+			}
+		}
+
+		/**
+		*对象的 <code>Event.MOUSE_OVER</code> 事件侦听处理函数。
+		*/
+		__proto.onMouseOver=function(e){
+			Laya.stage.event("showtip",this._toolTip);
+		}
+
+		/**
+		*对象的 <code>Event.MOUSE_OUT</code> 事件侦听处理函数。
+		*/
+		__proto.onMouseOut=function(e){
+			Laya.stage.event("hidetip",this._toolTip);
+		}
+
+		/**
+		*<p>对象的显示宽度（以像素为单位）。</p>
+		*/
+		__getset(0,__proto,'displayWidth',function(){
+			return this.width *this.scaleX;
+		});
+
+		/**
+		*<p>表示显示对象的宽度，以像素为单位。</p>
+		*<p><b>注：</b>当值为0时，宽度为自适应大小。</p>
+		*/
+		__getset(0,__proto,'width',function(){
+			if (this._width)return this._width;
+			return this.measureWidth;
+			},function(value){
+			if (this._width !=value){
+				this._width=value;
+				this.conchModel && this.conchModel.size(this._width,this._height);
+				this.callLater(this.changeSize);
+				if (this._layout.enable && (!isNaN(this._layout.centerX)|| !isNaN(this._layout.right)|| !isNaN(this._layout.anchorX)))this.resetLayoutX();
+			}
+		});
+
+		/**
+		*<p>显示对象的实际显示区域宽度（以像素为单位）。</p>
+		*/
+		__getset(0,__proto,'measureWidth',function(){
+			var max=0;
+			this.commitMeasure();
+			for (var i=this.numChildren-1;i >-1;i--){
+				var comp=this.getChildAt(i);
+				if (comp.visible){
+					max=Math.max(comp.x+comp.width *comp.scaleX,max);
+				}
+			}
+			return max;
+		});
+
+		/**
+		*<p>对象的显示高度（以像素为单位）。</p>
+		*/
+		__getset(0,__proto,'displayHeight',function(){
+			return this.height *this.scaleY;
+		});
+
+		/**
+		*<p>表示显示对象的高度，以像素为单位。</p>
+		*<p><b>注：</b>当值为0时，高度为自适应大小。</p>
+		*/
+		__getset(0,__proto,'height',function(){
+			if (this._height)return this._height;
+			return this.measureHeight;
+			},function(value){
+			if (this._height !=value){
+				this._height=value;
+				this.conchModel && this.conchModel.size(this._width,this._height);
+				this.callLater(this.changeSize);
+				if (this._layout.enable && (!isNaN(this._layout.centerY)|| !isNaN(this._layout.bottom)|| !isNaN(this._layout.anchorY)))this.resetLayoutY();
+			}
+		});
+
+		/**
+		*<p>数据赋值，通过对UI赋值来控制UI显示逻辑。</p>
+		*<p>简单赋值会更改组件的默认属性，使用大括号可以指定组件的任意属性进行赋值。</p>
+		*@example
+		//默认属性赋值
+		dataSource={label1:"改变了label",checkbox1:true};//(更改了label1的text属性值，更改checkbox1的selected属性)。
+		//任意属性赋值
+		dataSource={label2:{text:"改变了label",size:14},checkbox2:{selected:true,x:10}};
+		*/
+		__getset(0,__proto,'dataSource',function(){
+			return this._dataSource;
+			},function(value){
+			this._dataSource=value;
+			for (var prop in this._dataSource){
+				if (this.hasOwnProperty(prop)&& !((typeof (this[prop])=='function'))){
+					this[prop]=this._dataSource[prop];
+				}
+			}
+		});
+
+		/**@inheritDoc */
+		__getset(0,__proto,'scaleY',_super.prototype._$get_scaleY,function(value){
+			if (_super.prototype._$get_scaleY.call(this)!=value){
+				_super.prototype._$set_scaleY.call(this,value);
+				this.callLater(this.changeSize);
+				this._layout.enable && this.resetLayoutY();
+			}
+		});
+
+		/**
+		*<p>显示对象的实际显示区域高度（以像素为单位）。</p>
+		*/
+		__getset(0,__proto,'measureHeight',function(){
+			var max=0;
+			this.commitMeasure();
+			for (var i=this.numChildren-1;i >-1;i--){
+				var comp=this.getChildAt(i);
+				if (comp.visible){
+					max=Math.max(comp.y+comp.height *comp.scaleY,max);
+				}
+			}
+			return max;
+		});
+
+		/**@inheritDoc */
+		__getset(0,__proto,'scaleX',_super.prototype._$get_scaleX,function(value){
+			if (_super.prototype._$get_scaleX.call(this)!=value){
+				_super.prototype._$set_scaleX.call(this,value);
+				this.callLater(this.changeSize);
+				this._layout.enable && this.resetLayoutX();
+			}
+		});
+
+		/**
+		*<p>从组件顶边到其内容区域顶边之间的垂直距离（以像素为单位）。</p>
+		*/
+		__getset(0,__proto,'top',function(){
+			return this._layout.top;
+			},function(value){
+			if (value !=this._layout.top){
+				this.getLayout().top=value;
+				this._setLayoutEnabled(true);
+			}
+			this.resetLayoutY();
+		});
+
+		/**
+		*<p>从组件底边到其内容区域底边之间的垂直距离（以像素为单位）。</p>
+		*/
+		__getset(0,__proto,'bottom',function(){
+			return this._layout.bottom;
+			},function(value){
+			if (value !=this._layout.bottom){
+				this.getLayout().bottom=value;
+				this._setLayoutEnabled(true);
+			}
+			this.resetLayoutY();
+		});
+
+		/**
+		*<p>从组件左边到其内容区域左边之间的水平距离（以像素为单位）。</p>
+		*/
+		__getset(0,__proto,'left',function(){
+			return this._layout.left;
+			},function(value){
+			if (value !=this._layout.left){
+				this.getLayout().left=value;
+				this._setLayoutEnabled(true);
+			}
+			this.resetLayoutX();
+		});
+
+		/**
+		*<p>从组件右边到其内容区域右边之间的水平距离（以像素为单位）。</p>
+		*/
+		__getset(0,__proto,'right',function(){
+			return this._layout.right;
+			},function(value){
+			if (value !=this._layout.right){
+				this.getLayout().right=value;
+				this._setLayoutEnabled(true);
+			}
+			this.resetLayoutX();
+		});
+
+		/**
+		*<p>在父容器中，此对象的水平方向中轴线与父容器的水平方向中心线的距离（以像素为单位）。</p>
+		*/
+		__getset(0,__proto,'centerX',function(){
+			return this._layout.centerX;
+			},function(value){
+			if (value !=this._layout.centerX){
+				this.getLayout().centerX=value;
+				this._setLayoutEnabled(true);
+			}
+			this.resetLayoutX();
+		});
+
+		/**
+		*<p>在父容器中，此对象的垂直方向中轴线与父容器的垂直方向中心线的距离（以像素为单位）。</p>
+		*/
+		__getset(0,__proto,'centerY',function(){
+			return this._layout.centerY;
+			},function(value){
+			if (value !=this._layout.centerY){
+				this.getLayout().centerY=value;
+				this._setLayoutEnabled(true);
+			}
+			this.resetLayoutY();
+		});
+
+		/**X轴锚点，值为0-1*/
+		__getset(0,__proto,'anchorX',function(){
+			return this._layout.anchorX;
+			},function(value){
+			if (value !=this._layout.anchorX){
+				this.getLayout().anchorX=value;
+				this._setLayoutEnabled(true);
+			}
+			this.resetLayoutX();
+		});
+
+		/**Y轴锚点，值为0-1*/
+		__getset(0,__proto,'anchorY',function(){
+			return this._layout.anchorY;
+			},function(value){
+			if (value !=this._layout.anchorY){
+				this.getLayout().anchorY=value;
+				this._setLayoutEnabled(true);
+			}
+			this.resetLayoutY();
+		});
+
+		/**
+		*<p>对象的标签。</p>
+		*@internal 冗余字段，可以用来储存数据。
+		*/
+		__getset(0,__proto,'tag',function(){
+			return this._tag;
+			},function(value){
+			this._tag=value;
+		});
+
+		/**
+		*<p>鼠标悬停提示。</p>
+		*<p>可以赋值为文本 <code>String</code> 或函数 <code>Handler</code> ，用来实现自定义样式的鼠标提示和参数携带等。</p>
+		*@example
+		*private var _testTips:TestTipsUI=new TestTipsUI();
+		*private function testTips():void {
+			//简单鼠标提示
+			*btn2.toolTip="这里是鼠标提示&lt;b&gt;粗体&lt;/b&gt;&lt;br&gt;换行";
+			//自定义的鼠标提示
+			*btn1.toolTip=showTips1;
+			//带参数的自定义鼠标提示
+			*clip.toolTip=new Handler(this,showTips2,["clip"]);
+			*}
+		*private function showTips1():void {
+			*_testTips.label.text="这里是按钮["+btn1.label+"]";
+			*tip.addChild(_testTips);
+			*}
+		*private function showTips2(name:String):void {
+			*_testTips.label.text="这里是"+name;
+			*tip.addChild(_testTips);
+			*}
+		*/
+		__getset(0,__proto,'toolTip',function(){
+			return this._toolTip;
+			},function(value){
+			if (this._toolTip !=value){
+				this._toolTip=value;
+				if (value !=null){
+					this.on("mouseover",this,this.onMouseOver);
+					this.on("mouseout",this,this.onMouseOut);
+					}else {
+					this.off("mouseover",this,this.onMouseOver);
+					this.off("mouseout",this,this.onMouseOut);
+				}
+			}
+		});
+
+		/**
+		*XML 数据。
+		*/
+		__getset(0,__proto,'comXml',function(){
+			return this._comXml;
+			},function(value){
+			this._comXml=value;
+		});
+
+		/**是否变灰。*/
+		__getset(0,__proto,'gray',function(){
+			return this._gray;
+			},function(value){
+			if (value!==this._gray){
+				this._gray=value;
+				UIUtils.gray(this,value);
+			}
+		});
+
+		/**是否禁用页面，设置为true后，会变灰并且禁用鼠标。*/
+		__getset(0,__proto,'disabled',function(){
+			return this._disabled;
+			},function(value){
+			if (value!==this._disabled){
+				this.gray=this._disabled=value;
+				this.mouseEnabled=!value;
+			}
+		});
+
+		return Component;
+	})(Sprite)
+
+
+	/**
 	*<p> <code>Text</code> 类用于创建显示对象以显示文本。</p>
 	*<p>
 	*注意：如果运行时系统找不到设定的字体，则用系统默认的字体渲染文字，从而导致显示异常。(通常电脑上显示正常，在一些移动端因缺少设置的字体而显示异常)。
@@ -16140,6 +17075,213 @@ var Laya=window.Laya=(function(window,document){
 		HTMLCanvas._createContext=null
 		return HTMLCanvas;
 	})(Bitmap)
+
+
+	/**
+	*<code>Image</code> 类是用于表示位图图像或绘制图形的显示对象。
+	*Image和Clip组件是唯一支持异步加载的两个组件，比如img.skin="abc/xxx.png"，其他UI组件均不支持异步加载。
+	*
+	*@example <caption>以下示例代码，创建了一个新的 <code>Image</code> 实例，设置了它的皮肤、位置信息，并添加到舞台上。</caption>
+	*package
+	*{
+		*import laya.ui.Image;
+		*public class Image_Example
+		*{
+			*public function Image_Example()
+			*{
+				*Laya.init(640,800);//设置游戏画布宽高。
+				*Laya.stage.bgColor="#efefef";//设置画布的背景颜色。
+				*onInit();
+				*}
+			*private function onInit():void
+			*{
+				*var bg:Image=new Image("resource/ui/bg.png");//创建一个 Image 类的实例对象 bg ,并传入它的皮肤。
+				*bg.x=100;//设置 bg 对象的属性 x 的值，用于控制 bg 对象的显示位置。
+				*bg.y=100;//设置 bg 对象的属性 y 的值，用于控制 bg 对象的显示位置。
+				*bg.sizeGrid="40,10,5,10";//设置 bg 对象的网格信息。
+				*bg.width=150;//设置 bg 对象的宽度。
+				*bg.height=250;//设置 bg 对象的高度。
+				*Laya.stage.addChild(bg);//将此 bg 对象添加到显示列表。
+				*var image:Image=new Image("resource/ui/image.png");//创建一个 Image 类的实例对象 image ,并传入它的皮肤。
+				*image.x=100;//设置 image 对象的属性 x 的值，用于控制 image 对象的显示位置。
+				*image.y=100;//设置 image 对象的属性 y 的值，用于控制 image 对象的显示位置。
+				*Laya.stage.addChild(image);//将此 image 对象添加到显示列表。
+				*}
+			*}
+		*}
+	*@example
+	*Laya.init(640,800);//设置游戏画布宽高
+	*Laya.stage.bgColor="#efefef";//设置画布的背景颜色
+	*onInit();
+	*function onInit(){
+		*var bg=new laya.ui.Image("resource/ui/bg.png");//创建一个 Image 类的实例对象 bg ,并传入它的皮肤。
+		*bg.x=100;//设置 bg 对象的属性 x 的值，用于控制 bg 对象的显示位置。
+		*bg.y=100;//设置 bg 对象的属性 y 的值，用于控制 bg 对象的显示位置。
+		*bg.sizeGrid="40,10,5,10";//设置 bg 对象的网格信息。
+		*bg.width=150;//设置 bg 对象的宽度。
+		*bg.height=250;//设置 bg 对象的高度。
+		*Laya.stage.addChild(bg);//将此 bg 对象添加到显示列表。
+		*var image=new laya.ui.Image("resource/ui/image.png");//创建一个 Image 类的实例对象 image ,并传入它的皮肤。
+		*image.x=100;//设置 image 对象的属性 x 的值，用于控制 image 对象的显示位置。
+		*image.y=100;//设置 image 对象的属性 y 的值，用于控制 image 对象的显示位置。
+		*Laya.stage.addChild(image);//将此 image 对象添加到显示列表。
+		*}
+	*@example
+	*class Image_Example {
+		*constructor(){
+			*Laya.init(640,800);//设置游戏画布宽高。
+			*Laya.stage.bgColor="#efefef";//设置画布的背景颜色。
+			*this.onInit();
+			*}
+		*private onInit():void {
+			*var bg:laya.ui.Image=new laya.ui.Image("resource/ui/bg.png");//创建一个 Image 类的实例对象 bg ,并传入它的皮肤。
+			*bg.x=100;//设置 bg 对象的属性 x 的值，用于控制 bg 对象的显示位置。
+			*bg.y=100;//设置 bg 对象的属性 y 的值，用于控制 bg 对象的显示位置。
+			*bg.sizeGrid="40,10,5,10";//设置 bg 对象的网格信息。
+			*bg.width=150;//设置 bg 对象的宽度。
+			*bg.height=250;//设置 bg 对象的高度。
+			*Laya.stage.addChild(bg);//将此 bg 对象添加到显示列表。
+			*var image:laya.ui.Image=new laya.ui.Image("resource/ui/image.png");//创建一个 Image 类的实例对象 image ,并传入它的皮肤。
+			*image.x=100;//设置 image 对象的属性 x 的值，用于控制 image 对象的显示位置。
+			*image.y=100;//设置 image 对象的属性 y 的值，用于控制 image 对象的显示位置。
+			*Laya.stage.addChild(image);//将此 image 对象添加到显示列表。
+			*}
+		*}
+	*@see laya.ui.AutoBitmap
+	*/
+	//class laya.ui.Image extends laya.ui.Component
+	var Image=(function(_super){
+		function Image(skin){
+			this._bitmap=null;
+			this._skin=null;
+			this._group=null;
+			Image.__super.call(this);
+			this.skin=skin;
+		}
+
+		__class(Image,'laya.ui.Image',_super);
+		var __proto=Image.prototype;
+		/**@inheritDoc */
+		__proto.destroy=function(destroyChild){
+			(destroyChild===void 0)&& (destroyChild=true);
+			_super.prototype.destroy.call(this,true);
+			this._bitmap && this._bitmap.destroy();
+			this._bitmap=null;
+		}
+
+		/**
+		*销毁对象并释放加载的皮肤资源。
+		*/
+		__proto.dispose=function(){
+			this.destroy(true);
+			Laya.loader.clearRes(this._skin);
+		}
+
+		/**@inheritDoc */
+		__proto.createChildren=function(){
+			this.graphics=this._bitmap=new AutoBitmap();
+			this._bitmap.autoCacheCmd=false;
+		}
+
+		/**
+		*@private
+		*设置皮肤资源。
+		*/
+		__proto.setSource=function(url,img){
+			if (url===this._skin && img){
+				this.source=img
+				this.onCompResize();
+			}
+		}
+
+		/**
+		*@copy laya.ui.AutoBitmap#source
+		*/
+		__getset(0,__proto,'source',function(){
+			return this._bitmap.source;
+			},function(value){
+			if (!this._bitmap)return;
+			this._bitmap.source=value;
+			this.event("loaded");
+			this.repaint();
+		});
+
+		/**@inheritDoc */
+		__getset(0,__proto,'dataSource',_super.prototype._$get_dataSource,function(value){
+			this._dataSource=value;
+			if ((typeof value=='string'))this.skin=value;
+			else _super.prototype._$set_dataSource.call(this,value);
+		});
+
+		/**@inheritDoc */
+		__getset(0,__proto,'measureHeight',function(){
+			return this._bitmap.height;
+		});
+
+		/**
+		*<p>对象的皮肤地址，以字符串表示。</p>
+		*<p>如果资源未加载，则先加载资源，加载完成后应用于此对象。</p>
+		*<b>注意：</b>资源加载完成后，会自动缓存至资源库中。
+		*/
+		__getset(0,__proto,'skin',function(){
+			return this._skin;
+			},function(value){
+			if (this._skin !=value){
+				this._skin=value;
+				if (value){
+					var source=Loader.getRes(value);
+					if (source){
+						this.source=source;
+						this.onCompResize();
+					}else Laya.loader.load(this._skin,Handler.create(this,this.setSource,[this._skin]),null,"image",1,true,this._group);
+					}else {
+					this.source=null;
+				}
+			}
+		});
+
+		/**
+		*资源分组。
+		*/
+		__getset(0,__proto,'group',function(){
+			return this._group;
+			},function(value){
+			if (value && this._skin)Loader.setGroup(this._skin,value);
+			this._group=value;
+		});
+
+		/**
+		*<p>当前实例的位图 <code>AutoImage</code> 实例的有效缩放网格数据。</p>
+		*<p>数据格式："上边距,右边距,下边距,左边距,是否重复填充(值为0：不重复填充，1：重复填充)"，以逗号分隔。
+		*<ul><li>例如："4,4,4,4,1"。</li></ul></p>
+		*@see laya.ui.AutoBitmap#sizeGrid
+		*/
+		__getset(0,__proto,'sizeGrid',function(){
+			if (this._bitmap.sizeGrid)return this._bitmap.sizeGrid.join(",");
+			return null;
+			},function(value){
+			this._bitmap.sizeGrid=UIUtils.fillArray(Styles.defaultSizeGrid,value,Number);
+		});
+
+		/**@inheritDoc */
+		__getset(0,__proto,'measureWidth',function(){
+			return this._bitmap.width;
+		});
+
+		/**@inheritDoc */
+		__getset(0,__proto,'width',_super.prototype._$get_width,function(value){
+			_super.prototype._$set_width.call(this,value);
+			this._bitmap.width=value==0 ? 0.0000001 :value;
+		});
+
+		/**@inheritDoc */
+		__getset(0,__proto,'height',_super.prototype._$get_height,function(value){
+			_super.prototype._$set_height.call(this,value);
+			this._bitmap.height=value==0 ? 0.0000001 :value;
+		});
+
+		return Image;
+	})(Component)
 
 
 	/**

@@ -21,7 +21,7 @@ package tftool
 			loadModel(path).then(
 			function(mobilenet:*):*
 			{
-				if (forTransform)
+				if (!forTransform)
 				{
 					complete.runWith(mobilenet);
 					return;
@@ -32,6 +32,20 @@ package tftool
 				complete.runWith(modelO);
 			}
 			);
+		}
+		
+		public static function predict(modelO:*,ele:*, topK:int, complete:Handler):void
+		{
+			var img:* = ImageTools.elementToTFImage(ele);
+			modelO.predict(img).data().then(
+			function(rst:*):*
+			{
+				
+				var clist:Array = ImageClass.getTopKClasses(rst, 4);
+				//trace("class:", clist);
+				complete.runWith([clist]);
+			}
+			)
 		}
 	
 	}

@@ -13,14 +13,14 @@ package tftool {
 		
 		}
 		
-		public static function elementToTFImage(webcamElement:*):* {
+		public static function elementToTFImage(webcamElement:*,width:int=224,height:int=224):* {
 			return tidy(function():* {
 				// Reads the image as a Tensor from the webcam <video> element.
 					var webcamImage:* = fromPixels(webcamElement);
 					
 					// Crop the image so we're using the center square of the rectangular
 					// webcam.
-					var croppedImage:* = cropImage(webcamImage);
+					var croppedImage:* = cropImage(webcamImage,width,height);
 					
 					// Expand the outer most dimension so we have a batch size of 1.
 					var batchedImage:* = croppedImage.expandDims(0);
@@ -31,14 +31,15 @@ package tftool {
 				});
 		}
 		
-		public static function cropImage(img):* {
+		public static function cropImage(img,width,height):* {
 			var size:int = Math.min(img.shape[0], img.shape[1]);
 			var centerHeight:int = img.shape[0] / 2;
-			var beginHeight:int = centerHeight - (size / 2);
+			var beginHeight:int = centerHeight - (height / 2);
 			var centerWidth:int = img.shape[1] / 2;
-			var beginWidth:int = centerWidth - (size / 2);
-			return img.slice([beginHeight, beginWidth, 0], [size, size, 3]);
+			var beginWidth:int = centerWidth - (width / 2);
+			return img.slice([beginHeight, beginWidth, 0], [width, height, 3]);
 		}
+		
 	}
 
 }
