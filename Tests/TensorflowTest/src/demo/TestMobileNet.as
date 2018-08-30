@@ -3,6 +3,7 @@ package demo
 	import hooktool.XmlHttpRequestHook;
 	import laya.display.Sprite;
 	import laya.display.Text;
+	import laya.events.Event;
 	import laya.net.Loader;
 	import laya.resource.Texture;
 	import laya.ui.Image;
@@ -18,13 +19,16 @@ package demo
 	{
 		
 		private var pic:String;
+		private var pics:Array;
 		public function TestMobileNet() 
 		{
 			Laya.init(1000, 900);
 			
-			pic = "res/cat.png";
-			pic = "res/rabit.png";
-			Laya.loader.load(pic, new Handler(this, test));
+			pics = ["res/cat.png","res/rabit.png","res/dog.png","res/pig.png"];
+			//pic = "res/cat.png";
+			//pic = "res/rabit.png";
+			//pic = "res/dog.png";
+			Laya.loader.load(pics, new Handler(this, test));
 		}
 		
 		private function test():void
@@ -35,43 +39,60 @@ package demo
 			MobileNetTool.loadMobileNet(path, new Handler(this, onModelLoaded));
 		}
 		
-		private function onModelLoaded(modelO:*):void
+		private var image:Image;
+		private var _i:int=0;
+		private function showOne():void
 		{
-			trace(modelO);
-			//XmlHttpRequestHook.traceResList();
+			_i = _i % pics.length;
+			pic = pics[_i];
+			_i++;
+			image.skin = pic;
 			
 			var tex:Texture;
 			tex = Loader.getRes(pic);
-			
-			
-			var image:Image;
-			image = new Image();
-			image.skin = pic;
-			image.pos(100, 100);
-			Laya.stage.addChild(image);
-			
 			
 			var ele:*;
 			ele = tex.bitmap.source;
 			ele.width = 224;
 			ele.height = 224;
-
-
-			MobileNetTool.predict(modelO, ele, 4, new Handler(this, onPredicted));
 			
+			MobileNetTool.predict(modelO, ele, 4, new Handler(this, onPredicted));
 		}
 		
+		private var modelO:Object;
+		private function onModelLoaded(modelO:*):void
+		{
+			this.modelO = modelO;
+			trace(modelO);
+			//XmlHttpRequestHook.traceResList();
+
+			
+			image = new Image();
+			
+			image.pos(100, 100);
+			Laya.stage.addChild(image);
+			
+			showOne();
+			
+			Laya.stage.on(Event.CLICK, this, showOne);
+	
+		}
+		private var text:Text;
 		private function onPredicted(rst:*):void
 		{
-			trace(rst);
+			//trace(rst);
 			var i:int, len:int;
 			len = rst.length;
 			
-			var text:Text;
-			text = new Text();
-			text.color = "#ff0000";
-			text.pos(100, 100);
-			Laya.stage.addChild(text);
+			if (!text)
+			{
+				text = new Text();
+				text.color = "#ff0000";
+				text.fontSize = 20;
+				text.pos(100, 100);
+				Laya.stage.addChild(text);
+			}
+			
 			
 			var strs:Array;
 			strs = [];

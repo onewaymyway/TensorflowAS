@@ -424,10 +424,14 @@ var Laya=window.Laya=(function(window,document){
 	var TestMobileNet=(function(){
 		function TestMobileNet(){
 			this.pic=null;
+			this.pics=null;
+			this.image=null;
+			this._i=0;
+			this.modelO=null;
+			this.text=null;
 			Laya.init(1000,900);
-			this.pic="res/cat.png";
-			this.pic="res/rabit.png";
-			Laya.loader.load(this.pic,new Handler(this,this.test));
+			this.pics=["res/cat.png","res/rabit.png","res/dog.png","res/pig.png"];
+			Laya.loader.load(this.pics,new Handler(this,this.test));
 		}
 
 		__class(TestMobileNet,'demo.TestMobileNet');
@@ -438,31 +442,40 @@ var Laya=window.Laya=(function(window,document){
 			MobileNetTool.loadMobileNet(path,new Handler(this,this.onModelLoaded));
 		}
 
-		__proto.onModelLoaded=function(modelO){
-			console.log(modelO);
+		__proto.showOne=function(){
+			this._i=this._i % this.pics.length;
+			this.pic=this.pics[this._i];
+			this._i++;
+			this.image.skin=this.pic;
 			var tex;
 			tex=Loader.getRes(this.pic);
-			var image;
-			image=new Image();
-			image.skin=this.pic;
-			image.pos(100,100);
-			Laya.stage.addChild(image);
 			var ele;
 			ele=tex.bitmap.source;
 			ele.width=224;
 			ele.height=224;
-			MobileNetTool.predict(modelO,ele,4,new Handler(this,this.onPredicted));
+			MobileNetTool.predict(this.modelO,ele,4,new Handler(this,this.onPredicted));
+		}
+
+		__proto.onModelLoaded=function(modelO){
+			this.modelO=modelO;
+			console.log(modelO);
+			this.image=new Image();
+			this.image.pos(100,100);
+			Laya.stage.addChild(this.image);
+			this.showOne();
+			Laya.stage.on("click",this,this.showOne);
 		}
 
 		__proto.onPredicted=function(rst){
-			console.log(rst);
 			var i=0,len=0;
 			len=rst.length;
-			var text;
-			text=new Text();
-			text.color="#ff0000";
-			text.pos(100,100);
-			Laya.stage.addChild(text);
+			if (!this.text){
+				this.text=new Text();
+				this.text.color="#ff0000";
+				this.text.fontSize=20;
+				this.text.pos(100,100);
+				Laya.stage.addChild(this.text);
+			};
 			var strs;
 			strs=[];
 			for (i=0;i < len;i++){
@@ -470,7 +483,7 @@ var Laya=window.Laya=(function(window,document){
 				tP=rst[i];
 				strs.push(tP.className+":"+Math.floor(tP.probability*100));
 			}
-			text.text=strs.join("\n");
+			this.text.text=strs.join("\n");
 		}
 
 		return TestMobileNet;
