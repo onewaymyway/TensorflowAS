@@ -430,7 +430,7 @@ var Laya=window.Laya=(function(window,document){
 			this.modelO=null;
 			this.text=null;
 			Laya.init(1000,900);
-			this.pics=["res/cat.png","res/rabit.png","res/dog.png","res/pig.png"];
+			this.pics=["res/cat.png","res/rabit.png","res/dog.png","res/pig.png","res/gorilla.png"];
 			Laya.loader.load(this.pics,new Handler(this,this.test));
 		}
 
@@ -483,6 +483,7 @@ var Laya=window.Laya=(function(window,document){
 				tP=rst[i];
 				strs.push(tP.className+":"+Math.floor(tP.probability*100));
 			}
+			strs.push("\nclick to switch pics");
 			this.text.text=strs.join("\n");
 		}
 
