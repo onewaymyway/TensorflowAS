@@ -30,6 +30,8 @@ def loadOne(remotePath):
         return None
     except Exception as e:
         print("fail to load:",remotePath,e);
+        if os.path.exists(localPath):
+            os.remove(localPath)
         time.sleep(2);
         return remotePath
     
