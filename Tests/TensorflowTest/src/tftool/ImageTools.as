@@ -1,0 +1,44 @@
+package tftool {
+	import tf.fromPixels;
+	import tf.scalar;
+	import tf.tidy;
+	
+	/**
+	 * ...
+	 * @author ww
+	 */
+	public class ImageTools {
+		
+		public function ImageTools() {
+		
+		}
+		
+		public static function elementToTFImage(webcamElement:*):* {
+			return tidy(function():* {
+				// Reads the image as a Tensor from the webcam <video> element.
+					var webcamImage:* = fromPixels(webcamElement);
+					
+					// Crop the image so we're using the center square of the rectangular
+					// webcam.
+					var croppedImage:* = cropImage(webcamImage);
+					
+					// Expand the outer most dimension so we have a batch size of 1.
+					var batchedImage:* = croppedImage.expandDims(0);
+					
+					// Normalize the image between -1 and 1. The image comes in between 0-255,
+					// so we divide by 127 and subtract 1.
+					return batchedImage.toFloat().div(scalar(127)).sub(scalar(1));
+				});
+		}
+		
+		public static function cropImage(img):* {
+			var size:int = Math.min(img.shape[0], img.shape[1]);
+			var centerHeight:int = img.shape[0] / 2;
+			var beginHeight:int = centerHeight - (size / 2);
+			var centerWidth:int = img.shape[1] / 2;
+			var beginWidth:int = centerWidth - (size / 2);
+			return img.slice([beginHeight, beginWidth, 0], [size, size, 3]);
+		}
+	}
+
+}

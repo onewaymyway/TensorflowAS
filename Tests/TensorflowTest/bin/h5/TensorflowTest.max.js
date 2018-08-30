@@ -419,73 +419,25 @@ var Laya=window.Laya=(function(window,document){
 	*...
 	*@author ww
 	*/
-	//class demo.DemoBase
-	var DemoBase=(function(){
-		function DemoBase(){
-			this.imgPath="res/bbt1.jpg";
-			this.video=null;
-			this.useVideo=false;
-			Laya.init(1000,900);
-			Laya.stage.bgColor=null;
-			ResourceVersion.enable("version.json",Handler.create(this,this.beginLoad),2);
+	//class demo.TestMobileNet
+	var TestMobileNet=(function(){
+		function TestMobileNet(){
+			this.test();
 		}
 
-		__class(DemoBase,'demo.DemoBase');
-		var __proto=DemoBase.prototype;
-		__proto.initConfig=function(){}
-		__proto.beginLoad=function(){
-			this.initConfig();
-			Laya.loader.load(["res/atlas/comp.atlas",this.imgPath],Handler.create(this,this.onLoaded));
+		__class(TestMobileNet,'demo.TestMobileNet');
+		var __proto=TestMobileNet.prototype;
+		__proto.test=function(){
+			var path;
+			path="http://10.10.20.40/mobilenet_v1_0.25_224/model.json";
+			MobileNetTool.loadMobileNet(path,new Handler(this,this.onModelLoaded));
 		}
 
-		__proto.testImage=function(){
-			DemoBase.texture=Loader.getRes(this.imgPath);
-			var sp;
-			sp=new Sprite();
-			sp.graphics.drawTexture(DemoBase.texture);
-			sp.pos(100,100);
-			Laya.stage.addChild(sp);
+		__proto.onModelLoaded=function(modelO){
+			console.log(modelO);
 		}
 
-		__proto.onLoaded=function(){
-			if (this.useVideo){
-				this.video=LayaArTool.createVideo();
-				this.video.style["z-index"]=-1;
-				var completeHandler;
-				completeHandler=new Handler(this,this.initComplete);
-				LayaArTool.initPCCamara(this.video,completeHandler);
-			}
-			else {
-				this.initComplete();
-			}
-		}
-
-		__proto.initComplete=function(){
-			if (this.useVideo){
-				this.video.play();
-				Laya.timer.once(1000,this,this.videoSizeOK);
-			}else
-			this.initModels();
-		}
-
-		__proto.videoSizeOK=function(){
-			this.video.width=this.video.videoWidth;
-			this.video.height=this.video.videoHeight;
-			Laya.stage.size(this.video.width,this.video.height);
-			this.initModels();
-		}
-
-		__proto.initModels=function(){
-			this.modelInited();
-		}
-
-		__proto.modelInited=function(){
-			this.allInited();
-		}
-
-		__proto.allInited=function(){}
-		DemoBase.texture=null
-		return DemoBase;
+		return TestMobileNet;
 	})()
 
 
@@ -493,123 +445,72 @@ var Laya=window.Laya=(function(window,document){
 	*...
 	*@author ww
 	*/
-	//class posnet.PoseNetTools
-	var PoseNetTools=(function(){
-		function PoseNetTools(){}
-		__class(PoseNetTools,'posnet.PoseNetTools');
-		PoseNetTools.setModuleRoot=function(rootPath){
-			Browser.window.moduleRoot=rootPath;
-		}
-
-		PoseNetTools.init=function(complete){
-			var posenet;
-			posenet=Browser.window.posenet;
-			posenet.load().then(function(net){
-				PoseNetTools.netModel=net;
-				complete.run();
-			})
-		}
-
-		PoseNetTools.estimatePose=function(img,complete){
-			var imageScaleFactor=0.5;
-			var flipHorizontal=false;
-			var outputStride=16;
-			var maxPoseDetections=2;
-			PoseNetTools.netModel.estimateSinglePose(img,imageScaleFactor,flipHorizontal,outputStride,maxPoseDetections).then(function(poses){
-				console.log("estimateMultiplePoses success");
-				if(!((poses instanceof Array))){
-					poses=[poses];
-				}
-				complete.runWith([poses]);
-			})
-		}
-
-		PoseNetTools.estimatePoses=function(img,complete){
-			var imageScaleFactor=0.5;
-			var flipHorizontal=false;
-			var outputStride=16;
-			var maxPoseDetections=2;
-			PoseNetTools.netModel.estimateMultiplePoses(img,imageScaleFactor,flipHorizontal,outputStride,maxPoseDetections).then(function(poses){
-				console.log("estimateMultiplePoses success");
-				if(!((poses instanceof Array))){
-					poses=[poses];
-				}
-				complete.runWith([poses]);
-			})
-		}
-
-		PoseNetTools.getImagePosSprite=function(img,sp,complete,minScore){
-			(minScore===void 0)&& (minScore=0.5);
-			function onEstimateSuccess (poses){
-				complete.runWith(PoseNetTools.drawPosInfo(poses,sp,minScore));
+	//class hooktool.XmlHttpRequestHook
+	var XmlHttpRequestHook=(function(){
+		function XmlHttpRequestHook(){}
+		__class(XmlHttpRequestHook,'hooktool.XmlHttpRequestHook');
+		var __proto=XmlHttpRequestHook.prototype;
+		__proto.open=function(type,url){
+			console.log("url:",url);
+			if (XmlHttpRequestHook.isRecording){
+				XmlHttpRequestHook.loadList.push(url);
 			}
-			PoseNetTools.estimatePose(img,Handler.create(null,onEstimateSuccess));
+			XmlHttpRequestHook.preOpen.call(this,type,url);
 		}
 
-		PoseNetTools.drawPosInfo=function(poses,sp,minScore){
-			(minScore===void 0)&& (minScore=0.5);
-			if (!sp)sp=new Sprite();
-			var g;
-			g=sp.graphics;
-			g.clear();
-			var i=0,len=0;
-			len=poses.length;
-			var tPosO;
-			for (i=0;i < len;i++){
-				tPosO=poses[i];
-				if (tPosO.score < minScore)continue ;
-				PoseNetTools.drawPosToGraphic(tPosO,g);
+		XmlHttpRequestHook.adptFetch=function(url,paramO){
+			console.log("url:",url);
+			if (XmlHttpRequestHook.isRecording){
+				XmlHttpRequestHook.loadList.push(url);
 			}
-			return sp;
+			return XmlHttpRequestHook.preFetch.call(this,url,paramO);
 		}
 
-		PoseNetTools.drawPosToGraphic=function(posO,g){
-			var keyPoints;
-			keyPoints=posO.keypoints;
-			var i=0,len=0;
-			len=keyPoints.length;
-			var tPointO;
-			var partDic;
-			partDic={};
-			for (i=0;i < len;i++){
-				tPointO=keyPoints[i];
-				partDic[tPointO.part]=tPointO;
-				g.drawCircle(tPointO.position.x,tPointO.position.y,5,"#ff0000");
-				g.fillText(tPointO.part,tPointO.position.x,tPointO.position.y,"Arrial 12px","#ff0000");
-			}
-			len=PoseNetTools.posLines.length;
-			var tLinePair;
-			var pA;
-			var pB;
-			for (i=0;i < len;i++){
-				tLinePair=PoseNetTools.posLines[i];
-				pA=partDic[tLinePair[0]];
-				pB=partDic[tLinePair[1]];
-				if (pA && pB){
-					g.drawLine(pA.position.x,pA.position.y,pB.position.x,pB.position.y,"#ff0000");
-				}
-			}
+		XmlHttpRequestHook.init=function(){
+			XmlHttpRequestHook.preFetch=Browser.window.fetch;
+			Browser.window.fetch=XmlHttpRequestHook.adptFetch;
+			XmlHttpRequestHook.preOpen=Browser.window.XMLHttpRequest["prototype"]["open"];
+			Browser.window.XMLHttpRequest["prototype"]["open"]=XmlHttpRequestHook["prototype"]["open"];
 		}
 
-		PoseNetTools.netModel=null
-		__static(PoseNetTools,
-		['posLines',function(){return this.posLines=[
-			["rightAnkle","rightKnee"],
-			["rightKnee","rightHip"],
-			["rightHip","leftHip"],
-			["leftHip","leftKnee"],
-			["leftKnee","leftAnkle"],
-			["rightWrist","rightElbow"],
-			["rightElbow","rightShoulder"],
-			["rightShoulder","leftShoulder"],
-			["leftShoulder","leftElbow"],
-			["leftElbow","leftWrist"],
-			["rightShoulder","rightHip"],
-			["leftShoulder","leftHip"],
-			["leftEye","rightEye"],
-			["leftEar","rightEar"]];}
-		]);
-		return PoseNetTools;
+		XmlHttpRequestHook.traceResList=function(){
+			console.log(XmlHttpRequestHook.loadList);
+			console.log(JSON.stringify(XmlHttpRequestHook.loadList));
+		}
+
+		XmlHttpRequestHook.preOpen=null
+		XmlHttpRequestHook.preFetch=null
+		XmlHttpRequestHook.isRecording=true;
+		XmlHttpRequestHook.loadList=[];
+		return XmlHttpRequestHook;
+	})()
+
+
+	/**
+	*...
+	*@author ww
+	*/
+	//class tftool.MobileNetTool
+	var MobileNetTool=(function(){
+		function MobileNetTool(){}
+		__class(MobileNetTool,'tftool.MobileNetTool');
+		MobileNetTool.loadMobileNet=function(path,complete,forTransform){
+			(forTransform===void 0)&& (forTransform=false);
+			if (!path)path="https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json";
+			tf.loadModel(path).then(
+			function(mobilenet){
+				if (forTransform){
+					complete.runWith(mobilenet);
+					return;
+				};
+				var layer=mobilenet.getLayer('conv_pw_13_relu');
+				var modelO;
+				modelO=tf.model({inputs:mobilenet.inputs,outputs:layer.output});
+				complete.runWith(modelO);
+			});
+		}
+
+		return MobileNetTool;
 	})()
 
 
@@ -1745,71 +1646,6 @@ var Laya=window.Laya=(function(window,document){
 
 		Graphics._cache=[];
 		return Graphics;
-	})()
-
-
-	/**
-	*...
-	*@author ww
-	*/
-	//class laya.debug.tools.DebugTxt
-	var DebugTxt=(function(){
-		function DebugTxt(){}
-		__class(DebugTxt,'laya.debug.tools.DebugTxt');
-		DebugTxt.init=function(){
-			if (DebugTxt._txt)return;
-			DebugTxt._txt=new Text();
-			DebugTxt._txt.pos(100,100);
-			DebugTxt._txt.color="#ff00ff";
-			DebugTxt._txt.zOrder=999;
-			DebugTxt._txt.fontSize=24;
-			DebugTxt._txt.text="debugTxt inited";
-			Laya.stage.addChild(DebugTxt._txt);
-		}
-
-		DebugTxt.getArgArr=function(arg){
-			var rst;
-			rst=[];
-			var i=0,len=arg.length;
-			for(i=0;i<len;i++){
-				rst.push(arg[i]);
-			}
-			return rst;
-		}
-
-		DebugTxt.dTrace=function(__arg){
-			var arg=arguments;
-			arg=DebugTxt.getArgArr(arg);
-			var str;
-			str=arg.join(" ");
-			if (DebugTxt._txt){
-				DebugTxt._txt.text=str+"\n"+DebugTxt._txt.text;
-			}
-		}
-
-		DebugTxt.getTimeStr=function(){
-			var dateO=new Date();
-			return dateO.toTimeString();
-		}
-
-		DebugTxt.traceTime=function(msg){
-			DebugTxt.dTrace(DebugTxt.getTimeStr());
-			DebugTxt.dTrace(msg);
-		}
-
-		DebugTxt.show=function(__arg){
-			var arg=arguments;
-			arg=DebugTxt.getArgArr(arg);
-			var str;
-			str=arg.join(" ");
-			if (DebugTxt._txt){
-				DebugTxt._txt.text=str;
-			}
-		}
-
-		DebugTxt._txt=null
-		DebugTxt.I=null
-		return DebugTxt;
 	})()
 
 
@@ -5056,45 +4892,6 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		return LocalStorage;
-	})()
-
-
-	/**
-	*<p>资源版本的生成由layacmd或IDE完成，使用 <code>ResourceVersion</code> 简化使用过程。</p>
-	*<p>调用 <code>enable</code> 启用资源版本管理。</p>
-	*/
-	//class laya.net.ResourceVersion
-	var ResourceVersion=(function(){
-		function ResourceVersion(){};
-		__class(ResourceVersion,'laya.net.ResourceVersion');
-		ResourceVersion.enable=function(manifestFile,callback,type){
-			(type===void 0)&& (type=2);
-			laya.net.ResourceVersion.type=type;
-			Laya.loader.load(manifestFile,Handler.create(null,ResourceVersion.onManifestLoaded,[callback]),null,"json");
-			URL.customFormat=ResourceVersion.addVersionPrefix;
-		}
-
-		ResourceVersion.onManifestLoaded=function(callback,data){
-			ResourceVersion.manifest=data;
-			callback.run();
-			if (!data){
-				console.warn("资源版本清单文件不存在，不使用资源版本管理。忽略ERR_FILE_NOT_FOUND错误。");
-			}
-		}
-
-		ResourceVersion.addVersionPrefix=function(originURL){
-			if (ResourceVersion.manifest && ResourceVersion.manifest[originURL]){
-				if (ResourceVersion.type==2)return ResourceVersion.manifest[originURL];
-				return ResourceVersion.manifest[originURL]+"/"+originURL;
-			}
-			return originURL;
-		}
-
-		ResourceVersion.FOLDER_VERSION=1;
-		ResourceVersion.FILENAME_VERSION=2;
-		ResourceVersion.manifest=null
-		ResourceVersion.type=1;
-		return ResourceVersion;
 	})()
 
 
@@ -9344,203 +9141,6 @@ var Laya=window.Laya=(function(window,document){
 
 		return WordText;
 	})()
-
-
-	/**
-	*...
-	*@author ww
-	*/
-	//class LayaArTool
-	var LayaArTool=(function(){
-		function LayaArTool(){}
-		__class(LayaArTool,'LayaArTool');
-		LayaArTool.createVideo=function(){
-			var video;
-			video=Browser.createElement("video");
-			Browser.document.body.appendChild(video);
-			var style;
-			style=video.style;
-			style.position="absolute";
-			style.left="0px";
-			style.top="0px";
-			return video;
-		}
-
-		LayaArTool.initVideoBySrc=function(video,src,handler){
-			video.src=src;
-			video.loop="loop";
-			video.onloadedmetadata=function (e){
-				handler.runWith(video);
-			};
-		}
-
-		LayaArTool.initPCCamara=function(video,handler){
-			var constraints={video:true};
-			function handleSuccess (stream){
-				window.stream=stream;
-				video.srcObject=stream;
-				handler.run();
-			}
-			function handleError (error){
-				console.log('getUserMedia error: ',error);
-			}
-			Browser.window.navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
-		}
-
-		LayaArTool.initCamaraNew=function(video,handler){
-			var exArray=[];
-			var navigator=Browser.window.navigator;
-			var MediaStreamTrack=Browser.window.MediaStreamTrack;
-			DebugTxt.dTrace("navigator.getUserMedia"+navigator.getUserMedia);
-			DebugTxt.dTrace("MediaStreamTrack2",Browser.window.MediaStreamTrack);
-			if (MediaStreamTrack && MediaStreamTrack.getSources){}
-				else {
-				LayaArTool.initCamaraVideo(video,handler);
-				return;
-			}
-			DebugTxt.dTrace("MediaStreamTrack.getSources",Browser.window.MediaStreamTrack.getSources);
-			if (navigator.getUserMedia){
-				DebugTxt.dTrace("MediaStreamTrack.getSources",MediaStreamTrack.getSources);
-				MediaStreamTrack.getSources(function(sourceInfos){
-					for (var i=0;i !=sourceInfos.length;++i){
-						var sourceInfo=sourceInfos[i];
-						if (sourceInfo.kind==='video'){
-							exArray.push(sourceInfo.id);
-						}
-					};
-					var mediaCfg;
-					mediaCfg={'video':{'optional':[{'sourceId':exArray[1]}],'audio':false}}
-					DebugTxt.dTrace("navigator.getUserMedia");
-					navigator.getUserMedia(mediaCfg,function(stream){
-						DebugTxt.dTrace("onCamaraOk");
-						LayaArTool.onCamaraOk(video,stream,handler);
-					},LayaArTool.onCamaraErr);
-				});
-			}
-		}
-
-		LayaArTool.initCamaraNew2=function(video,handler){
-			var exArray=[];
-			var navigator=Browser.window.navigator;
-			if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices){
-				navigator.mediaDevices.enumerateDevices().then(gotDevices);
-			}
-			else {
-				LayaArTool.initCamaraNew(video,handler);
-				return;
-			};
-			var audioArray=[];
-			function gotDevices (deviceInfos){
-				for (var i=0;i!==deviceInfos.length;++i){
-					var deviceInfo=deviceInfos[i];
-					if (deviceInfo.kind==='audioinput'){
-						audioArray.push(deviceInfo.deviceId || 'microphone '+(audioArray.length+1));
-					}
-					else if (deviceInfo.kind==='videoinput'){
-						var key;
-						for (key in deviceInfo){
-							DebugTxt.dTrace(key,deviceInfo[key]);
-						}
-						exArray.push(deviceInfo.deviceId || 'camera '+(exArray.length+1));
-					}
-					else {
-						console.log('Found one other kind of source/device: ',deviceInfo);
-					}
-				}
-				DebugTxt.dTrace("deviceId:",exArray[1]);
-				var constraints={audio:false,video:{deviceId:{exact:exArray[1]}}};
-				navigator.mediaDevices.getUserMedia(constraints).then(gotStream);
-				function gotStream (stream){
-					DebugTxt.dTrace("gotStream");
-					LayaArTool.onCamaraOk(video,stream,handler);
-				}
-			}
-		}
-
-		LayaArTool.onCamaraErr=function(error){
-			alert(error.name);
-		}
-
-		LayaArTool.onCamaraOk=function(video,stream,handler){
-			video.src=Browser.window.URL.createObjectURL(stream);
-			video.onloadedmetadata=function (e){
-				DebugTxt.dTrace("onloadedmetadata");
-				handler.runWith(video);
-			};
-		}
-
-		LayaArTool.initCamaraVideo=function(video,handler){
-			var navigator=Browser.window.navigator;
-			var videoObj={"video":true};
-			var errBack=function (error){
-				alert(error.name);
-			};
-			var _this=this;
-			if (navigator.getUserMedia){
-				navigator.getUserMedia(videoObj,function(stream){
-					video.src=Browser.window.URL.createObjectURL(stream);
-					video.onloadedmetadata=function (e){
-						handler.runWith(video);
-					};
-				},LayaArTool.onCamaraErr);
-			}
-			else if (navigator.webkitGetUserMedia){
-				navigator.webkitGetUserMedia(videoObj,function(stream){
-					video.src=Browser.window.webkitURL.createObjectURL(stream);
-					video.onloadedmetadata=function (e){
-						handler.runWith(video);
-					};
-				},LayaArTool.onCamaraErr);
-			}
-			else if (navigator.mozGetUserMedia){
-				navigator.mozGetUserMedia(videoObj,function(stream){
-					video.src=Browser.window.URL.createObjectURL(stream);
-					video.onloadedmetadata=function (e){
-						handler.runWith(video);
-					};
-				},LayaArTool.onCamaraErr);
-			}
-		}
-
-		return LayaArTool;
-	})()
-
-
-	/**
-	*...
-	*@author ww
-	*/
-	//class demo.PoseNetDemo extends demo.DemoBase
-	var PoseNetDemo=(function(_super){
-		function PoseNetDemo(){
-			this.sp=null;
-			PoseNetDemo.__super.call(this);
-			this.useVideo=true;
-			PoseNetTools.setModuleRoot("");
-		}
-
-		__class(PoseNetDemo,'demo.PoseNetDemo',_super);
-		var __proto=PoseNetDemo.prototype;
-		__proto.initModels=function(){
-			PoseNetTools.init(new Handler(this,this.modelInited));
-		}
-
-		__proto.allInited=function(){
-			this.sp=new Sprite();
-			this.loopDetect();
-		}
-
-		__proto.loopDetect=function(){
-			PoseNetTools.getImagePosSprite(this.video,this.sp,new Handler(this,this.onPosGetd),0.65);
-		}
-
-		__proto.onPosGetd=function(sp){
-			Laya.stage.addChild(sp);
-			this.loopDetect();
-		}
-
-		return PoseNetDemo;
-	})(DemoBase)
 
 
 	/**
@@ -17133,6 +16733,6 @@ var Laya=window.Laya=(function(window,document){
 
 
 	Laya.__init([LoaderManager,EventDispatcher,Timer,Browser,Render,LocalStorage]);
-	new demo.PoseNetDemo();
+	new demo.TestMobileNet();
 
 })(window,document,Laya);
