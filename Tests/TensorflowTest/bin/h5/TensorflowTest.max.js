@@ -543,6 +543,7 @@ var Laya=window.Laya=(function(window,document){
 		function ImageClass(){}
 		__class(ImageClass,'tftool.ImageClass');
 		ImageClass.getTopKClasses=function(values,topK){
+			(topK===void 0)&& (topK=3);
 			var valuesAndIndices=[];
 			for (var i=0;i < values.length;i++){
 				valuesAndIndices.push({value:values[i],index:i});
@@ -17915,7 +17916,7 @@ var Laya=window.Laya=(function(window,document){
 	})(FileBitmap)
 
 
-	Laya.__init([EventDispatcher,LoaderManager,Timer,Browser,Render,LocalStorage]);
+	Laya.__init([LoaderManager,EventDispatcher,Timer,Browser,Render,LocalStorage]);
 	new demo.TestMobileNet();
 
 })(window,document,Laya);

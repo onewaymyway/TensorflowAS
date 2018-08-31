@@ -11,23 +11,23 @@ package tftool {
 		
 		}
 		
-		public static function getTopKClasses(values, topK) {
+		public static function getTopKClasses(values:Array, topK:int=3):Array {
 			
-			var valuesAndIndices = [];
-			for (var i = 0; i < values.length; i++) {
+			var valuesAndIndices:Array = [];
+			for (var i:int = 0; i < values.length; i++) {
 				valuesAndIndices.push({value: values[i], index: i});
 			}
-			valuesAndIndices.sort(function(a, b):Number {
+			valuesAndIndices.sort(function(a:Object, b:Object):Number {
 					return b.value - a.value;
 				});
-			var topkValues = new Float32Array(topK);
-			var topkIndices = new Int32Array(topK);
+			var topkValues:Float32Array = new Float32Array(topK);
+			var topkIndices:Int32Array = new Int32Array(topK);
 			for (i = 0; i < topK; i++) {
 				topkValues[i] = valuesAndIndices[i].value;
 				topkIndices[i] = valuesAndIndices[i].index;
 			}
 			
-			const topClassesAndProbs = [];
+			var topClassesAndProbs:Array = [];
 			for (i = 0; i < topkIndices.length; i++) {
 				topClassesAndProbs.push({className: IMAGENET_CLASSES[topkIndices[i]], probability: topkValues[i]})
 			}
