@@ -28,6 +28,7 @@ package tftool
 				}
 				var layer:* = mobilenet.getLayer('conv_pw_13_relu');
 				var modelO:*;
+				//debugger;
 				modelO = model({inputs: mobilenet.inputs, outputs: layer.output});
 				complete.runWith(modelO);
 			}

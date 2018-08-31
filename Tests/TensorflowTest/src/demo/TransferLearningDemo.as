@@ -8,6 +8,7 @@ package demo {
 	import tf.train.adam;
 	import tftool.ImageTools;
 	import tftool.MobileNetTool;
+	import view.TransferControlView;
 	
 	/**
 	 * ...
@@ -23,8 +24,9 @@ package demo {
 		
 		override protected function initModels():void {
 			var path:String;
-			path = "http://10.10.20.40/mobilenet_v1_0.25_224/model.json";
-			MobileNetTool.loadMobileNet(path, new Handler(this, onModelLoaded));
+			//path = "http://10.10.20.40/mobilenet_v1_0.25_224/model.json";
+			path = "http://localhost/mobilenet_v1_0.25_224/model.json";
+			MobileNetTool.loadMobileNet(path, new Handler(this, onModelLoaded),true);
 		}
 		
 		private var modelO:Object;
@@ -39,19 +41,20 @@ package demo {
 		public var learningRate:Number = 0.0005;
 		public var epoches:int = 20;
 		public var batchsize:Number = 0.4;
+		public var model:Sequential;
 		
 		private function createTransferModel():void {
-			var model:Sequential;
+			
 			var layers:Array;
 			layers = [];
 			layers.push(flatten({inputShape: [7, 7, 256]}));
 			layers.push(dense({units: denseUnits, activation: 'relu', kernelInitializer: 'varianceScaling', useBias: true}));
 			
-			layers.push({units: NUM_CLASSES, kernelInitializer: 'varianceScaling', useBias: false, activation: 'softmax'});
+			layers.push(dense({units: NUM_CLASSES, kernelInitializer: 'varianceScaling', useBias: false, activation: 'softmax'}));
 			
 			model = sequential({layers: layers});
 			// Creates the optimizers which drives training of the model.
-			var optimize:* = adam(learningRate);
+			var optimizer:* = adam(learningRate);
 			// We use categoricalCrossentropy which is the loss function we use for
 			// categorical classification which measures the error between our predicted
 			// probability distribution over classes (probability that an input is of each
@@ -63,6 +66,19 @@ package demo {
 		override protected function allInited():void {
 			super.allInited();
 			ImageTools.adptElementToSize(video);
+			addUI();
+		}
+		
+		private function addUI():void
+		{
+			createTransferModel();
+			var tui:TransferControlView;
+			tui = new TransferControlView();
+			tui.pos(0, 250);
+			tui.video = video;
+			tui.mobileNet = modelO;
+			tui.myModelO = model;
+			Laya.stage.addChild(tui);
 		}
 	}
 

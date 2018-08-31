@@ -10,15 +10,20 @@ package tftool.datatool {
 	 */
 	public class SimpleDataSet {
 		public var numClasses:int = 4;
-		
+		public var xs:*;
+		public var ys:*;
 		public function SimpleDataSet() {
 		
 		}
-		
+		public function clear():void
+		{
+			this.xs = null;
+			this.ys = null;
+		}
 		public function addExample(example, label):void {
 			// One-hot encode the label.
 			var y = tidy(function():* {
-					return oneHot(tensor1d([label]).toInt(), this.numClasses)
+					return oneHot(tensor1d([label]).toInt(), numClasses)
 				});
 			
 			if (this.xs == null) {

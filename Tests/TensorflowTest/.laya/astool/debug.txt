@@ -1,19 +1,2 @@
-1,0.00,,0,Project command:e:\wangwei\bugProjects\EngineSetting\ee534556/.actionScriptProperties;iflash=false;windowshow=false;chromerun=false;quickcompile=true
-Project configuration:e:\wangwei\bugProjects\EngineSetting\ee534556/.actionScriptProperties.
-1,0.00,,0,output path:e:/wangwei/bugProjects/EngineSetting/ee534556/bin/h5/
-1,0.00,,0,Main Class:e:/wangwei/bugProjects/EngineSetting/ee534556/src/LayaUISample.as
-1,0.00,,0,output file:LayaUISample
-1,0.00,,0,compilerSourcePath e:/wangwei/bugProjects/EngineSetting/ee534556/libs/laya/src/
-
-1,0.00,,0,Compile Path:e:/wangwei/bugProjects/EngineSetting/ee534556/src/
-
-1,0.00,,0,Compile Path:e:/wangwei/bugProjects/EngineSetting/ee534556/libs/laya/src/
-
-1,0.00,e:/wangwei/bugProjects/EngineSetting/ee534556/src,0,Collect
-1,0.00,e:/wangwei/bugProjects/EngineSetting/ee534556/libs/laya/src,0,Collect
-1,2.00,,0,read class message
-1,89.73,,0,Disable Flash3D e:/wangwei/bugProjects/EngineSetting/ee534556/src/LayaUISample.as
-12,89.73,e:/wangwei/bugProjects/EngineSetting/ee534556/bin/h5/LayaUISample.max.js,1173055,
-11,89.73,e:/wangwei/bugProjects/EngineSetting/ee534556/bin/h5/LayaUISample.max.html,0,
+Project configuration:d:\Documents\myLayaaaaqaaaaaqqsaaaaaaaareqaaaaasaaqq/.actionScriptProperties.
 ******************************************************************************
-14,89.73,,0,
