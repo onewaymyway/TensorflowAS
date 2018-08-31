@@ -430,7 +430,7 @@ var Laya=window.Laya=(function(window,document){
 			this.modelO=null;
 			this.text=null;
 			Laya.init(1000,900);
-			this.pics=["res/cat.png","res/rabit.png","res/dog.png","res/pig.png","res/gorilla.png"];
+			this.pics=["res/cat.png","res/rabit.png","res/dog.png","res/pig.png","res/gorilla.png","res/head.png"];
 			Laya.loader.load(this.pics,new Handler(this,this.test));
 		}
 
@@ -451,8 +451,6 @@ var Laya=window.Laya=(function(window,document){
 			tex=Loader.getRes(this.pic);
 			var ele;
 			ele=tex.bitmap.source;
-			ele.width=224;
-			ele.height=224;
 			MobileNetTool.predict(this.modelO,ele,4,new Handler(this,this.onPredicted));
 		}
 
@@ -585,6 +583,22 @@ var Laya=window.Laya=(function(window,document){
 			(height===void 0)&& (height=224);
 			return tf.tidy(function(){
 				var webcamImage=tf.fromPixels(webcamElement);
+				var pr=NaN;
+				pr=webcamElement.width / webcamElement.height;
+				var sw=NaN;
+				sw=width/webcamElement.width;
+				var sh=NaN;
+				sh=height/webcamElement.height;
+				var ss=NaN;
+				if (sw > sh){
+					ss=sw;
+					}else{
+					ss=sh;
+				};
+				var tw=NaN,th=NaN;
+				tw=Math.round(webcamElement.width *ss);
+				th=Math.round(webcamElement.height *ss);
+				webcamImage=tf.image.resizeBilinear(webcamImage,[tw,th]);
 				var croppedImage=ImageTools.cropImage(webcamImage,width,height);
 				var batchedImage=croppedImage.expandDims(0);
 				return batchedImage.toFloat().div(tf.scalar(127)).sub(tf.scalar(1));
@@ -17888,7 +17902,7 @@ var Laya=window.Laya=(function(window,document){
 	})(FileBitmap)
 
 
-	Laya.__init([LoaderManager,EventDispatcher,Timer,Browser,Render,LocalStorage]);
+	Laya.__init([EventDispatcher,LoaderManager,Timer,Browser,Render,LocalStorage]);
 	new demo.TestMobileNet();
 
 })(window,document,Laya);

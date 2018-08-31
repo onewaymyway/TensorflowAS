@@ -1,5 +1,6 @@
 package tftool {
 	import tf.fromPixels;
+	import tf.image.resizeBilinear;
 	import tf.scalar;
 	import tf.tidy;
 	
@@ -12,11 +13,31 @@ package tftool {
 		public function ImageTools() {
 		
 		}
-		
+
 		public static function elementToTFImage(webcamElement:*,width:int=224,height:int=224):* {
 			return tidy(function():* {
 				// Reads the image as a Tensor from the webcam <video> element.
 					var webcamImage:* = fromPixels(webcamElement);
+					//debugger;
+					var pr:Number;
+					pr = webcamElement.width / webcamElement.height;
+					var sw:Number;
+					sw = width/webcamElement.width  ;
+					var sh:Number;
+					sh = height/webcamElement.height  ;
+					var ss:Number;
+					if (sw > sh)
+					{
+						ss = sw;
+					}else
+					{
+						ss = sh;
+					}
+					var tw:Number, th:Number;
+					tw = Math.round(webcamElement.width * ss);
+					th = Math.round(webcamElement.height * ss);
+					
+					webcamImage = resizeBilinear(webcamImage, [tw,th]);
 					
 					// Crop the image so we're using the center square of the rectangular
 					// webcam.

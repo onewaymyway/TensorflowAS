@@ -24,7 +24,7 @@ package demo
 		{
 			Laya.init(1000, 900);
 			
-			pics = ["res/cat.png","res/rabit.png","res/dog.png","res/pig.png","res/gorilla.png"];
+			pics = ["res/cat.png","res/rabit.png","res/dog.png","res/pig.png","res/gorilla.png","res/head.png"];
 			//pic = "res/cat.png";
 			//pic = "res/rabit.png";
 			//pic = "res/dog.png";
@@ -53,8 +53,8 @@ package demo
 			
 			var ele:*;
 			ele = tex.bitmap.source;
-			ele.width = 224;
-			ele.height = 224;
+			//ele.width = 224;
+			//ele.height = 224;
 			
 			MobileNetTool.predict(modelO, ele, 4, new Handler(this, onPredicted));
 		}
