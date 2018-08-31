@@ -23,6 +23,8 @@ package view {
 		private var labelCountDic:Object = { };
 		public var mobileNet:Model;
 		public var myModelO:Model;
+		public var curState:String;
+		public var isPlaying:Boolean = false;
 		public function resetSample():void
 		{
 			labelCountDic = { "left":0, "right":0, "up":0, "down":0 };
@@ -101,7 +103,6 @@ package view {
 		
 		private function trainComplete():void
 		{
-			debugger;
 			trace("trainComplete");
 		}
 		
@@ -109,7 +110,17 @@ package view {
 		
 		private function onPlay():void
 		{
-			Laya.timer.loop(100, this, predict,null,true);
+			if (!isPlaying)
+			{
+				isPlaying = true;
+				Laya.timer.loop(100, this, predict,null,true);
+			}else
+			{
+				isPlaying = false;
+				Laya.timer.clear(this, predict);
+			}
+			
+			
 		}
 		
 		private function predict():void
@@ -134,8 +145,8 @@ package view {
 			var rstID:int;
 			rstID = predictRst.dataSync()[0];
 			trace("rst:",rstID,getDirStr(rstID));
-			
-			resultTxt.text = "Action:"+getDirStr(rstID);
+			curState=getDirStr(rstID);
+			resultTxt.text = "Action:" + curState;
 			
 			
 			

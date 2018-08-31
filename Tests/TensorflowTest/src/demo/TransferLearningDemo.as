@@ -1,4 +1,5 @@
 package demo {
+	import laya.ui.Image;
 	import laya.utils.Handler;
 	import posnet.PoseNetTools;
 	import tf.layers.dense;
@@ -69,16 +70,52 @@ package demo {
 			addUI();
 		}
 		
+		private var img:Image;
+		private var tui:TransferControlView;
 		private function addUI():void
 		{
 			createTransferModel();
-			var tui:TransferControlView;
+			
 			tui = new TransferControlView();
 			tui.pos(0, 250);
 			tui.video = video;
 			tui.mobileNet = modelO;
 			tui.myModelO = model;
 			Laya.stage.addChild(tui);
+			
+			img = new Image();
+			img.skin = "res/rabit.png";
+			img.scale(0.2, 0.2);
+			Laya.stage.addChild(img);
+			img.x = Laya.stage.width * 0.5;
+			img.y = Laya.stage.height * 0.5;
+			
+			Laya.timer.loop(100, this, loopFun);
+		}
+		private var dLen:int = 5;
+		private function loopFun():void
+		{
+			if (!tui.isPlaying) return;
+			switch(tui.curState)
+			{
+				case "left":
+					img.x -= dLen;
+					break;
+				case "right":
+					img.x += dLen;
+					break;
+				case "up":
+					img.y -= dLen;
+					break;
+				case "down":
+					img.y += dLen;
+					break;
+			}
+			
+			if (img.x < 0) img.x = 0;
+			if (img.y < 0) img.y = 0;
+			if (img.x > Laya.stage.width) img.x = Laya.stage.width;
+			if (img.y > Laya.stage.height) img.y = Laya.stage.height;
 		}
 	}
 

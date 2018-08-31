@@ -10263,6 +10263,9 @@ var Laya=window.Laya=(function(window,document){
 			this.epoches=20;
 			this.batchsize=0.4;
 			this.model=null;
+			this.img=null;
+			this.tui=null;
+			this.dLen=5;
 			TransferLearningDemo.__super.call(this);
 			this.useVideo=true;
 		}
@@ -10299,13 +10302,41 @@ var Laya=window.Laya=(function(window,document){
 
 		__proto.addUI=function(){
 			this.createTransferModel();
-			var tui;
-			tui=new TransferControlView();
-			tui.pos(0,250);
-			tui.video=this.video;
-			tui.mobileNet=this.modelO;
-			tui.myModelO=this.model;
-			Laya.stage.addChild(tui);
+			this.tui=new TransferControlView();
+			this.tui.pos(0,250);
+			this.tui.video=this.video;
+			this.tui.mobileNet=this.modelO;
+			this.tui.myModelO=this.model;
+			Laya.stage.addChild(this.tui);
+			this.img=new Image();
+			this.img.skin="res/rabit.png";
+			this.img.scale(0.2,0.2);
+			Laya.stage.addChild(this.img);
+			this.img.x=Laya.stage.width *0.5;
+			this.img.y=Laya.stage.height *0.5;
+			Laya.timer.loop(100,this,this.loopFun);
+		}
+
+		__proto.loopFun=function(){
+			if (!this.tui.isPlaying)return;
+			switch(this.tui.curState){
+				case "left":
+					this.img.x-=this.dLen;
+					break ;
+				case "right":
+					this.img.x+=this.dLen;
+					break ;
+				case "up":
+					this.img.y-=this.dLen;
+					break ;
+				case "down":
+					this.img.y+=this.dLen;
+					break ;
+				}
+			if (this.img.x < 0)this.img.x=0;
+			if (this.img.y < 0)this.img.y=0;
+			if (this.img.x > Laya.stage.width)this.img.x=Laya.stage.width;
+			if (this.img.y > Laya.stage.height)this.img.y=Laya.stage.height;
 		}
 
 		return TransferLearningDemo;
@@ -27770,6 +27801,8 @@ var Laya=window.Laya=(function(window,document){
 			this.labelCountDic={};
 			this.mobileNet=null;
 			this.myModelO=null;
+			this.curState=null;
+			this.isPlaying=false;
 			this.batchsizerate=0.4;
 			this.epoches=20;
 			TransferControlView.__super.call(this);
@@ -27839,12 +27872,17 @@ var Laya=window.Laya=(function(window,document){
 		}
 
 		__proto.trainComplete=function(){
-			debugger;
 			console.log("trainComplete");
 		}
 
 		__proto.onPlay=function(){
-			Laya.timer.loop(100,this,this.predict,null,true);
+			if (!this.isPlaying){
+				this.isPlaying=true;
+				Laya.timer.loop(100,this,this.predict,null,true);
+				}else{
+				this.isPlaying=false;
+				Laya.timer.clear(this,this.predict);
+			}
 		}
 
 		__proto.predict=function(){
@@ -27864,7 +27902,8 @@ var Laya=window.Laya=(function(window,document){
 			var rstID=0;
 			rstID=predictRst.dataSync()[0];
 			console.log("rst:",rstID,TransferControlView.getDirStr(rstID));
-			this.resultTxt.text="Action:"+TransferControlView.getDirStr(rstID);
+			this.curState=TransferControlView.getDirStr(rstID);
+			this.resultTxt.text="Action:"+this.curState;
 		}
 
 		__proto.addSample=function(label){
