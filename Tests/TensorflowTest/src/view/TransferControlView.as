@@ -18,7 +18,7 @@ package view {
 		}
 		public var video:*;
 		private var dataset:SimpleDataSet;
-		public static var dirDic:Object = { "left":1, "right":2, "up":3, "down":4 };
+		public static var dirDic:Object = { "left":1, "right":2, "up":3, "down":0 };
 		public static var dirStrDic:Object = { };
 		private var labelCountDic:Object = { };
 		public var mobileNet:Model;

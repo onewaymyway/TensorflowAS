@@ -27888,7 +27888,7 @@ var Laya=window.Laya=(function(window,document){
 
 		TransferControlView.dirStrDic={};
 		__static(TransferControlView,
-		['dirDic',function(){return this.dirDic={"left":1,"right":2,"up":3,"down":4 };}
+		['dirDic',function(){return this.dirDic={"left":1,"right":2,"up":3,"down":0 };}
 		]);
 		return TransferControlView;
 	})(TransferLearningUI)
