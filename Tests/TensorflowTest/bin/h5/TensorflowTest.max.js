@@ -578,27 +578,40 @@ var Laya=window.Laya=(function(window,document){
 	var ImageTools=(function(){
 		function ImageTools(){}
 		__class(ImageTools,'tftool.ImageTools');
+		ImageTools.getAdptSize=function(size,width,height){
+			(width===void 0)&& (width=224);
+			(height===void 0)&& (height=224);
+			var sw=NaN;
+			sw=width/size[0];
+			var sh=NaN;
+			sh=height/size[1];
+			var ss=NaN;
+			if (sw > sh){
+				ss=sw;
+				}else{
+				ss=sh;
+			};
+			var tw=NaN,th=NaN;
+			tw=Math.round(size[0] *ss);
+			th=Math.round(size[1] *ss);
+			return [tw,th];
+		}
+
+		ImageTools.adptElementToSize=function(ele,width,height){
+			(width===void 0)&& (width=244);
+			(height===void 0)&& (height=224);
+			var size;
+			size=ImageTools.getAdptSize([ele.width,ele.height],width,height);
+			ele.width=size[0];
+			ele.height=size[1];
+		}
+
 		ImageTools.elementToTFImage=function(webcamElement,width,height){
 			(width===void 0)&& (width=224);
 			(height===void 0)&& (height=224);
 			return tf.tidy(function(){
 				var webcamImage=tf.fromPixels(webcamElement);
-				var pr=NaN;
-				pr=webcamElement.width / webcamElement.height;
-				var sw=NaN;
-				sw=width/webcamElement.width;
-				var sh=NaN;
-				sh=height/webcamElement.height;
-				var ss=NaN;
-				if (sw > sh){
-					ss=sw;
-					}else{
-					ss=sh;
-				};
-				var tw=NaN,th=NaN;
-				tw=Math.round(webcamElement.width *ss);
-				th=Math.round(webcamElement.height *ss);
-				webcamImage=tf.image.resizeBilinear(webcamImage,[tw,th]);
+				webcamImage=tf.image.resizeBilinear(webcamImage,ImageTools.getAdptSize([webcamElement.width,webcamElement.height],width,height));
 				var croppedImage=ImageTools.cropImage(webcamImage,width,height);
 				var batchedImage=croppedImage.expandDims(0);
 				return batchedImage.toFloat().div(tf.scalar(127)).sub(tf.scalar(1));

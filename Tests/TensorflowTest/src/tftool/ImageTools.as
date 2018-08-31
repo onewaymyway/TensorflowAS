@@ -14,17 +14,12 @@ package tftool {
 		
 		}
 
-		public static function elementToTFImage(webcamElement:*,width:int=224,height:int=224):* {
-			return tidy(function():* {
-				// Reads the image as a Tensor from the webcam <video> element.
-					var webcamImage:* = fromPixels(webcamElement);
-					//debugger;
-					var pr:Number;
-					pr = webcamElement.width / webcamElement.height;
+		public static function getAdptSize(size:Array,width:int=224,height:int=224):Array
+		{
 					var sw:Number;
-					sw = width/webcamElement.width  ;
+					sw = width/size[0]  ;
 					var sh:Number;
-					sh = height/webcamElement.height  ;
+					sh = height/size[1]  ;
 					var ss:Number;
 					if (sw > sh)
 					{
@@ -34,10 +29,26 @@ package tftool {
 						ss = sh;
 					}
 					var tw:Number, th:Number;
-					tw = Math.round(webcamElement.width * ss);
-					th = Math.round(webcamElement.height * ss);
+					tw = Math.round(size[0] * ss);
+					th = Math.round(size[1] * ss);
+					return [tw,th];
+		}
+		
+		public static function adptElementToSize(ele:*, width:int = 244, height: int = 224):void
+		{
+			var size:Array;
+			size = getAdptSize([ele.width, ele.height], width, height);
+			ele.width = size[0];
+			ele.height = size[1];
+		}
+		
+		public static function elementToTFImage(webcamElement:*,width:int=224,height:int=224):* {
+			return tidy(function():* {
+				// Reads the image as a Tensor from the webcam <video> element.
+					var webcamImage:* = fromPixels(webcamElement);
+
 					
-					webcamImage = resizeBilinear(webcamImage, [tw,th]);
+					webcamImage = resizeBilinear(webcamImage, getAdptSize([webcamElement.width,webcamElement.height],width,height));
 					
 					// Crop the image so we're using the center square of the rectangular
 					// webcam.
