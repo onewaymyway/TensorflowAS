@@ -15,7 +15,7 @@ AS3.0 version of tensorflow.js
 
 0.2.FaceAPI demo 可运行
 
-0.3.webcam-transfer-learning demo 计划中
+0.3.webcam-transfer-learning demo 可运行
 
 
 第一步：
